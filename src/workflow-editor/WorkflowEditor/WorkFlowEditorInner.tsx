@@ -19,6 +19,7 @@ const Toolbar = styled.div`
   padding: 8px;
   box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.03);
   z-index: 1;
+  background-color: ${props => props.theme.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : undefined};
 `
 const ToolbarTitle = styled.div`
   display: flex;
@@ -51,10 +52,10 @@ const NavIcon = styled.span`
 
 const Canvas = styled.div`
   flex: 1;
-  background-color: #f5f5f7;
+  background-color: ${props => props.theme.mode === "light" ? "#f5f5f7" : undefined} ;
 `
 
-export const WorkFlowEditorInner = memo((props:{
+export const WorkFlowEditorInner = memo((props: {
 }) => {
   return (
     <Container className="workflow-editor-shell">

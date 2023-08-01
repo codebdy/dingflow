@@ -15,7 +15,6 @@ export const WorkFlowShell = memo((props: {
       mode
     }
   }, [mode, token])
-
   return (
     <ThemeProvider theme={theme}>
       {
