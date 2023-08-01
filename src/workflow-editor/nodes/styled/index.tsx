@@ -19,7 +19,8 @@ export const NodeWrapBox = styled.div`
   width: 220px;
   min-height: 72px;
   flex-shrink: 0;
-  background: #fff;
+  background: ${props => props.theme.token?.colorBgContainer};
+  border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   cursor: pointer;
   &:after{

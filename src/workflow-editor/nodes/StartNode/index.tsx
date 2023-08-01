@@ -1,6 +1,7 @@
 import { memo } from "react"
 import { useStartNode } from "../../hooks/useStartNode"
 import { NodeContent, NodeTitle, NodeWrap, NodeWrapBox } from "../styled"
+import { AddButton } from "../AddButton"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
@@ -14,6 +15,7 @@ export const StartNode = memo(() => {
           所有人
         </NodeContent>
       </NodeWrapBox>
+      <AddButton />
     </NodeWrap>
   )
 })
