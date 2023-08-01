@@ -25,15 +25,16 @@ const ToolbarContent = styled.div`
 `
 
 const NavIcon = styled.span`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: solid 1px ${props => props.theme.token?.colorTextSecondary};
-  line-height: 18px;
+  line-height: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  font-size: 12px;
   &.selected{
     background-color: ${props => props.theme.token?.colorPrimary};
     border-color: ${props => props.theme.token?.colorPrimary};
