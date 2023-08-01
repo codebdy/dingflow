@@ -1,6 +1,6 @@
 import { memo } from "react"
 import styled from "styled-components"
-import { Button, Space } from "antd"
+import { Button,  Space } from "antd"
 import { ShellContainer } from "./ShellContainer"
 import { WorkflowEditor } from "../workflow-editor/WorkflowEditor"
 
@@ -8,9 +8,10 @@ const Toolbar = styled.div`
   height: 56px;
   border-bottom: solid 1px ${props => props.theme.token?.colorBorder};
   display: flex;
-  //align-items: center;
+  align-items: center;
   padding: 8px;
-  flex-grow: 0;
+  justify-content: space-between;
+  box-sizing: border-box;
 `
 
 export const ExampleInner = memo((
@@ -20,9 +21,13 @@ export const ExampleInner = memo((
 ) => {
   const { toggleTheme } = props
 
+
   return (
     <ShellContainer>
       <Toolbar>
+        <span>
+          工作流演示
+        </span>
         <Space>
           <Button onClick={toggleTheme}>主题切换</Button>
         </Space>

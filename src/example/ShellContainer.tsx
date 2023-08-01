@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: column;
   background-color: ${props => props.theme.token?.colorBgBase};
+  color: ${props => props.theme.token?.colorText};
 `
 
 export const ShellContainer = memo((
