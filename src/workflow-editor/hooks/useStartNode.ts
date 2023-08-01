@@ -25,5 +25,5 @@ export function useStartNode() {
     setStartNode(store?.store.getState().startNode)
   }, [store?.store])
 
-  return { changeFlag: startNode, setChangeFlag: doSetStartNode }
+  return { startNode, setStartNode: doSetStartNode }
 }
