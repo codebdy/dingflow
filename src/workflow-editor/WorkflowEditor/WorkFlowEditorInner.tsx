@@ -17,7 +17,7 @@ const Toolbar = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 8px;
+  padding: 8px 16px;
   box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.03);
   z-index: 1;
   background-color: ${props => props.theme.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : undefined};
@@ -56,6 +56,7 @@ const Canvas = styled.div`
   background-color: ${props => props.theme.mode === "light" ? "#f5f5f7" : undefined} ;
   padding: 16px;
   position: relative;
+  cursor: grab;//grabbing
 `
 
 export const WorkFlowEditorInner = memo((props: {
@@ -74,13 +75,13 @@ export const WorkFlowEditorInner = memo((props: {
           <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> 基础设置</Button>
           <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>表单设计</Button>
           <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>流程设计</Button>
-          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设计</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设置</Button>
         </ToolbarContent>
         <Space>
           <Button type="primary">发布</Button>
         </Space>
       </Toolbar>
-      <Canvas>
+      <Canvas style={{ transform: `scale(1)` }}>
         <ZoomBar />
       </Canvas>
     </Container>

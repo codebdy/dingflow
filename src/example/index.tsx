@@ -9,7 +9,7 @@ const Toolbar = styled.div`
   border-bottom: solid 1px rgba(0,0,0, 0.1);
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
   justify-content: space-between;
   box-sizing: border-box;
 `
