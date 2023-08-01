@@ -2,12 +2,36 @@ import { Store } from "redux"
 import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
+import { StartNodeListener } from "../interfaces/listeners"
+import { IWorkFlowNode } from "../interfaces"
+import { Action } from "../actions"
 
 export class EditorStore{
   store: Store<IState>
   constructor(debugMode?: boolean,) {
     this.store = makeStoreInstance(debugMode || false)
   }
+
+  dispatch = (action: Action) => {
+    this.store.dispatch(action)
+  }
+  
+  subscribeStartNodeChange(listener: StartNodeListener) {
+    let previousState: IWorkFlowNode | undefined = this.store.getState().startNode
+
+    const handleChange = () => {
+      const nextState = this.store.getState().startNode
+      if (nextState === previousState) {
+        return
+      }
+      previousState = nextState
+      listener(nextState)
+    }
+
+    return this.store.subscribe(handleChange)
+  }
+
+
 }
 
 function makeStoreInstance(debugMode: boolean): Store<IState> {
