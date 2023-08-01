@@ -1,4 +1,4 @@
-import { IWorkFlowNode } from "./interfaces";
+import { IConditionNode, IWorkFlowNode } from "./interfaces";
 import { ISnapshot } from "./interfaces/state";
 
 export enum ActionType {
@@ -38,7 +38,7 @@ export interface AddNodeAction extends Action {
 
 export interface AddConditionPayLoad {
   nodeId: string,
-  conditionNode: IWorkFlowNode,
+  conditionNode: IConditionNode,
 }
 
 export interface AddConditionAction extends Action {

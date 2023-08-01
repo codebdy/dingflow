@@ -15,7 +15,11 @@ export interface IWorkFlowNode {
   id: string
   nodeType: NodeType
   childNode?: IWorkFlowNode
-  conditionNodeList?: IWorkFlowNode[]
+  conditionNodeList?: IConditionNode[]
+}
+
+export interface IConditionNode extends IWorkFlowNode {
+
 }
 
 export interface IWorkflow {
