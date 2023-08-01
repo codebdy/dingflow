@@ -2,6 +2,8 @@ import { memo, useMemo } from "react"
 import { ThemeProvider } from "styled-components"
 import { IThemeToken } from "../theme"
 import { useToken } from "antd/es/theme/internal"
+import { EditorStore } from "../classes"
+import { WorkflowEditorStoreContext } from "../contexts"
 
 export const WorkFlowShell = memo((props: {
   mode?: 'dark' | 'light',
@@ -16,11 +18,18 @@ export const WorkFlowShell = memo((props: {
       mode
     }
   }, [mode, themeToken, token])
+  const store: EditorStore = useMemo(() => {
+    return new EditorStore()
+  }, [])
+
+
   return (
-    <ThemeProvider theme={theme}>
-      {
-        children
-      }
-    </ThemeProvider>
+    <WorkflowEditorStoreContext.Provider value={store}>
+      <ThemeProvider theme={theme}>
+        {
+          children
+        }
+      </ThemeProvider>
+    </WorkflowEditorStoreContext.Provider>
   )
 })
