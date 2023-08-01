@@ -63,7 +63,7 @@ const Canvas = styled.div`
 export const WorkFlowEditorInner = memo((props: {
 }) => {
   return (
-    <Container className="workflow-editor-shell">
+    <Container className="workflow-editor">
       <Toolbar>
         <ToolbarTitle>
           <Space>
