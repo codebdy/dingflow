@@ -1,7 +1,5 @@
-import { memo } from "react"
+import { styled } from "styled-components"
 
-export const NodeWrap = memo(() => {
-  return (
-    <></>
-  )
-})
+export const NodeWrap = styled.div`
+  
+`
