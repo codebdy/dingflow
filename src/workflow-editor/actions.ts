@@ -4,8 +4,9 @@ import { ISnapshot } from "./interfaces/state";
 export enum ActionType {
   SET_CHANGE_FLAG = "workflow/SET_CHANGE_FLAG",
   DELETE_NODE = "workflow/DELETE_NODE",
+  DELETE_CONDITION = "workflow/DELETE_CONDITION",
   ADD_NODE = "workflow/ADD_NODE",
-  ADD_BRANCH = "workflow/ADD_BRANCH",
+  ADD_CONDITION = "workflow/ADD_CONDITION",
   BACKUP = 'workflow/BACKUP',
   SET_REDOLIST = 'workflow/SET_REDOLIST',
   SET_UNOLIST = 'workflow/SET_UNOLIST',
@@ -35,14 +36,23 @@ export interface AddNodeAction extends Action {
   payload: AddNodePayLoad
 }
 
-export interface AddBranchPayLoad {
+export interface AddConditionPayLoad {
   nodeId: string,
-  branch: IWorkFlowNode,
+  conditionNode: IWorkFlowNode,
 }
 
-export interface AddBranchAction extends Action {
-  payload: AddBranchPayLoad
+export interface AddConditionAction extends Action {
+  payload: AddConditionPayLoad
 }
+
+export interface DeleteConditionPayLoad {
+  conditionId: string,
+}
+
+export interface DeleteConditionAction extends Action {
+  payload: DeleteConditionPayLoad
+}
+
 
 export interface UnRedoListPayLoad {
   list: ISnapshot[]
