@@ -1,7 +1,8 @@
-import { LeftOutlined } from "@ant-design/icons"
-import { Button, Space } from "antd"
+import { LeftOutlined, RocketOutlined } from "@ant-design/icons"
+import { Avatar, Button, Space } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
+import { ZoomBar } from "../ZoomBar"
 
 const Container = styled.div`
   flex:1;
@@ -53,6 +54,8 @@ const NavIcon = styled.span`
 const Canvas = styled.div`
   flex: 1;
   background-color: ${props => props.theme.mode === "light" ? "#f5f5f7" : undefined} ;
+  padding: 16px;
+  position: relative;
 `
 
 export const WorkFlowEditorInner = memo((props: {
@@ -63,6 +66,7 @@ export const WorkFlowEditorInner = memo((props: {
         <ToolbarTitle>
           <Space>
             <Button shape="circle" icon={<LeftOutlined />} />
+            <Avatar shape="square" style={{ backgroundColor: "rgba(44,121,245, 0.2)", color: "#2c79f6" }} icon={<RocketOutlined />} />
             请假管理
           </Space>
         </ToolbarTitle>
@@ -76,7 +80,9 @@ export const WorkFlowEditorInner = memo((props: {
           <Button type="primary">发布</Button>
         </Space>
       </Toolbar>
-      <Canvas>哈哈</Canvas>
+      <Canvas>
+        <ZoomBar />
+      </Canvas>
     </Container>
   )
 })
