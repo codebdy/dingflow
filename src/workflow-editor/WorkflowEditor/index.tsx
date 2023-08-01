@@ -19,13 +19,38 @@ const Toolbar = styled.div`
 
 const ToolbarContent = styled.div`
   flex:1;
+  display: flex;
+  justify-content: center;
+  color: ${props => props.theme.token?.colorTextSecondary};
+`
+
+const NavIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid 1px ${props => props.theme.token?.colorTextSecondary};
+  line-height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-2px);
+  &.selected{
+    background-color: ${props => props.theme.token?.colorPrimary};
+    border-color: ${props => props.theme.token?.colorPrimary};
+    color: #fff;
+  }
 `
 
 export const WorkflowEditor = memo(() => {
   return (
     <Container className="workflow-editor-shell">
       <Toolbar>
-        <ToolbarContent />
+        <ToolbarContent>
+          <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> 基础设置</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>表单设计</Button>
+          <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>流程设计</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设计</Button>
+        </ToolbarContent>
         <Space>
           <Button type="primary">发布</Button>
         </Space>
