@@ -5,16 +5,17 @@ import { useToken } from "antd/es/theme/internal"
 
 export const WorkFlowShell = memo((props: {
   mode?: 'dark' | 'light',
+  themeToken?: IThemeToken,
   children?: React.ReactNode,
 }) => {
-  const { mode, children } = props;
+  const { mode, children, themeToken } = props;
   const [, token] = useToken();
   const theme: { token: IThemeToken, mode?: 'dark' | 'light' } = useMemo(() => {
     return {
-      token,
+      token: themeToken || token,
       mode
     }
-  }, [mode, token])
+  }, [mode, themeToken, token])
   return (
     <ThemeProvider theme={theme}>
       {
