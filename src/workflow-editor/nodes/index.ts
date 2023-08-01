@@ -1,1 +1,1 @@
-export * from "./NodeWrap"
+export * from "./styled"
