@@ -7,5 +7,6 @@ import { IThemeToken } from './theme';
 declare module 'styled-components' {
   export interface DefaultTheme {
     token?: IThemeToken
+    moed?: 'dark' | 'light'
   }
 }

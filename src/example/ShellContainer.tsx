@@ -1,15 +1,11 @@
-import { useToken } from "antd/es/theme/internal"
-import { memo, useMemo } from "react"
-import styled, { ThemeProvider } from "styled-components"
-import { IThemeToken } from "../workflow-editor"
+import { memo } from "react"
+import styled from "styled-components"
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-flow: column;
-  background-color: ${props => props.theme.token?.colorBgBase};
-  color: ${props => props.theme.token?.colorText};
 `
 
 export const ShellContainer = memo((
@@ -17,18 +13,10 @@ export const ShellContainer = memo((
     children?: React.ReactNode
   }
 ) => {
-  const [, token] = useToken()
-  const theme: { token: IThemeToken } = useMemo(() => {
-    return {
-      token
-    }
-  }, [token])
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        {props.children}
-      </Container>
-    </ThemeProvider>
+    <Container>
+      {props.children}
+    </Container>
   )
 })
