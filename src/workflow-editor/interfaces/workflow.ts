@@ -1,4 +1,4 @@
-export enum nodeType {
+export enum NodeType {
   //开始节点
   start = "start",
   //审批人
@@ -13,7 +13,7 @@ export enum nodeType {
 
 export interface IWorkFlowNode {
   id: string
-  nodeType: nodeType
+  nodeType: NodeType
   childNode?: IWorkFlowNode
   conditionNodeList?: IWorkFlowNode[]
 }
