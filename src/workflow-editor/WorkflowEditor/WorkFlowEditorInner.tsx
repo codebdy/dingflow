@@ -1,4 +1,4 @@
-import { EllipsisOutlined, ExportOutlined, ImportOutlined, LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined } from "@ant-design/icons"
+import { EllipsisOutlined, ExportOutlined, ImportOutlined, LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined, SaveOutlined } from "@ant-design/icons"
 import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
 import { memo, useMemo } from "react"
 import { styled } from "styled-components"
@@ -86,6 +86,7 @@ export const WorkFlowEditorInner = memo((props: {}) => {
         <Space>
           <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
           <Button type="text" icon={<MobileOutlined />}>{t("preview")}</Button>
+          <Button type="text" icon={<SaveOutlined />}>{t("save")}</Button>
           <Button type="primary">{t("publish")}</Button>
           <Dropdown menu={{ items }} trigger={['click']}>
             <Button icon={<EllipsisOutlined />} />

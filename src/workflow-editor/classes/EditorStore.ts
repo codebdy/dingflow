@@ -20,6 +20,7 @@ export class EditorStore {
 
   addNode(parentId: string, node: IWorkFlowNode) {
     const addAction: AddNodeAction = { type: ActionType.ADD_NODE, payload: { parentId, node } }
+    console.log("哈哈 addNode ", addAction)
     this.store.dispatch(addAction)
   }
 
