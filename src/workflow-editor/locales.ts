@@ -16,7 +16,8 @@ export const defalutLocales: ILocales = {
     deal: "办理",
     condition: "条件分支",
     promoter: "发起人",
-    allMember: "所有人"
+    allMember: "所有人",
+    flowFinished: "流程结束"
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -33,6 +34,7 @@ export const defalutLocales: ILocales = {
     deal: "Deal",
     condition: "Condition",
     promoter: "promoter",
-    allMember: "All"
+    allMember: "All",
+    flowFinished: "Flow Finished"
   }
 }

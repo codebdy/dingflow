@@ -1,5 +1,6 @@
 import { memo } from "react"
 import { styled } from "styled-components"
+import { useTranslate } from "../../react-locales"
 
 const Container = styled.div`
   border-radius: 50%;
@@ -21,10 +22,11 @@ const Container = styled.div`
 `
 
 export const EndNode = memo(() => {
+  const t = useTranslate()
   return (
     <Container className="end-node">
       <div className="end-node-circle"></div>
-      <div className="end-node-text">流程结束</div>
+      <div className="end-node-text">{t("flowFinished")}</div>
     </Container>
   )
 })
