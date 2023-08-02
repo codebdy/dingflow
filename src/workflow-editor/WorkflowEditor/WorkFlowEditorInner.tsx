@@ -1,4 +1,4 @@
-import { LeftOutlined, RocketOutlined } from "@ant-design/icons"
+import { LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined } from "@ant-design/icons"
 import { Avatar, Button, Space } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
@@ -71,6 +71,8 @@ export const WorkFlowEditorInner = memo((props: {}) => {
           <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设置</Button>
         </ToolbarContent>
         <Space>
+          <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
+          <Button type="text" icon={<MobileOutlined />}>{t("preview")}</Button>
           <Button type="primary">{t("publish")}</Button>
         </Space>
       </Toolbar>
