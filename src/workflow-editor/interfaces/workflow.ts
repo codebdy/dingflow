@@ -14,6 +14,7 @@ export enum NodeType {
 export interface IWorkFlowNode {
   id?: string
   nodeType: NodeType | string //string可以用于自定义节点，暂时用不上
+  name?: string
   childNode?: IWorkFlowNode
   conditionNodeList?: IConditionNode[]
 }

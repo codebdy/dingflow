@@ -61,6 +61,11 @@ export const NodeTitle = styled.div`
       background: rgb(87, 106, 149);
     }
 `
+export const NodeIcon = styled.div`
+    font-size: 14px;
+  margin-right: 8px;
+`
+
 export const NodeContent = styled.div`
     position: relative;
     font-size: 14px;

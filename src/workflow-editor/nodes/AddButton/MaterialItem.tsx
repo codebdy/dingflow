@@ -47,10 +47,10 @@ export const MaterialItem = memo((
 
   const handleClick = useCallback(() => {
     const newId = createUuid()
-    editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId })
+    editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId, name: t(material.label) })
     editorStore?.selectNode(newId);
     onClick?.()
-  }, [editorStore, material.defaultConfig, nodeId, onClick])
+  }, [editorStore, material.defaultConfig, material.label, nodeId, onClick, t])
 
   return (
     <MaterialSchell>
