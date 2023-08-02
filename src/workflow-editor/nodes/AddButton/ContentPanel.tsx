@@ -1,5 +1,6 @@
 import { memo } from "react"
 import { styled } from "styled-components"
+import { sealIcon } from "../../icons"
 
 const Container = styled.div`
   display: flex;
@@ -20,9 +21,21 @@ const MaterialItem = styled.div`
   align-items: center;
   cursor: pointer;
   &:hover{
-    //outline: solid 1px ${props => props.theme.token?.colorBorderSecondary};
-    box-shadow: 1px 2px 8px 2px rgba(0, 0, 0, ${props => props.theme.mode === "light" ? "0.1" : "0.3"});
+    box-shadow: 1px 2px 8px 2px rgba(0, 0, 0, ${props => props.theme.mode === "light" ? "0.08" : "0.2"});
   }
+`
+
+const MaterialIcon = styled.div`
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border: solid 1px ${props => props.theme.token?.colorBorder};
+  margin-right: 16px;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #ff943e;
 `
 
 export const ContentPanel = memo(() => {
@@ -30,7 +43,10 @@ export const ContentPanel = memo(() => {
     <Container className="add-node-content">
       <MaterialSchell>
         <MaterialItem>
-          哈哈
+          <MaterialIcon>
+            {sealIcon}
+          </MaterialIcon>
+          审批人
         </MaterialItem>
       </MaterialSchell>
       <MaterialSchell>
