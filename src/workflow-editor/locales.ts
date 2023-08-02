@@ -11,6 +11,10 @@ export const defalutLocales: ILocales = {
     help: "帮助",
     import: "导入",
     export: "导出",
+    approver: "审批人",
+    notifier: "抄送人",
+    deal: "办理",
+    condition: "条件分支"
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -22,5 +26,9 @@ export const defalutLocales: ILocales = {
     help: "Help",
     import: "Import",
     export: "Export",
+    approver: "Approver",
+    notifier: "Notifier",
+    deal: "Deal",
+    condition: "Condition"
   }
 }
