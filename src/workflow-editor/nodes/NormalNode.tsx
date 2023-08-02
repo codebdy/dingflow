@@ -20,7 +20,7 @@ export const NormalNode = memo((
           <NodeIcon>
             {meterial?.icon}
           </NodeIcon>
-          {node.name}
+          <div className="text">{node.name}</div>
         </NodeTitle>
         <NodeContent className="content">
           <span className="text">{"allText"}</span>

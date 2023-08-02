@@ -60,9 +60,17 @@ export const NodeTitle = styled.div`
     &.start-node-title{
       background: rgb(87, 106, 149);
     }
+    .text{
+      border: solid transparent 1px;
+      &:hover{
+        line-height: 16px;
+        border-bottom: dashed 1px #fff;
+      }
+    }
+
 `
 export const NodeIcon = styled.div`
-    font-size: 14px;
+  font-size: 14px;
   margin-right: 8px;
 `
 
