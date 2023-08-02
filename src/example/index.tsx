@@ -20,7 +20,7 @@ export const Example = memo(() => {
   const handleToggleTheme = useCallback(() => {
     setThemeMode(mode => mode === "light" ? "dark" : "light")
   }, [])
-  
+
   return (
     <ShellContainer>
       <Toolbar>
@@ -29,6 +29,7 @@ export const Example = memo(() => {
         </span>
         <Space>
           <Button onClick={handleToggleTheme}>主题切换</Button>
+          <Button >English</Button>
         </Space>
       </Toolbar>
       <WorkflowEditor themeMode={themeMode} />
