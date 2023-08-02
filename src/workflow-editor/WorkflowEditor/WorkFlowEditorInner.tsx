@@ -66,9 +66,9 @@ export const WorkFlowEditorInner = memo((props: {}) => {
         </ToolbarTitle>
         <ToolbarContent>
           <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> {t("baseSettings")}</Button>
-          <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>表单设计</Button>
-          <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>流程设计</Button>
-          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设置</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>{t("formDesign")}</Button>
+          <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>{t("flowDesign")}</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>{t("addvancedSettings")}</Button>
         </ToolbarContent>
         <Space>
           <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
