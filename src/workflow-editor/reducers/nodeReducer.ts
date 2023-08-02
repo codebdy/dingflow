@@ -19,7 +19,7 @@ export function nodeReducer(state: IWorkFlowNode, action: Action): IWorkFlowNode
     }
     case ActionType.ADD_NODE: {
       if (state.id === addNodeAcction.payload.parentId) {
-        return { ...state, childNode: addNodeAcction.payload.node }
+        return { ...state, childNode: { ...addNodeAcction.payload.node, childNode: state.childNode } }
       } else if (state.childNode) {
         return { ...state, childNode: nodeReducer(state.childNode, action) }
       }

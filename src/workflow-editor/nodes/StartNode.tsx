@@ -10,7 +10,7 @@ export const StartNode = memo(() => {
   const { startNode } = useStartNode()
   const t = useTranslate()
   const allText = useMemo(() => t("allMember"), [t])
-  console.log("哈哈 startNode", startNode)
+
   return (
     <NodeWrap className="node-wrap start-node-wrap">
       <NodeWrapBox className="node-wrap-box">
