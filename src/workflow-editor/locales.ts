@@ -8,7 +8,9 @@ export const defalutLocales: ILocales = {
     addvancedSettings: "高级设置",
     publish: "发布",
     preview: "预览",
-    help: "帮助"
+    help: "帮助",
+    import: "导入",
+    export: "导出",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -17,6 +19,8 @@ export const defalutLocales: ILocales = {
     addvancedSettings: "Advanced Settings",
     publish: "Publish",
     preview: "Preview",
-    help: "Help"
+    help: "Help",
+    import: "Import",
+    export: "Export",
   }
 }

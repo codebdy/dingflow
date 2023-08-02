@@ -1,6 +1,6 @@
-import { EllipsisOutlined, LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined } from "@ant-design/icons"
-import { Avatar, Button, Space } from "antd"
-import { memo } from "react"
+import { EllipsisOutlined, ExportOutlined, ImportOutlined, LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined } from "@ant-design/icons"
+import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
+import { memo, useMemo } from "react"
 import { styled } from "styled-components"
 import { WorkflowDiagram } from "../WorkflowDiagram"
 import { useTranslate } from "../react-locales"
@@ -54,6 +54,19 @@ const NavIcon = styled.span`
 
 export const WorkFlowEditorInner = memo((props: {}) => {
   const t = useTranslate()
+  const items: MenuProps['items'] = useMemo(() => [
+    {
+      label: t("import"),
+      key: 'import',
+      icon: <ImportOutlined />
+    },
+    {
+      label: t("export"),
+      key: 'export',
+      icon: <ExportOutlined />
+    },
+  ], [t]);
+
   return (
     <Container className="workflow-editor">
       <Toolbar>
@@ -74,7 +87,9 @@ export const WorkFlowEditorInner = memo((props: {}) => {
           <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
           <Button type="text" icon={<MobileOutlined />}>{t("preview")}</Button>
           <Button type="primary">{t("publish")}</Button>
-          <Button icon={<EllipsisOutlined />} />
+          <Dropdown menu={{ items }} trigger={['click']}>
+            <Button icon={<EllipsisOutlined />} />
+          </Dropdown>
         </Space>
       </Toolbar>
       <WorkflowDiagram />
