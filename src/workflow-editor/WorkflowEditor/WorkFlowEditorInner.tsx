@@ -3,6 +3,7 @@ import { Avatar, Button, Space } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
 import { WorkflowDiagram } from "../WorkflowDiagram"
+import { useTranslate } from "../react-locales"
 
 const Container = styled.div`
   flex:1;
@@ -52,6 +53,7 @@ const NavIcon = styled.span`
 `
 
 export const WorkFlowEditorInner = memo((props: {}) => {
+  const t = useTranslate()
   return (
     <Container className="workflow-editor">
       <Toolbar>
@@ -63,13 +65,13 @@ export const WorkFlowEditorInner = memo((props: {}) => {
           </Space>
         </ToolbarTitle>
         <ToolbarContent>
-          <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> 基础设置</Button>
+          <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> {t("baseSettings")}</Button>
           <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>表单设计</Button>
           <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>流程设计</Button>
           <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>高级设置</Button>
         </ToolbarContent>
         <Space>
-          <Button type="primary">发布</Button>
+          <Button type="primary">{t("publish")}</Button>
         </Space>
       </Toolbar>
       <WorkflowDiagram />
