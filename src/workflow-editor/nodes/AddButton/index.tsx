@@ -2,6 +2,7 @@ import { PlusOutlined } from "@ant-design/icons"
 import { Popover } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
+import { ContentPanel } from "./ContentPanel"
 
 const AddButtonBox = styled.div`
       width: 240px;
@@ -72,7 +73,7 @@ export const AddButton = memo(() => {
   return (
     <AddButtonBox className="add-node-button-box">
       <ButtonShell>
-        <Popover placement="rightTop" content={"content"} trigger="click">
+        <Popover placement="rightTop" content={<ContentPanel />} trigger="click">
           <div className="btn">
             <PlusOutlined />
           </div>
