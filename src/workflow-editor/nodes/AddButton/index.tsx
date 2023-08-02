@@ -72,7 +72,7 @@ export const AddButton = memo(() => {
   return (
     <AddButtonBox className="add-node-button-box">
       <ButtonShell>
-        <Popover placement="rightTop" title={"text"} content={"content"} trigger="click">
+        <Popover placement="rightTop" content={"content"} trigger="click">
           <div className="btn">
             <PlusOutlined />
           </div>

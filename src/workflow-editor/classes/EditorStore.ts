@@ -5,9 +5,11 @@ import { mainReducer } from "../reducers"
 import { StartNodeListener } from "../interfaces/listeners"
 import { IWorkFlowNode } from "../interfaces"
 import { Action } from "../actions"
+import { INodeMaterial } from "../interfaces/material"
 
-export class EditorStore{
+export class EditorStore {
   store: Store<IState>
+  materials: INodeMaterial[] = []
   constructor(debugMode?: boolean,) {
     this.store = makeStoreInstance(debugMode || false)
   }
@@ -15,7 +17,7 @@ export class EditorStore{
   dispatch = (action: Action) => {
     this.store.dispatch(action)
   }
-  
+
   subscribeStartNodeChange(listener: StartNodeListener) {
     let previousState: IWorkFlowNode | undefined = this.store.getState().startNode
 
