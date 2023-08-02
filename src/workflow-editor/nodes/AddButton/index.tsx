@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons"
 import { Popover } from "antd"
-import { memo } from "react"
+import { memo, useCallback, useState } from "react"
 import { styled } from "styled-components"
 import { ContentPanel } from "./ContentPanel"
 
@@ -75,10 +75,26 @@ export const AddButton = memo((
   }
 ) => {
   const { nodeId } = props
+  const [open, setOpen] = useState(false)
+
+  const handleOpenChange = useCallback((status: boolean) => {
+    setOpen(status)
+  }, [])
+
+  const handleMaterialClick = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   return (
     <AddButtonBox className="add-node-button-box">
       <ButtonShell>
-        <Popover placement="rightTop" content={<ContentPanel nodeId={nodeId} />} trigger="click">
+        <Popover
+          placement="rightTop"
+          content={<ContentPanel nodeId={nodeId} onClickMaterial={handleMaterialClick} />}
+          trigger="click"
+          open={open}
+          onOpenChange={handleOpenChange}
+        >
           <div className="btn">
             <PlusOutlined />
           </div>

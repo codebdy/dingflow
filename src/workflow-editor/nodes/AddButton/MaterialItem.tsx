@@ -37,10 +37,11 @@ const MaterialIcon = styled.div`
 export const MaterialItem = memo((
   props: {
     nodeId: string,
-    material: INodeMaterial
+    material: INodeMaterial,
+    onClick?: () => void
   }
 ) => {
-  const { nodeId, material } = props
+  const { nodeId, material, onClick } = props
   const t = useTranslate();
   const editorStore = useEditorStore()
 
@@ -48,7 +49,8 @@ export const MaterialItem = memo((
     const newId = createUuid()
     editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId })
     editorStore?.selectNode(newId);
-  }, [editorStore, material.defaultConfig, nodeId])
+    onClick?.()
+  }, [editorStore, material.defaultConfig, nodeId, onClick])
 
   return (
     <MaterialSchell>
