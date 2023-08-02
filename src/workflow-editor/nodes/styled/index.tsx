@@ -81,7 +81,7 @@ export const NodeTitleText = styled.div`
   }
 `
 
-export const CloseButton = styled(CloseOutlined)`
+export const CloseIcon = styled(CloseOutlined)`
   position: absolute;
   right: 10px;
   top: 50%;

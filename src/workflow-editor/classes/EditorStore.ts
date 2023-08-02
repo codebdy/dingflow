@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
 import { IWorkFlowNode } from "../interfaces"
-import { Action, ActionType, AddNodeAction, SelectNodeAction } from "../actions"
+import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 
 export class EditorStore {
@@ -26,6 +26,13 @@ export class EditorStore {
   selectNode(id: string | undefined) {
     const selectAction: SelectNodeAction = { type: ActionType.SELECT_NODE, payload: { id } }
     this.store.dispatch(selectAction)
+  }
+
+  removeNode(id?: string) {
+    if (id) {
+      const removeAction: DeleteNodeAction = { type: ActionType.DELETE_NODE, payload: { id } }
+      this.store.dispatch(removeAction)
+    }
   }
 
   subscribeStartNodeChange(listener: StartNodeListener) {

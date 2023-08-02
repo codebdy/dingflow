@@ -4,7 +4,8 @@ import { RightOutlined } from "@ant-design/icons"
 import { AddButton } from "./AddButton"
 import { ChildNode } from "./ChildNode"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
-import { NodeWrap, NodeWrapBox, NodeTitle, NodeIcon, NodeTitleText, CloseButton, NodeContent } from "./styled"
+import { NodeWrap, NodeWrapBox, NodeTitle, NodeIcon, NodeTitleText, NodeContent } from "./styled"
+import { CloseButton } from "./CloseButton"
 
 export const NormalNode = memo((
   props: {
@@ -21,7 +22,7 @@ export const NormalNode = memo((
             {meterial?.icon}
           </NodeIcon>
           <NodeTitleText className="text">{node.name}</NodeTitleText>
-          <CloseButton className="close" />
+          <CloseButton nodeId={node.id} />
         </NodeTitle>
         <NodeContent className="content">
           <span className="text">{"allText"}</span>
