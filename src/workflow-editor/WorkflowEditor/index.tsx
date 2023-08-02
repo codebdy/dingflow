@@ -12,10 +12,10 @@ export type WorkflowEditorProps = {
 }
 
 export const WorkflowEditor = memo((props: WorkflowEditorProps) => {
-  const { themeMode, themeToken } = props;
+  const { themeMode, themeToken, lang, locales, ...other } = props;
   return (
-    <WorkFlowScope mode={themeMode} themeToken={themeToken}>
-      <WorkFlowEditorInner />
+    <WorkFlowScope mode={themeMode} themeToken={themeToken} lang={lang} locales={locales}>
+      <WorkFlowEditorInner {...other} />
     </WorkFlowScope>
   )
 })

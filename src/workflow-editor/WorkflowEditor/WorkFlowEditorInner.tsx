@@ -11,6 +11,7 @@ const Container = styled.div`
   flex-flow: column;
   background-color: ${props => props.theme.token?.colorBgBase};
   color: ${props => props.theme.token?.colorText};
+  height: 0;
 `
 const Toolbar = styled.div`
   height: 48px;
@@ -52,7 +53,10 @@ const NavIcon = styled.span`
   }
 `
 
-export const WorkFlowEditorInner = memo((props: {}) => {
+export const WorkFlowEditorInner = memo((props: {
+  className?: string
+}) => {
+  const { className, ...other } = props
   const t = useTranslate()
   const items: MenuProps['items'] = useMemo(() => [
     {
@@ -68,7 +72,7 @@ export const WorkFlowEditorInner = memo((props: {}) => {
   ], [t]);
 
   return (
-    <Container className="workflow-editor">
+    <Container className={"workflow-editor " + className || ""} {...other}>
       <Toolbar>
         <ToolbarTitle>
           <Space>
