@@ -6,6 +6,7 @@ const Container = styled.div`
   font-size: 14px;
   color: ${props => props.theme.token?.colorTextSecondary};
   text-align: left;
+  user-select: none;
   .end-node-circle {
     width: 10px;
     height: 10px;

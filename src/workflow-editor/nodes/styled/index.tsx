@@ -56,6 +56,7 @@ export const NodeTitle = styled.div`
     text-align: left;
     background: #576a95;
     border-radius: 4px 4px 0 0;
+    user-select: none;
     &.start-node-title{
       background: rgb(87, 106, 149);
     }
@@ -65,12 +66,14 @@ export const NodeContent = styled.div`
     font-size: 14px;
     padding: 16px;
     padding-right: 30px;
+    user-select: none;
     .text{
       overflow: hidden;
       text-overflow: ellipsis;
+      user-select: none;
       display: -webkit-box;
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical
+      -webkit-box-orient: vertical;
     }
     .arrow {
       position: absolute;
@@ -80,6 +83,6 @@ export const NodeContent = styled.div`
       width: 20px;
       height: 14px;
       font-size: 14px;
-      color: #979797
+      color: #979797;
     }
 `
