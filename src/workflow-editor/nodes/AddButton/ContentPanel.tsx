@@ -10,7 +10,12 @@ const Container = styled.div`
 `
 
 
-export const ContentPanel = memo(() => {
+export const ContentPanel = memo((
+  props: {
+    nodeId: string
+  }
+) => {
+  const { nodeId } = props
   const editorStore = useEditorStore()
   return (
     <Container className="add-node-content">

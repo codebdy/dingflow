@@ -38,7 +38,7 @@ const WorkFlowScopeInner = memo((props: {
     <WorkflowEditorStoreContext.Provider value={store}>
       <ThemeProvider theme={theme}>
         {
-          children
+          store && children
         }
       </ThemeProvider>
     </WorkflowEditorStoreContext.Provider>

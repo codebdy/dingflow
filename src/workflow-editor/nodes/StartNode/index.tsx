@@ -21,7 +21,7 @@ export const StartNode = memo(() => {
           <RightOutlined className="arrow" />
         </NodeContent>
       </NodeWrapBox>
-      <AddButton />
+      {startNode?.id && <AddButton nodeId={startNode?.id} />}
     </NodeWrap>
   )
 })

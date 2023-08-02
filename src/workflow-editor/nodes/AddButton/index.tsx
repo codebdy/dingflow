@@ -69,11 +69,16 @@ const ButtonShell = styled.div`
   }
 `
 
-export const AddButton = memo(() => {
+export const AddButton = memo((
+  props: {
+    nodeId: string
+  }
+) => {
+  const { nodeId } = props
   return (
     <AddButtonBox className="add-node-button-box">
       <ButtonShell>
-        <Popover placement="rightTop" content={<ContentPanel />} trigger="click">
+        <Popover placement="rightTop" content={<ContentPanel nodeId={nodeId} />} trigger="click">
           <div className="btn">
             <PlusOutlined />
           </div>
