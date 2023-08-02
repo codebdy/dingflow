@@ -1,8 +1,8 @@
 import { memo } from "react"
 import { styled } from "styled-components"
 import { ZoomBar } from "../ZoomBar"
-import { EndNode } from "../nodes/EndNode"
 import { StartNode } from "../nodes/StartNode"
+import { EndNode } from "../nodes/EndNode"
 
 const Canvas = styled.div`
   flex: 1;

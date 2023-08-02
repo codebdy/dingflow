@@ -1,6 +1,6 @@
 import { memo } from "react"
 import { styled } from "styled-components"
-import { useTranslate } from "../../react-locales"
+import { useTranslate } from "../react-locales"
 
 const Container = styled.div`
   border-radius: 50%;
