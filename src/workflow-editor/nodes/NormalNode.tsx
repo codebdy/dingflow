@@ -3,8 +3,8 @@ import { IWorkFlowNode } from "../interfaces"
 import { RightOutlined } from "@ant-design/icons"
 import { AddButton } from "./AddButton"
 import { ChildNode } from "./ChildNode"
-import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent, NodeIcon } from "./styled"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
+import { NodeWrap, NodeWrapBox, NodeTitle, NodeIcon, NodeTitleText, CloseButton, NodeContent } from "./styled"
 
 export const NormalNode = memo((
   props: {
@@ -20,7 +20,8 @@ export const NormalNode = memo((
           <NodeIcon>
             {meterial?.icon}
           </NodeIcon>
-          <div className="text">{node.name}</div>
+          <NodeTitleText className="text">{node.name}</NodeTitleText>
+          <CloseButton className="close" />
         </NodeTitle>
         <NodeContent className="content">
           <span className="text">{"allText"}</span>

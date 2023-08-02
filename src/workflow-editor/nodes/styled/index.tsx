@@ -1,3 +1,4 @@
+import { CloseOutlined } from "@ant-design/icons"
 import { styled } from "styled-components"
 
 export const NodeWrap = styled.div`
@@ -37,41 +38,55 @@ export const NodeWrapBox = styled.div`
     transition: all .1s cubic-bezier(.645, .045, .355, 1);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1)
   }
+  .close {
+    display: none;
+  }
   &:hover{
     outline: solid 1px ${props => props.theme.token?.colorPrimary};
+    .close {
+      display: inline-flex;
+    }
   }
 `
 
 export const NodeTitle = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    padding-right: 30px;
-    width: 100%;
-    height: 24px;
-    line-height: 24px;
-    font-size: 12px;
-    color: #fff;
-    text-align: left;
-    background: #576a95;
-    border-radius: 4px 4px 0 0;
-    user-select: none;
-    &.start-node-title{
-      background: rgb(87, 106, 149);
-    }
-    .text{
-      border: solid transparent 1px;
-      &:hover{
-        line-height: 16px;
-        border-bottom: dashed 1px #fff;
-      }
-    }
-
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 30px;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  color: #fff;
+  text-align: left;
+  background: #576a95;
+  border-radius: 4px 4px 0 0;
+  user-select: none;
+  &.start-node-title{
+    background: rgb(87, 106, 149);
+  }
 `
 export const NodeIcon = styled.div`
   font-size: 14px;
   margin-right: 8px;
+`
+
+export const NodeTitleText = styled.div`
+  border: solid transparent 1px;
+  &:hover{
+    line-height: 16px;
+    border-bottom: dashed 1px #fff;
+  }
+`
+
+export const CloseButton = styled(CloseOutlined)`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
 `
 
 export const NodeContent = styled.div`

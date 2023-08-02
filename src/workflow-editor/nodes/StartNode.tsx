@@ -1,10 +1,10 @@
 import { memo, useMemo } from "react"
 import { useStartNode } from "../hooks/useStartNode"
-import { NodeContent, NodeTitle, NodeWrap, NodeWrapBox } from "./styled"
 import { AddButton } from "./AddButton"
 import { useTranslate } from "../react-locales"
 import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
+import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./styled"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
