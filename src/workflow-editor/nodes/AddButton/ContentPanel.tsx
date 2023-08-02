@@ -22,7 +22,7 @@ export const ContentPanel = memo((
       {
         editorStore?.materials?.map(material => {
           return (
-            <MaterialItem key={material.defaultConfig.nodeType} material={material} />
+            <MaterialItem nodeId={nodeId} key={material.defaultConfig.nodeType} material={material} />
           )
         })
       }

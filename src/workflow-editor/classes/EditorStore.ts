@@ -2,9 +2,9 @@ import { Store } from "redux"
 import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
-import { StartNodeListener } from "../interfaces/listeners"
+import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
 import { IWorkFlowNode } from "../interfaces"
-import { Action } from "../actions"
+import { Action, ActionType, AddNodeAction, SelectNodeAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 
 export class EditorStore {
@@ -16,6 +16,16 @@ export class EditorStore {
 
   dispatch = (action: Action) => {
     this.store.dispatch(action)
+  }
+
+  addNode(parentId: string, node: IWorkFlowNode) {
+    const addAction: AddNodeAction = { type: ActionType.ADD_NODE, payload: { parentId, node } }
+    this.store.dispatch(addAction)
+  }
+
+  selectNode(id: string | undefined) {
+    const selectAction: SelectNodeAction = { type: ActionType.SELECT_NODE, payload: { id } }
+    this.store.dispatch(selectAction)
   }
 
   subscribeStartNodeChange(listener: StartNodeListener) {
@@ -34,6 +44,20 @@ export class EditorStore {
   }
 
 
+  subscribeSelectedChange(listener: SelectedListener) {
+    let previousState: string | undefined = this.store.getState().selectedId
+
+    const handleChange = () => {
+      const nextState = this.store.getState().selectedId
+      if (nextState === previousState) {
+        return
+      }
+      previousState = nextState
+      listener(nextState)
+    }
+
+    return this.store.subscribe(handleChange)
+  }
 }
 
 function makeStoreInstance(debugMode: boolean): Store<IState> {

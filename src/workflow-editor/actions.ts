@@ -13,6 +13,7 @@ export enum ActionType {
   SET_START_NODE = 'workflow/SET_START_NODE',
   CHANGE_NODE = 'workflow/CHANGE_NODE',
   SET_ZOOM = 'workflow/SET_ZOOM',
+  SELECT_NODE = 'workflow/SELECTED_NODE'
 }
 
 export interface Action {
@@ -92,4 +93,13 @@ export interface ChangeNodeAction extends Action {
 
 export interface SetStartNodeAction extends Action {
   payload: ChangeNodePayload
+}
+
+export interface SelectNodePayload {
+  id: string | undefined,
+}
+
+
+export interface SelectNodeAction extends Action {
+  payload: SelectNodePayload
 }

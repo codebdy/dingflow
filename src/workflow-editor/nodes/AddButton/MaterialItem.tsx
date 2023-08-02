@@ -1,7 +1,9 @@
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import { INodeMaterial } from "../../interfaces/material"
 import { useTranslate } from "../../react-locales"
 import { styled } from "styled-components"
+import { useEditorStore } from "../../hooks"
+import { createUuid } from "../../utils/create-uuid"
 
 const MaterialSchell = styled.div`
   width: 50%;
@@ -34,14 +36,23 @@ const MaterialIcon = styled.div`
 `
 export const MaterialItem = memo((
   props: {
+    nodeId: string,
     material: INodeMaterial
   }
 ) => {
-  const { material } = props
+  const { nodeId, material } = props
   const t = useTranslate();
+  const editorStore = useEditorStore()
+
+  const handleClick = useCallback(() => {
+    const newId = createUuid()
+    editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId })
+    editorStore?.selectNode(newId);
+  }, [editorStore, material.defaultConfig, nodeId])
+
   return (
     <MaterialSchell>
-      <MItem>
+      <MItem onClick={handleClick}>
         <MaterialIcon style={{ color: material.color }}>
           {material.icon}
         </MaterialIcon>

@@ -1,10 +1,10 @@
 import { Action, ActionType, BackupAction, UnRedoListAction } from "../actions";
 import { ISnapshot } from "../interfaces/state";
 
-export function undoListReducer(state: ISnapshot[], action: Action) {
+export function undoListReducer(state: ISnapshot[], action: Action): ISnapshot[] {
   switch (action.type) {
     case ActionType.BACKUP: {
-      return [...state, (action as BackupAction).payload]
+      return [...state, (action as BackupAction).payload] as ISnapshot[]
     }
     case ActionType.SET_UNOLIST: {
       return (action as UnRedoListAction).payload.list

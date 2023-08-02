@@ -2,6 +2,7 @@ import { IWorkFlowNode, NodeType } from "./workflow";
 
 //操作快照
 export interface ISnapshot {
+  startNode: IWorkFlowNode,
 }
 
 export interface IState {
@@ -13,6 +14,7 @@ export interface IState {
   redoList: ISnapshot[],
   zoom: number,
   startNode: IWorkFlowNode,
+  selectedId?: string,
 }
 
 export const initialState: IState = {
