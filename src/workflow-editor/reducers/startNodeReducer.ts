@@ -7,7 +7,8 @@ export function startNodeReducer(state: IWorkFlowNode, action: Action): IWorkFlo
     case ActionType.SET_START_NODE: {
       return (action as SetStartNodeAction).payload.node
     }
-    case ActionType.DELETE_NODE: 
+    case ActionType.DELETE_NODE:
+    case ActionType.ADD_NODE:
     case ActionType.CHANGE_NODE: {
       return nodeReducer(state, action)
     }
