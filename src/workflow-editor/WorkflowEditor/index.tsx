@@ -1,20 +1,21 @@
 import { memo } from "react"
 import { WorkFlowEditorInner } from "./WorkFlowEditorInner"
-import { ConfigRoot } from "./ConfigRoot"
-import { WorkFlowShell } from "./WorkFlowShell"
+import { WorkFlowScope } from "../WorkflowDiagram/WorkFlowScope"
 import { IThemeToken } from "../theme"
+import { ILocales } from "@rxdrag/locales"
 
-
-export const WorkflowEditor = memo((props: {
-  themeMode?: "dark" | "light",
+export type WorkflowEditorProps = {
+  themeMode?: 'dark' | 'light',
   themeToken?: IThemeToken,
-}) => {
+  lang?: string,
+  locales?: ILocales
+}
+
+export const WorkflowEditor = memo((props: WorkflowEditorProps) => {
   const { themeMode, themeToken } = props;
   return (
-    <ConfigRoot themeMode={themeMode}>
-      <WorkFlowShell mode={themeMode} themeToken={themeToken}>
-        <WorkFlowEditorInner />
-      </WorkFlowShell>
-    </ConfigRoot>
+    <WorkFlowScope mode={themeMode} themeToken={themeToken}>
+      <WorkFlowEditorInner />
+    </WorkFlowScope>
   )
 })

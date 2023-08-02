@@ -1,4 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons"
+import { Popover } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
 
@@ -23,11 +24,11 @@ const AddButtonBox = styled.div`
         margin: auto;
         width: 2px;
         height: 100%;
-        background-color: #cacaca
+        background-color: ${props => props.theme.mode === "light" ? "#cacaca" : "rgba(255,255,255,0.35)"};
     }
 `
 
-const Button = styled.div`
+const ButtonShell = styled.div`
   user-select: none;
   width: 240px;
   padding: 20px 0 32px;
@@ -70,11 +71,13 @@ const Button = styled.div`
 export const AddButton = memo(() => {
   return (
     <AddButtonBox className="add-node-button-box">
-      <Button>
-        <div className="btn">
-          <PlusOutlined />
-        </div>
-      </Button>
+      <ButtonShell>
+        <Popover placement="rightTop" title={"text"} content={"content"} trigger="click">
+          <div className="btn">
+            <PlusOutlined />
+          </div>
+        </Popover>
+      </ButtonShell>
     </AddButtonBox>
   )
 })

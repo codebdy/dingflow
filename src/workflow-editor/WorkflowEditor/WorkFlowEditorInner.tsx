@@ -2,8 +2,7 @@ import { LeftOutlined, RocketOutlined } from "@ant-design/icons"
 import { Avatar, Button, Space } from "antd"
 import { memo } from "react"
 import { styled } from "styled-components"
-import { ZoomBar } from "../ZoomBar"
-import { StartNode } from "../nodes/StartNode"
+import { WorkflowDiagram } from "../WorkflowDiagram"
 
 const Container = styled.div`
   flex:1;
@@ -52,16 +51,7 @@ const NavIcon = styled.span`
   }
 `
 
-const Canvas = styled.div`
-  flex: 1;
-  background-color: ${props => props.theme.mode === "light" ? "#f5f5f7" : undefined} ;
-  padding: 56px 16px;
-  position: relative;
-  cursor: grab;//grabbing
-`
-
-export const WorkFlowEditorInner = memo((props: {
-}) => {
+export const WorkFlowEditorInner = memo((props: {}) => {
   return (
     <Container className="workflow-editor">
       <Toolbar>
@@ -82,10 +72,7 @@ export const WorkFlowEditorInner = memo((props: {
           <Button type="primary">发布</Button>
         </Space>
       </Toolbar>
-      <Canvas style={{ transform: `scale(1)` }}>
-        <StartNode />
-        <ZoomBar />
-      </Canvas>
+      <WorkflowDiagram />
     </Container>
   )
 })
