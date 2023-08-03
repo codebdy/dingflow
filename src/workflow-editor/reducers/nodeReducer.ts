@@ -12,45 +12,44 @@ export function nodeReducer(state: IWorkFlowNode, action: Action): IWorkFlowNode
       //子节点被删除（不是分支）
       if (idToDelete === state.childNode?.id) {
         return { ...state, childNode: state.childNode.childNode }
-        //如果删除分支节点
       }
-      return {
-        ...state,
-        childNode: state.childNode ? nodeReducer(state.childNode, action) : undefined,
-      }
+      return recursive(state, action)
     }
     case ActionType.ADD_NODE: {
       if (state.id === addNodeAction.payload.parentId) {
         return { ...state, childNode: { ...addNodeAction.payload.node, childNode: state.childNode } }
-      } else if (state.childNode) {
-        return { ...state, childNode: nodeReducer(state.childNode, action) }
       }
-      return state
+
+      return recursive(state, action)
     }
     case ActionType.CHANGE_NODE: {
       if (state.id === changeNodeAction.payload.node.id) {
         return changeNodeAction.payload.node
       }
-      let childNode = state.childNode
-      let newState = state
-      if (state.childNode) {
-        childNode = nodeReducer(state.childNode, action)
-      }
-      //如果childNode有变化
-      if (childNode !== state.childNode) {
-        newState = { ...state, childNode }
-      }
-
-      //所有condition list可能会全部刷新，体量不大，暂时不需要处理
-      if (newState.nodeType === NodeType.route) {
-        if (newState === state) {
-          newState = { ...state }
-        }
-        const routeNode = newState as IRouteNode
-        routeNode.conditionNodeList = routeNode.conditionNodeList.map(con => nodeReducer(con, action))
-      }
-      return newState
+      return recursive(state, action)
     }
   }
   return state
+}
+
+function recursive(state: IWorkFlowNode, action: Action) {
+  let childNode = state.childNode
+  let newState = state
+  if (state.childNode) {
+    childNode = nodeReducer(state.childNode, action)
+  }
+  //如果childNode有变化
+  if (childNode !== state.childNode) {
+    newState = { ...state, childNode }
+  }
+
+  //所有condition list可能会全部刷新，体量不大，暂时不需要处理
+  if (newState.nodeType === NodeType.route) {
+    if (newState === state) {
+      newState = { ...state }
+    }
+    const routeNode = newState as IRouteNode
+    routeNode.conditionNodeList = routeNode.conditionNodeList.map(con => nodeReducer(con, action))
+  }
+  return newState
 }
