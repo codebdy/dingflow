@@ -24,6 +24,10 @@ const Canvas = styled.div`
 const CanvasInner = styled.div`
   flex: 1;
 `
+function toDecimal(x: number) {
+  const f = Math.round(x * 10) / 10;
+  return f;
+}
 
 export const WorkflowDiagram = memo((
   props: {
@@ -34,11 +38,11 @@ export const WorkflowDiagram = memo((
   const [zoom, setZoom] = useState(1)
 
   const haneldZoomIn = useCallback(() => {
-    setZoom(zoom => (zoom + 0.1))
+    setZoom(zoom => toDecimal(zoom < 3 ? (zoom + 0.1) : zoom))
   }, [])
 
   const haneldZoomOut = useCallback(() => {
-    setZoom(zoom => (zoom - 0.1))
+    setZoom(zoom => toDecimal(zoom > 0.1 ? (zoom - 0.1) : zoom))
   }, [])
 
   return (
