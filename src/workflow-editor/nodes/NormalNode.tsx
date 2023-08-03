@@ -21,6 +21,7 @@ export const NodeWrap = styled.div`
   -ms-flex-positive: 1;
   padding: 0 50px;
   position: relative;
+  user-select: none;
   &::before{
     content: "";
     position: absolute;
@@ -53,6 +54,7 @@ export const NodeWrapBox = styled.div`
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   cursor: pointer;
+  user-select: none;
   &:after{
     pointer-events: none;
     content: "";

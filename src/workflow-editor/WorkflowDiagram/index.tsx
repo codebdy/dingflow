@@ -34,6 +34,8 @@ function toDecimal(x: number) {
 export interface IPosition {
   x: number,
   y: number,
+  scrollLeft: number,
+  scrollTop: number
 }
 
 export const WorkflowDiagram = memo((
@@ -55,17 +57,33 @@ export const WorkflowDiagram = memo((
   }, [])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    setMousePressedPoint({ x: e.clientX, y: e.clientY })
+    canvasRef.current && setMousePressedPoint({
+      x: e.clientX,
+      y: e.clientY,
+      scrollLeft: canvasRef.current.scrollLeft,
+      scrollTop: canvasRef.current.scrollTop
+    })
   }, [])
 
   const handleMouseUp = useCallback(() => {
     setMousePressedPoint(undefined)
   }, [])
 
-  const handleMouseMove = useCallback(() => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!mousePressedPoint) {
       return
     }
+
+    const dragMoveDiff = {
+      x: mousePressedPoint.x - e.clientX,
+      y: mousePressedPoint.y - e.clientY
+    }
+
+    if (canvasRef.current) {
+      canvasRef.current.scrollLeft = mousePressedPoint.scrollLeft + dragMoveDiff.x;
+      canvasRef.current.scrollTop = mousePressedPoint.scrollTop + dragMoveDiff.y;
+    }
+
   }, [mousePressedPoint])
 
   return (
@@ -76,12 +94,14 @@ export const WorkflowDiagram = memo((
         style={{
           cursor: mousePressedPoint ? "grabbing" : "grab"
         }}
+        draggable={false}
         key={zoom}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseUp}
       >
-        <CanvasInner style={{ transform: `scale(${zoom})` }}>
+        <CanvasInner style={{ transform: `scale(${zoom})` }} draggable={false}>
           <StartNode />
         </CanvasInner>
       </Canvas>

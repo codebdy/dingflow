@@ -19,6 +19,7 @@ const ColBox = styled.div`
   -webkit-box-align: center;
   align-items: center;
   position: relative;
+  user-select: none;
   &::before{
     content: "";
     position: absolute;
@@ -41,6 +42,7 @@ const ConditionStyleNode = styled.div`
   -webkit-box-direction: normal;
   flex-direction: column;
   -webkit-box-flex: 1;
+  user-select: none;
 `
 const ConditionNodeBox = styled.div`
   padding-top: 30px;
@@ -57,6 +59,7 @@ const ConditionNodeBox = styled.div`
   -webkit-box-direction: normal;
   flex-direction: column;
   -webkit-box-flex: 1;
+  user-select: none;
 `
 
 const AutoJudge = styled.div`
@@ -67,6 +70,7 @@ const AutoJudge = styled.div`
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   padding: 8px 16px;
+  user-select: none;
   cursor: pointer;
   &::after{
     pointer-events: none;
@@ -158,6 +162,7 @@ const TitleWrapper = styled.div`
   text-align: left;
   line-height: 16px;
   display: flex;
+  user-select: none;
 `
 
 export const TitleText = styled.div`
@@ -166,14 +171,15 @@ export const TitleText = styled.div`
     line-height: 16px;
     border-bottom: dashed 1px ${props => props.theme.token?.colorTextSecondary};
   }
+  user-select: none;
 `
 
 const NodeContent = styled.div`
-    position: relative;
-    font-size: 14px;
-    padding: 16px 0;
-    padding-right: 30px;
-    user-select: none;
+  position: relative;
+  font-size: 14px;
+  padding: 16px 0;
+  padding-right: 30px;
+  user-select: none;
 `
 
 export const ConditionNode = memo((props: { parent: IRouteNode, node: IConditionNode, index: number, length: number }) => {
@@ -190,10 +196,10 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
   }, [editorStore, index, node.id, parent])
 
   return (
-    <ColBox className="col-box">
-      <ConditionStyleNode className="condition-node">
-        <ConditionNodeBox className="condition-node-box">
-          <AutoJudge className="auto-judge">
+    <ColBox className="col-box" draggable={false}>
+      <ConditionStyleNode className="condition-node" draggable={false}>
+        <ConditionNodeBox className="condition-node-box" draggable={false}>
+          <AutoJudge className="auto-judge" draggable={false}>
             {
               index !== 0 &&
               <SortHandler className="sort-handler left" onClick={hanldeMoveLeft}>

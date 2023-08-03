@@ -46,9 +46,9 @@ export const RouteNode = memo((
 ) => {
   const { node } = props
   return (
-    <RouteWrap className="route-wrap">
-      <RouteBoxWrap className="route-box-wrap">
-        <RouteBox className="route-box">
+    <RouteWrap className="route-wrap" draggable={false}>
+      <RouteBoxWrap className="route-box-wrap" draggable={false}>
+        <RouteBox className="route-box" draggable={false}>
           <AddBranchButton node={node} />
           {
             node.conditionNodeList?.map((child, index) => {
