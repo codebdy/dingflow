@@ -7,3 +7,8 @@ export interface IThemeToken {
   colorBgBase?: string;
   colorPrimary?: string;
 }
+
+export interface IDefaultTheme{
+  token?: IThemeToken
+  mode?: 'dark' | 'light'
+}

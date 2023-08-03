@@ -3,6 +3,8 @@ import { IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { AddBranchButton } from "./AddBranchButton"
 import { AddButton } from "../AddButton"
+import { canvasColor } from "../../utils/canvasColor"
+import { lineColor } from "../../utils/lineColor"
 
 const RouteWrap = styled.div`
   display: inline-flex;
@@ -32,7 +34,7 @@ const RouteBox = styled.div`
   height: auto;
   border-bottom: 2px solid;
   border-top: 2px solid;
-  border-color: ${props => props.theme.mode === "light" ? "#cacaca" : "rgba(255,255,255,0.35)"};
+  border-color: ${lineColor};
   position: relative;
   margin-top: 15px;
 `
@@ -56,7 +58,7 @@ const ColBox = styled.div`
     margin: auto;
     width: 2px;
     height: 100%;
-    background-color: ${props => props.theme.mode === "light" ? "#cacaca" : "rgba(255,255,255,0.35)"};
+    background-color: ${lineColor};
   }
 `
 
@@ -122,39 +124,23 @@ const AutoJudge = styled.div`
   }
 `
 
-const LeftTopCover = styled.div`
-  left: -1px;
+const LineCover = styled.div`
   position: absolute;
   height: 8px;
   width: 50%;
-  background-color: #f5f5f7;
-  top: -4px;
-`
-const RightTopCover = styled.div`
-  right: -1px;
-  position: absolute;
-  height: 8px;
-  width: 50%;
-  background-color: #f5f5f7;
-  top: -4px;
-`
-
-const LeftBottomCover = styled.div`
-  left: -1px;
-  position: absolute;
-  height: 8px;
-  width: 50%;
-  background-color: #f5f5f7;
-  bottom: -4px;
-`
-
-const RightBottomCover = styled.div`
-  right: -1px;
-  position: absolute;
-  height: 8px;
-  width: 50%;
-  background-color: #f5f5f7;
-  bottom: -4px;
+  background-color: ${canvasColor};
+  &.left{
+    left:-1px;
+  }
+  &.right{
+    right: -1px;
+  }
+  &.top{
+    top: -4px;
+  }
+  &.bottom{
+    bottom: -4px;
+  }
 `
 
 export const RouteNode = memo((
@@ -182,15 +168,15 @@ export const RouteNode = memo((
                   {
                     index === 0 &&
                     <>
-                      <LeftTopCover />
-                      <LeftBottomCover />
+                      <LineCover className="top left" />
+                      <LineCover className="bottom left" />
                     </>
                   }
                   {
                     index === (node.conditionNodeList?.length || 0) - 1 &&
                     <>
-                      <RightTopCover />
-                      <RightBottomCover />
+                      <LineCover className="top right" />
+                      <LineCover className="bottom right" />
                     </>
                   }
                 </ColBox>

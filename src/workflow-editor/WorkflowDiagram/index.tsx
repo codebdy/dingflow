@@ -3,12 +3,13 @@ import { styled } from "styled-components"
 import { ZoomBar } from "../ZoomBar"
 import { StartNode } from "../nodes/StartNode"
 import { EndNode } from "../nodes/EndNode"
+import { canvasColor } from "../utils/canvasColor"
 
 const DiagramContainer = styled.div`
   flex: 1;
   display: flex;
   flex-flow: column;
-  background-color: ${props => props.theme.mode === "light" ? "#f5f5f7" : undefined} ;
+  background-color: ${canvasColor} ;
   position: relative;
   height: 0;
 `
