@@ -18,6 +18,11 @@ const Canvas = styled.div`
   padding: 56px 16px;
   overflow: auto;
   cursor: grab;//grabbing
+  display: flex;
+`
+
+const CanvasInner = styled.div`
+  flex: 1;
 `
 
 export const WorkflowDiagram = memo((
@@ -36,14 +41,14 @@ export const WorkflowDiagram = memo((
     setZoom(zoom => (zoom - 0.1))
   }, [])
 
-  console.log("哈哈", zoom)
-
   return (
     <DiagramContainer {...props}>
-      <Canvas className="flow-canvas" style={{ transform: `scale(${zoom})` }}>
-        <StartNode />
+      <Canvas className="flow-canvas">
+        <CanvasInner style={{ transform: `scale(${zoom})` }}>
+          <StartNode />
+        </CanvasInner>
       </Canvas>
-      <ZoomBar onZoomIn={haneldZoomIn} onZoomOut={haneldZoomOut} />
+      <ZoomBar zoom={zoom} onZoomIn={haneldZoomIn} onZoomOut={haneldZoomOut} />
     </DiagramContainer >
   )
 })
