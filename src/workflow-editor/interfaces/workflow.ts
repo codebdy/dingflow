@@ -17,10 +17,11 @@ export interface IWorkFlowNode {
   id?: string
   nodeType: NodeType | string //string可以用于自定义节点，暂时用不上
   name?: string
+  desc?: string
   childNode?: IWorkFlowNode
 }
 
-export interface IRouteNode extends IWorkFlowNode{
+export interface IRouteNode extends IWorkFlowNode {
   conditionNodeList?: IConditionNode[]
 }
 

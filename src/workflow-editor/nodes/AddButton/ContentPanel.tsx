@@ -22,11 +22,11 @@ export const ContentPanel = memo((
   return (
     <Container className="add-node-content">
       {
-        editorStore?.materials?.map(material => {
+        editorStore?.materials?.map((material, index) => {
           return (
             <MaterialItem
               nodeId={nodeId}
-              key={material.defaultConfig?.nodeType}
+              key={material.defaultConfig?.nodeType || "" + index}
               material={material}
               onClick={() => onClickMaterial?.(material)}
             />

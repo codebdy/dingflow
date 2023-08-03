@@ -1,6 +1,6 @@
 import { memo } from "react"
-import { IWorkFlowNode, NodeType } from "../interfaces"
-import { SwitchNode } from "./SwitchNode"
+import { IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
+import { RouteNode } from "./RouteNode"
 import { NormalNode } from "./NormalNode"
 
 export const ChildNode = memo((
@@ -11,7 +11,7 @@ export const ChildNode = memo((
   const { node } = props
   return (
     node.nodeType === NodeType.route
-      ? <SwitchNode node={node} />
+      ? <RouteNode node={node as IRouteNode} />
       : <NormalNode node={node} />
   )
 })

@@ -51,7 +51,7 @@ export const MaterialItem = memo((
     if (material.defaultConfig) {
       editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId, name: newName })
     } else if (material.createDefault) {
-      editorStore?.addNode(nodeId, { ...material.createDefault(), id: newId, name: newName })
+      editorStore?.addNode(nodeId, { ...material.createDefault({ t }), name: newName })
     } else {
       console.error("Material no defutConfig or createDefault")
     }
