@@ -29,8 +29,9 @@ const RouteBox = styled.div`
   overflow: visible;
   min-height: 180px;
   height: auto;
-  border-bottom: 2px solid #ccc;
-  border-top: 2px solid #ccc;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
+  border-color: ${props => props.theme.mode === "light" ? "#cacaca" : "rgba(255,255,255,0.35)"};
   position: relative;
   margin-top: 15px;
 `
@@ -69,6 +70,7 @@ export const RouteNode = memo((
       <RouteBoxWrap>
         <RouteBox>
           <AddBranchButton />
+          ddddddddddddddddddddddddddddd
         </RouteBox>
       </RouteBoxWrap>
     </RouteWrap>

@@ -47,7 +47,7 @@ const ButtonShell = styled.div`
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
       width: 30px;
       height: 30px;
-      background: #3296fa;
+      background: ${props => props.theme?.token?.colorPrimary};
       border-radius: 50%;
       position: relative;
       border: none;
@@ -63,7 +63,7 @@ const ButtonShell = styled.div`
       }
       &:active {
         transform: none;
-        background: #1e83e9;
+        background: ${props => props.theme?.token?.colorPrimary};
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1)
       }
   }

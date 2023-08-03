@@ -12,8 +12,7 @@ const AddBranch = styled.button`
   height: 30px;
   line-height: 30px;
   border-radius: 15px;
-  color: #3296fa;
-  background: #fff;
+  color: ${props => props.theme.token?.colorPrimary};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
   position: absolute;
   top: -16px;
@@ -27,6 +26,8 @@ const AddBranch = styled.button`
   -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
   white-space: nowrap;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  background: ${props => props.theme.token?.colorBgContainer};
+  border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   &:hover{
     transform: translateX(-50%) scale(1.1);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1)
@@ -37,7 +38,7 @@ const AddBranch = styled.button`
   }
 `
 
-export const AddBranchButton = memo(()=>{
+export const AddBranchButton = memo(() => {
   const t = useTranslate()
 
   return <AddBranch>
