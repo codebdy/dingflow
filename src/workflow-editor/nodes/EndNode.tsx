@@ -4,11 +4,11 @@ import { useTranslate } from "../react-locales"
 
 const Container = styled.div`
   width: 100%;
-  //border-radius: 50%;
   font-size: 14px;
   color: ${props => props.theme.token?.colorTextSecondary};
   text-align: left;
   user-select: none;
+  margin-bottom: 56px;
   .end-node-circle {
     width: 10px;
     height: 10px;

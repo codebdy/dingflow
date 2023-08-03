@@ -16,6 +16,7 @@ const DiagramContainer = styled.div`
 const Canvas = styled.div`
   flex: 1;
   padding: 56px 16px;
+  padding-bottom: 0;
   overflow: auto;
   cursor: grab;//grabbing
   display: flex;
