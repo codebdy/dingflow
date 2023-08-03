@@ -89,6 +89,10 @@ const AutoJudge = styled.div`
       border: 1px solid #3296fa;
       box-shadow: 0 0 6px 0 rgba(50, 150, 250, .3)
     }
+    .sort-handler{
+      display: flex;
+      align-items: center;
+    }
   }
 `
 const LineCover = styled.div`
@@ -110,6 +114,25 @@ const LineCover = styled.div`
   }
 `
 
+const SortHandler = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: none;
+  z-index: 1;
+  color: ${props => props.theme.token?.colorTextSecondary};
+  &.left{
+    left: 0;
+    border-right: 1px solid ${props => props.theme.token?.colorBorder};
+  }
+  &.right{
+    right: 0;
+    border-left: 1px solid ${props => props.theme.token?.colorBorder};
+  }
+  &:hover{
+    background-color: ${props => props.theme.token?.colorBorderSecondary};
+  }
+`
 
 export const ConditionNode = memo((props: { node: IConditionNode, index: number, length: number }) => {
   const { node, index, length } = props
@@ -118,7 +141,19 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
       <ConditionStyleNode className="condition-node">
         <ConditionNodeBox className="condition-node-box">
           <AutoJudge className="auto-judge">
+            {
+              index !== 0 &&
+              <SortHandler className="sort-handler left">
+                &lt;
+              </SortHandler>
+            }
 
+            {
+              index !== (length - 1) &&
+              <SortHandler className="sort-handler right">
+                &gt;
+              </SortHandler>
+            }
           </AutoJudge>
           {node?.id && <AddButton nodeId={node?.id} />}
           {node?.childNode && <ChildNode node={node?.childNode} />}
