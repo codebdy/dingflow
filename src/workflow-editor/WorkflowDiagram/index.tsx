@@ -23,6 +23,7 @@ const Canvas = styled.div`
 
 const CanvasInner = styled.div`
   flex: 1;
+  transform-origin: 50% 0px 0px;
 `
 function toDecimal(x: number) {
   const f = Math.round(x * 10) / 10;
