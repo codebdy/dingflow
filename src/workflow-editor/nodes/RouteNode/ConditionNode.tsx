@@ -4,6 +4,8 @@ import { styled } from "styled-components"
 import { lineColor } from "../../utils/lineColor"
 import { nodeColor } from "../../utils/nodeColor"
 import { canvasColor } from "../../utils/canvasColor"
+import { AddButton } from "../AddButton"
+import { ChildNode } from "../ChildNode"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -118,6 +120,8 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
           <AutoJudge className="auto-judge">
 
           </AutoJudge>
+          {node?.id && <AddButton nodeId={node?.id} />}
+          {node?.childNode && <ChildNode node={node?.childNode} />}
         </ConditionNodeBox>
       </ConditionStyleNode>
       {
