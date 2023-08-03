@@ -60,6 +60,43 @@ const ColBox = styled.div`
   }
 `
 
+const ConditionNode = styled.div`
+  min-height: 220px;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+`
+const ConditionNodeBox = styled.div`
+  padding-top: 30px;
+  padding-right: 50px;
+  padding-left: 50px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 2px;
+    height: 100%;
+    background-color: #cacaca;
+  }
+`
+
 export const RouteNode = memo((
   props: {
     node: IRouteNode
@@ -67,15 +104,19 @@ export const RouteNode = memo((
 ) => {
   const { node } = props
   return (
-    <RouteWrap>
-      <RouteBoxWrap>
-        <RouteBox>
+    <RouteWrap className="route-wrap">
+      <RouteBoxWrap className="route-box-wrap">
+        <RouteBox className="route-box">
           <AddBranchButton />
           {
             node.conditionNodeList?.map((child) => {
               return (
-                <ColBox key={child.id}>
-                  哈哈
+                <ColBox className="col-box" key={child.id}>
+                  <ConditionNode className="condition-node">
+                    <ConditionNodeBox className="condition-node-box">
+                      
+                    </ConditionNodeBox>
+                  </ConditionNode>
                 </ColBox>
               )
             })
