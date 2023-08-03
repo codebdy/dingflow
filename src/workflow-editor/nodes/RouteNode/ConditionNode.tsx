@@ -6,6 +6,7 @@ import { nodeColor } from "../../utils/nodeColor"
 import { canvasColor } from "../../utils/canvasColor"
 import { AddButton } from "../AddButton"
 import { ChildNode } from "../ChildNode"
+import { ConditionButtons } from "./ConditionButtons"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -62,7 +63,7 @@ const AutoJudge = styled.div`
   background: ${nodeColor};
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
-  padding: 14px 19px;
+  padding: 8px 16px;
   cursor: pointer;
   &::after{
     pointer-events: none;
@@ -120,6 +121,7 @@ const SortHandler = styled.div`
   bottom: 0;
   display: none;
   z-index: 1;
+  height: 100%;
   color: ${props => props.theme.token?.colorTextSecondary};
   &.left{
     left: 0;
@@ -131,6 +133,23 @@ const SortHandler = styled.div`
   }
   &:hover{
     background-color: ${props => props.theme.token?.colorBorderSecondary};
+  }
+`
+
+const TitleWrapper = styled.div`
+  position: relative;
+  font-size: 12px;
+  color: ${props => props.theme?.token?.colorTextSecondary};
+  text-align: left;
+  line-height: 16px;
+  display: flex;
+`
+
+export const TitleText = styled.div`
+  border: solid transparent 1px;
+  &:hover{
+    line-height: 16px;
+    border-bottom: dashed 1px ${props => props.theme.token?.colorTextSecondary};
   }
 `
 
@@ -147,7 +166,12 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
                 &lt;
               </SortHandler>
             }
-
+            <TitleWrapper>
+              <TitleText>
+                {node.name}
+              </TitleText>
+              <ConditionButtons />
+            </TitleWrapper>
             {
               index !== (length - 1) &&
               <SortHandler className="sort-handler right">
