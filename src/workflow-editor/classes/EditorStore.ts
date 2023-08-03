@@ -3,7 +3,7 @@ import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
-import { IWorkFlowNode } from "../interfaces"
+import { IConditionNode, IWorkFlowNode } from "../interfaces"
 import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 
@@ -34,6 +34,29 @@ export class EditorStore {
       }
     }
     this.dispatch(setRedoListAction)
+  }
+
+  addCondition(nodeId: string, condition: IConditionNode) {
+    this.backup()
+  }
+
+  removeCondition(nodeId: string, conditionId: string) {
+    this.backup()
+  }
+
+  //条件左移一位
+  transConditionOneStepToLeft(node: IConditionNode, conditionId: string) {
+    this.backup()
+  }
+
+  //条件右移一位
+  transConditionOneStepToRight(node: IConditionNode, conditionId: string) {
+    this.backup()
+  }
+
+  //克隆一个条件
+  cloneCondition(node: IConditionNode, conditionId: string) {
+
   }
 
   addNode(parentId: string, node: IWorkFlowNode) {
