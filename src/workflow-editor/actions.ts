@@ -11,7 +11,6 @@ export enum ActionType {
   SET_UNOLIST = 'workflow/SET_UNOLIST',
   SET_START_NODE = 'workflow/SET_START_NODE',
   CHANGE_NODE = 'workflow/CHANGE_NODE',
-  SET_ZOOM = 'workflow/SET_ZOOM',
   SELECT_NODE = 'workflow/SELECTED_NODE'
 }
 
@@ -67,14 +66,6 @@ export interface SetChangeFlagPayload {
 
 export interface SetChangeFlagAction extends Action {
   payload: SetChangeFlagPayload
-}
-
-export interface SetZoomActionPayload {
-  zoom: number
-}
-
-export interface SetZoomAction extends Action {
-  payload: SetZoomActionPayload
 }
 
 export interface ChangeNodePayload {

@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
-import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetZoomAction, UnRedoListAction } from "../actions"
+import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
@@ -21,17 +21,6 @@ export class EditorStore {
   dispatch = (action: Action) => {
     this.store.dispatch(action)
   }
-
-  // setZoom = (zoom: number) => {
-  //   const zoomAcion: SetZoomAction = {
-  //     type: ActionType.SET_ZOOM,
-  //     payload: {
-  //       zoom
-  //     }
-  //   }
-
-  //   this.dispatch(zoomAcion)
-  // }
 
   backup = () => {
     const state = this.store.getState();
@@ -69,6 +58,11 @@ export class EditorStore {
   }
 
   removeCondition(node: IRouteNode, conditionId: string) {
+    //如果只剩2个分支，则删除节点
+    if (node.conditionNodeList.length <= 2) {
+      this.removeNode(node.id)
+      return
+    }
     this.backup()
     const newNode: IRouteNode = { ...node, conditionNodeList: node.conditionNodeList.filter(co => co.id !== conditionId) };
     this.changeNode(newNode)
