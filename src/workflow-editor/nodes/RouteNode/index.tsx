@@ -5,6 +5,7 @@ import { AddBranchButton } from "./AddBranchButton"
 import { AddButton } from "../AddButton"
 import { canvasColor } from "../../utils/canvasColor"
 import { lineColor } from "../../utils/lineColor"
+import { nodeColor } from "../../utils/nodeColor"
 
 const RouteWrap = styled.div`
   display: inline-flex;
@@ -91,7 +92,7 @@ const AutoJudge = styled.div`
   position: relative;
   width: 220px;
   min-height: 72px;
-  background: ${props => props.theme.token?.colorBgContainer};
+  background: ${nodeColor};
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   padding: 14px 19px;

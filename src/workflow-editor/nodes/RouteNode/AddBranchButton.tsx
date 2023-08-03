@@ -1,6 +1,7 @@
 import { memo } from "react"
 import styled from "styled-components"
 import { useTranslate } from "../../react-locales"
+import { nodeColor } from "../../utils/nodeColor"
 
 const AddBranch = styled.button`
   border: none;
@@ -26,7 +27,7 @@ const AddBranch = styled.button`
   -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
   white-space: nowrap;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
-  background: ${props => props.theme.token?.colorBgContainer};
+  background: ${nodeColor};
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   &:hover{
     transform: translateX(-50%) scale(1.1);

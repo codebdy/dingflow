@@ -8,6 +8,7 @@ import { CloseButton } from "./CloseButton"
 import { styled } from "styled-components"
 import { canvasColor } from "../utils/canvasColor"
 import { lineColor } from "../utils/lineColor"
+import { nodeColor } from "../utils/nodeColor"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -47,7 +48,7 @@ export const NodeWrapBox = styled.div`
   width: 220px;
   min-height: 72px;
   flex-shrink: 0;
-  background: ${props => props.theme.token?.colorBgContainer};
+  background: ${nodeColor};
   border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   cursor: pointer;
@@ -131,7 +132,7 @@ export const NodeContent = styled.div`
       width: 20px;
       height: 14px;
       font-size: 14px;
-      color: #979797;
+      color: ${props=>props.theme.token?.colorTextSecondary};
     }
 `
 export const NormalNode = memo((
