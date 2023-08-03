@@ -11,13 +11,19 @@ const Container = styled.div`
   top: 32px;
 `
 
-export const ZoomBar = memo(() => {
+export const ZoomBar = memo((
+  props: {
+    onZoomIn: () => void,
+    onZoomOut: () => void
+  }
+) => {
+  const { onZoomIn, onZoomOut } = props
   return (
     <Container className="workflow-editor-zoombar">
       <Space>
-        <Button icon={<MinusOutlined />} />
+        <Button icon={<MinusOutlined />} onClick={onZoomOut} />
         100%
-        <Button icon={<PlusOutlined />} />
+        <Button icon={<PlusOutlined />} onClick={onZoomIn} />
       </Space>
     </Container>
   )

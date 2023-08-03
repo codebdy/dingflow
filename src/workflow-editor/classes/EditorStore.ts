@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
-import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
+import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetZoomAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
@@ -21,6 +21,17 @@ export class EditorStore {
   dispatch = (action: Action) => {
     this.store.dispatch(action)
   }
+
+  // setZoom = (zoom: number) => {
+  //   const zoomAcion: SetZoomAction = {
+  //     type: ActionType.SET_ZOOM,
+  //     payload: {
+  //       zoom
+  //     }
+  //   }
+
+  //   this.dispatch(zoomAcion)
+  // }
 
   backup = () => {
     const state = this.store.getState();

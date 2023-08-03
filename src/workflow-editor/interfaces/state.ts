@@ -12,7 +12,7 @@ export interface IState {
   undoList: ISnapshot[],
   //重做快照列表
   redoList: ISnapshot[],
-  zoom: number,
+  //zoom: number,
   startNode: IWorkFlowNode,
   selectedId?: string,
 }
@@ -21,7 +21,6 @@ export const initialState: IState = {
   changeFlag: false,
   undoList: [],
   redoList: [],
-  zoom: 1,
   startNode: {
     id: "start",
     nodeType: NodeType.start,

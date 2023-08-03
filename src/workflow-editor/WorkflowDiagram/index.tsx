@@ -1,4 +1,4 @@
-import { CSSProperties, memo } from "react"
+import { CSSProperties, memo, useCallback, useState } from "react"
 import { styled } from "styled-components"
 import { ZoomBar } from "../ZoomBar"
 import { StartNode } from "../nodes/StartNode"
@@ -26,13 +26,24 @@ export const WorkflowDiagram = memo((
     style?: CSSProperties,
   }
 ) => {
-  const { style, ...other } = props;
+  const [zoom, setZoom] = useState(1)
+
+  const haneldZoomIn = useCallback(() => {
+    setZoom(zoom => (zoom + 0.1))
+  }, [])
+
+  const haneldZoomOut = useCallback(() => {
+    setZoom(zoom => (zoom - 0.1))
+  }, [])
+
+  console.log("哈哈", zoom)
+
   return (
-    <DiagramContainer style={{ transform: `scale(1)`, ...style }}{...other}>
-      <Canvas className="flow-canvas">
+    <DiagramContainer {...props}>
+      <Canvas className="flow-canvas" style={{ transform: `scale(${zoom})` }}>
         <StartNode />
       </Canvas>
-      <ZoomBar />
+      <ZoomBar onZoomIn={haneldZoomIn} onZoomOut={haneldZoomOut} />
     </DiagramContainer >
   )
 })
