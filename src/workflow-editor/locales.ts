@@ -14,7 +14,7 @@ export const defalutLocales: ILocales = {
     export: "导出",
     approver: "审批人",
     notifier: "抄送人",
-    deal: "办理",
+    dealer: "办理人",
     conditionNode: "条件分支",
     condition: "条件",
     promoter: "发起人",
@@ -24,6 +24,9 @@ export const defalutLocales: ILocales = {
     copyCodition: "复制条件",
     priority: "优先级",
     pleaseSetCondition: "请设置条件",
+    pleaseChooseApprover: "请选择审批人",
+    pleaseChooseNotifier: "发起人自选",
+    pleaseChooseDealer: "请选择办理人",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -38,7 +41,7 @@ export const defalutLocales: ILocales = {
     export: "Export",
     approver: "Approver",
     notifier: "Notifier",
-    deal: "Deal",
+    dealer: "Dealer",
     conditionNode: "Condition Branch",
     condition: "Condition",
     promoter: "promoter",
@@ -48,5 +51,8 @@ export const defalutLocales: ILocales = {
     copyCodition: "Copy Condition",
     priority: "Priority",
     pleaseSetCondition: "Please set condition",
+    pleaseChooseApprover: "Choose Approver",
+    pleaseChooseNotifier: "Selft Choose",
+    pleaseChooseDealer: "Choose Dealer",
   }
 }

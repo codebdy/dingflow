@@ -8,6 +8,8 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#ff943e",
     label: "approver",
     icon: sealIcon,
+    placeholder: "pleaseChooseApprover",
+    placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.approver,
     }
@@ -16,14 +18,17 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#4ca3fb",
     label: "notifier",
     icon: notifierIcon,
+    placeholder: "pleaseChooseNotifier",
     defaultConfig: {
       nodeType: NodeType.notifier,
     }
   },
   {
     color: "#fb602d",
-    label: "deal",
+    label: "dealer",
     icon: dealIcon,
+    placeholder: "pleaseChooseDealer",
+    placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.audit,
     }

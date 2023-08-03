@@ -9,6 +9,7 @@ import { styled } from "styled-components"
 import { canvasColor } from "../utils/canvasColor"
 import { lineColor } from "../utils/lineColor"
 import { nodeColor } from "../utils/nodeColor"
+import { useTranslate } from "../react-locales"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -124,6 +125,10 @@ export const NodeContent = styled.div`
       -webkit-box-orient: vertical;
       white-space: nowrap;
     }
+    .secondary{
+      color: ${props => props.theme.token?.colorTextSecondary};
+      opacity: 0.8;
+    }
     .arrow {
       position: absolute;
       right: 10px;
@@ -132,7 +137,7 @@ export const NodeContent = styled.div`
       width: 20px;
       height: 14px;
       font-size: 14px;
-      color: ${props=>props.theme.token?.colorTextSecondary};
+      color: ${props => props.theme.token?.colorTextSecondary};
     }
 `
 export const NormalNode = memo((
@@ -141,19 +146,23 @@ export const NormalNode = memo((
   }
 ) => {
   const { node } = props
-  const meterial = useNodeMaterial(node)
+  const t = useTranslate()
+  const material = useNodeMaterial(node)
   return (
     <NodeWrap className="node-wrap start-node-wrap">
       <NodeWrapBox className="node-wrap-box">
-        <NodeTitle className="node-title" style={{ backgroundColor: meterial?.color, color: "#fff" }}>
+        <NodeTitle className="node-title" style={{ backgroundColor: material?.color, color: "#fff" }}>
           <NodeIcon>
-            {meterial?.icon}
+            {material?.icon}
           </NodeIcon>
           <NodeTitleText className="text">{node.name}</NodeTitleText>
           <CloseButton nodeId={node.id} />
         </NodeTitle>
         <NodeContent className="content">
-          <span className="text">{"allText"}</span>
+          <span
+            className={"text" + ((material?.placeholderSecondary && !node.desc) ? " secondary" : "")}>
+            {node.desc || t(material?.placeholder || "")}
+          </span>
           <RightOutlined className="arrow" />
         </NodeContent>
       </NodeWrapBox>
