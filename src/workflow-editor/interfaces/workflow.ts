@@ -22,7 +22,7 @@ export interface IWorkFlowNode {
 }
 
 export interface IRouteNode extends IWorkFlowNode {
-  conditionNodeList?: IConditionNode[]
+  conditionNodeList: IConditionNode[]
 }
 
 export enum OperatorType {

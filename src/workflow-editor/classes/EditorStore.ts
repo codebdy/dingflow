@@ -3,9 +3,10 @@ import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
-import { IConditionNode, IRouteNode, IWorkFlowNode } from "../interfaces"
-import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
+import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
+import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
+import { createUuid } from "../utils/create-uuid"
 
 export class EditorStore {
   store: Store<IState>
@@ -36,27 +37,61 @@ export class EditorStore {
     this.dispatch(setRedoListAction)
   }
 
-  addCondition(nodeId: IRouteNode, condition: IConditionNode) {
+  changeNode(node: IWorkFlowNode) {
     this.backup()
+    const changeNodeAction: ChangeNodeAction = {
+      type: ActionType.CHANGE_NODE,
+      payload: {
+        node
+      }
+    }
+
+    this.dispatch(changeNodeAction)
+  }
+
+  addCondition(node: IRouteNode, condition: IConditionNode) {
+    const newNode: IRouteNode = { ...node, conditionNodeList: [...node.conditionNodeList, condition] };
+    this.changeNode(newNode)
   }
 
   removeCondition(node: IRouteNode, conditionId: string) {
     this.backup()
+    const newNode: IRouteNode = { ...node, conditionNodeList: node.conditionNodeList.filter(co => co.id !== conditionId) };
+    this.changeNode(newNode)
   }
 
   //条件左移一位
-  transConditionOneStepToLeft(node: IConditionNode, conditionId: string) {
-    this.backup()
+  transConditionOneStepToLeft(node: IRouteNode, index: number) {
+    if (index > 0) {
+      this.backup()
+      const newConditions = [...node.conditionNodeList]
+      newConditions[index] = newConditions.splice(index - 1, 1, newConditions[index])[0]
+      const newNode: IRouteNode = { ...node, conditionNodeList: newConditions };
+      this.changeNode(newNode)
+    }
   }
 
   //条件右移一位
-  transConditionOneStepToRight(node: IConditionNode, conditionId: string) {
-    this.backup()
+  transConditionOneStepToRight(node: IRouteNode, index: number) {
+    const newConditions = [...node.conditionNodeList]
+    if (index < newConditions.length - 1) {
+      this.backup()
+      newConditions[index] = newConditions.splice(index + 1, 1, newConditions[index])[0]
+      const newNode: IRouteNode = { ...node, conditionNodeList: newConditions };
+      this.changeNode(newNode)
+    }
   }
 
   //克隆一个条件
-  cloneCondition(node: IConditionNode, conditionId: string) {
-
+  cloneCondition(node: IRouteNode, condition: IConditionNode) {
+    const newCondition = JSON.parse(JSON.stringify(condition))
+    //重写Id
+    resetId(newCondition)
+    const index = node.conditionNodeList.indexOf(condition)
+    const newList = [...node.conditionNodeList]
+    newList.splice(index, 0, newCondition)
+    const newNode: IRouteNode = { ...node, conditionNodeList: newList };
+    this.changeNode(newNode)
   }
 
   addNode(parentId: string, node: IWorkFlowNode) {
@@ -107,6 +142,18 @@ export class EditorStore {
     }
 
     return this.store.subscribe(handleChange)
+  }
+}
+
+function resetId(node: IWorkFlowNode) {
+  node.id = createUuid()
+  if (node.childNode) {
+    resetId(node.childNode)
+  }
+  if (node.nodeType === NodeType.route) {
+    for (const condition of (node as IRouteNode).conditionNodeList) {
+      resetId(condition)
+    }
   }
 }
 

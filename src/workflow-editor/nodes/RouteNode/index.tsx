@@ -40,8 +40,6 @@ const RouteBox = styled.div`
   margin-top: 15px;
 `
 
-
-
 export const RouteNode = memo((
   props: {
     node: IRouteNode

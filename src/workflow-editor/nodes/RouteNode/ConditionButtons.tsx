@@ -31,8 +31,8 @@ export const ConditionButtons = ((
   }, [node.id, parent, store])
 
   const handleClone = useCallback(() => {
-    node.id && store?.cloneCondition(parent, node.id)
-  }, [node.id, parent, store])
+    store?.cloneCondition(parent, node)
+  }, [node, parent, store])
 
   return (
     <Container className="mini-bar">

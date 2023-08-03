@@ -182,12 +182,12 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
   const editorStore = useEditorStore()
 
   const hanldeMoveLeft = useCallback(() => {
-    node.id && editorStore?.transConditionOneStepToLeft(parent, node.id)
-  }, [editorStore, node.id, parent])
+    node.id && editorStore?.transConditionOneStepToLeft(parent, index)
+  }, [editorStore, index, node.id, parent])
 
   const handleMoveRight = useCallback(() => {
-    node.id && editorStore?.transConditionOneStepToRight(parent, node.id)
-  }, [editorStore, node.id, parent])
+    node.id && editorStore?.transConditionOneStepToRight(parent, index)
+  }, [editorStore, index, node.id, parent])
 
   return (
     <ColBox className="col-box">
