@@ -37,7 +37,6 @@ const RouteBox = styled.div`
 `
 
 const ColBox = styled.div`
-  background: #f5f5f7;
   display: inline-flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -56,7 +55,7 @@ const ColBox = styled.div`
     margin: auto;
     width: 2px;
     height: 100%;
-    background-color: #cacaca
+    background-color: ${props => props.theme.mode === "light" ? "#cacaca" : "rgba(255,255,255,0.35)"};
   }
 `
 
@@ -83,25 +82,14 @@ const ConditionNodeBox = styled.div`
   -webkit-box-direction: normal;
   flex-direction: column;
   -webkit-box-flex: 1;
-  &::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 2px;
-    height: 100%;
-    background-color: #cacaca;
-  }
 `
 
 const AutoJudge = styled.div`
   position: relative;
   width: 220px;
   min-height: 72px;
-  background: #fff;
+  background: ${props => props.theme.token?.colorBgContainer};
+  border: solid ${props => props.theme.mode === "dark" ? "1px" : 0} ${props => props.theme?.token?.colorBorder};
   border-radius: 4px;
   padding: 14px 19px;
   cursor: pointer;
@@ -133,6 +121,41 @@ const AutoJudge = styled.div`
   }
 `
 
+const LeftTopCover = styled.div`
+  left: -1px;
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #f5f5f7;
+  top: -4px;
+`
+const RightTopCover = styled.div`
+  right: -1px;
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #f5f5f7;
+  top: -4px;
+`
+
+const LeftBottomCover = styled.div`
+  left: -1px;
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #f5f5f7;
+  bottom: -4px;
+`
+
+const RightBottomCover = styled.div`
+  right: -1px;
+  position: absolute;
+  height: 8px;
+  width: 50%;
+  background-color: #f5f5f7;
+  bottom: -4px;
+`
+
 export const RouteNode = memo((
   props: {
     node: IRouteNode
@@ -145,7 +168,7 @@ export const RouteNode = memo((
         <RouteBox className="route-box">
           <AddBranchButton />
           {
-            node.conditionNodeList?.map((child) => {
+            node.conditionNodeList?.map((child, index) => {
               return (
                 <ColBox className="col-box" key={child.id}>
                   <ConditionNode className="condition-node">
@@ -155,6 +178,20 @@ export const RouteNode = memo((
                       </AutoJudge>
                     </ConditionNodeBox>
                   </ConditionNode>
+                  {
+                    index === 0 &&
+                    <>
+                      <LeftTopCover />
+                      <LeftBottomCover />
+                    </>
+                  }
+                  {
+                    index === (node.conditionNodeList?.length || 0) - 1 &&
+                    <>
+                      <RightTopCover />
+                      <RightBottomCover />
+                    </>
+                  }
                 </ColBox>
               )
             })
