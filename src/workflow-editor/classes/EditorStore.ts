@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
 import { IWorkFlowNode } from "../interfaces"
-import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction } from "../actions"
+import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 
 export class EditorStore {
@@ -18,7 +18,26 @@ export class EditorStore {
     this.store.dispatch(action)
   }
 
+  backup = () => {
+    const state = this.store.getState();
+    const setUndoListAction: UnRedoListAction = {
+      type: ActionType.SET_UNOLIST,
+      payload: {
+        list: [...state.undoList, { startNode: state.startNode }]
+      }
+    }
+    this.dispatch(setUndoListAction)
+    const setRedoListAction: UnRedoListAction = {
+      type: ActionType.SET_UNOLIST,
+      payload: {
+        list: []
+      }
+    }
+    this.dispatch(setRedoListAction)
+  }
+
   addNode(parentId: string, node: IWorkFlowNode) {
+    this.backup()
     const addAction: AddNodeAction = { type: ActionType.ADD_NODE, payload: { parentId, node } }
     this.store.dispatch(addAction)
   }
@@ -30,6 +49,7 @@ export class EditorStore {
 
   removeNode(id?: string) {
     if (id) {
+      this.backup()
       const removeAction: DeleteNodeAction = { type: ActionType.DELETE_NODE, payload: { id } }
       this.store.dispatch(removeAction)
     }

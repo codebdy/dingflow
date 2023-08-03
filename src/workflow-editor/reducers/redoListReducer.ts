@@ -3,9 +3,6 @@ import { ISnapshot } from "../interfaces/state";
 
 export function redoListReducer(state: ISnapshot[], action: Action): ISnapshot[] {
   switch (action.type) {
-    case ActionType.BACKUP: {
-      return []
-    }
     case ActionType.SET_REDOLIST: {
       return (action as UnRedoListAction).payload.list
     }

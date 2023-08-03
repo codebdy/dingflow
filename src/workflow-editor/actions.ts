@@ -7,7 +7,6 @@ export enum ActionType {
   DELETE_CONDITION = "workflow/DELETE_CONDITION",
   ADD_NODE = "workflow/ADD_NODE",
   ADD_CONDITION = "workflow/ADD_CONDITION",
-  BACKUP = 'workflow/BACKUP',
   SET_REDOLIST = 'workflow/SET_REDOLIST',
   SET_UNOLIST = 'workflow/SET_UNOLIST',
   SET_START_NODE = 'workflow/SET_START_NODE',
@@ -54,16 +53,11 @@ export interface DeleteConditionAction extends Action {
   payload: DeleteConditionPayLoad
 }
 
-
 export interface UnRedoListPayLoad {
   list: ISnapshot[]
 }
 
 export interface UnRedoListAction extends Action {
-  payload: UnRedoListPayLoad
-}
-
-export interface BackupAction extends Action {
   payload: UnRedoListPayLoad
 }
 
