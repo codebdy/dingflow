@@ -1,5 +1,5 @@
-import { memo } from "react"
-import { IConditionNode } from "../../interfaces"
+import { memo, useCallback } from "react"
+import { IConditionNode, IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { lineColor } from "../../utils/lineColor"
 import { nodeColor } from "../../utils/nodeColor"
@@ -9,6 +9,7 @@ import { ChildNode } from "../ChildNode"
 import { ConditionButtons } from "./ConditionButtons"
 import { ConditionPriority } from "./ConditionPriority"
 import { useTranslate } from "../../react-locales"
+import { useEditorStore } from "../../hooks"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -175,9 +176,18 @@ const NodeContent = styled.div`
     user-select: none;
 `
 
-export const ConditionNode = memo((props: { node: IConditionNode, index: number, length: number }) => {
-  const { node, index, length } = props
+export const ConditionNode = memo((props: { parent: IRouteNode, node: IConditionNode, index: number, length: number }) => {
+  const { parent, node, index, length } = props
   const t = useTranslate()
+  const editorStore = useEditorStore()
+
+  const hanldeMoveLeft = useCallback(() => {
+    node.id && editorStore?.transConditionOneStepToLeft(parent, node.id)
+  }, [editorStore, node.id, parent])
+
+  const handleMoveRight = useCallback(() => {
+    node.id && editorStore?.transConditionOneStepToRight(parent, node.id)
+  }, [editorStore, node.id, parent])
 
   return (
     <ColBox className="col-box">
@@ -186,7 +196,7 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
           <AutoJudge className="auto-judge">
             {
               index !== 0 &&
-              <SortHandler className="sort-handler left">
+              <SortHandler className="sort-handler left" onClick={hanldeMoveLeft}>
                 &lt;
               </SortHandler>
             }
@@ -194,7 +204,7 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
               <TitleText>
                 {node.name}
               </TitleText>
-              <ConditionButtons />
+              <ConditionButtons parent={parent} node={node} />
               <ConditionPriority index={index} />
             </TitleWrapper>
             <NodeContent className="content">
@@ -202,7 +212,7 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
             </NodeContent>
             {
               index !== (length - 1) &&
-              <SortHandler className="sort-handler right">
+              <SortHandler className="sort-handler right" onClick={handleMoveRight}>
                 &gt;
               </SortHandler>
             }

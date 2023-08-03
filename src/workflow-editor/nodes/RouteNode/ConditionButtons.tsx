@@ -5,6 +5,7 @@ import { Button, Tooltip } from "antd"
 import { useEditorStore } from "../../hooks"
 import { copyIcon } from "../../icons"
 import { useTranslate } from "../../react-locales"
+import { IRouteNode, IConditionNode } from "../../interfaces"
 
 const Container = styled.div`
   position: absolute;
@@ -17,16 +18,21 @@ const Container = styled.div`
 
 export const ConditionButtons = ((
   props: {
-    nodeId?: string
+    parent: IRouteNode,
+    node: IConditionNode
   }
 ) => {
-  const { nodeId } = props
+  const { parent, node } = props
   const store = useEditorStore()
   const t = useTranslate()
 
   const handleClose = useCallback(() => {
-    //store?.removeNode(nodeId)
-  }, [nodeId, store])
+    node.id && store?.removeCondition(parent, node.id)
+  }, [node.id, parent, store])
+
+  const handleClone = useCallback(() => {
+    node.id && store?.cloneCondition(parent, node.id)
+  }, [node.id, parent, store])
 
   return (
     <Container className="mini-bar">
@@ -36,7 +42,7 @@ export const ConditionButtons = ((
           size="small"
           shape="circle"
           icon={copyIcon}
-        //onClick={handleClose}
+          onClick={handleClone}
         />
       </Tooltip>
       <Button

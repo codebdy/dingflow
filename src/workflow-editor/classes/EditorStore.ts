@@ -40,7 +40,7 @@ export class EditorStore {
     this.backup()
   }
 
-  removeCondition(nodeId: string, conditionId: string) {
+  removeCondition(node: IRouteNode, conditionId: string) {
     this.backup()
   }
 
