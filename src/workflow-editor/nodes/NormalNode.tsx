@@ -6,6 +6,8 @@ import { ChildNode } from "./ChildNode"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { CloseButton } from "./CloseButton"
 import { styled } from "styled-components"
+import { canvasColor } from "../utils/canvasColor"
+import { lineColor } from "../utils/lineColor"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -17,6 +19,25 @@ export const NodeWrap = styled.div`
   -ms-flex-positive: 1;
   padding: 0 50px;
   position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    border-style: solid;
+    border-width: 8px 6px 4px;
+    border-color: ${lineColor} transparent transparent;
+    background: ${canvasColor};
+  }
+  &.start{
+    &::before{
+      height:0;
+      border-width: 0;
+    }
+  }
 `
 
 export const NodeWrapBox = styled.div`

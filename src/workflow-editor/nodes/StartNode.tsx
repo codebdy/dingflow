@@ -13,7 +13,7 @@ export const StartNode = memo(() => {
 
   console.log("哈哈 ", startNode)
   return (
-    <NodeWrap className="node-wrap start-node-wrap">
+    <NodeWrap className="node-wrap start">
       <NodeWrapBox className="node-wrap-box">
         <NodeTitle className="node-title start-node-title">
           {t("promoter")}
