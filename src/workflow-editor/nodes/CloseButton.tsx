@@ -1,7 +1,19 @@
 import { useCallback } from "react"
-import { CloseIcon } from "./styled"
 import { useEditorStore } from "../hooks"
+import { CloseOutlined } from "@ant-design/icons"
+import { styled } from "styled-components"
+import { Button } from "antd"
 
+const CloseStyledButton = styled(Button)`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 export const CloseButton = ((
   props: {
     nodeId?: string
@@ -15,6 +27,13 @@ export const CloseButton = ((
   }, [nodeId, store])
 
   return (
-    <CloseIcon className="close" onClick={handleClose} />
+    <CloseStyledButton
+      className="close"
+      type="text"
+      size="small"
+      shape="circle"
+      icon={<CloseOutlined style={{ color: "#fff", fontSize: 12 }} />}
+      onClick={handleClose}
+    />
   )
 })

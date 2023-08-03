@@ -1,4 +1,3 @@
-import { CloseOutlined } from "@ant-design/icons"
 import { styled } from "styled-components"
 
 export const NodeWrap = styled.div`
@@ -79,14 +78,6 @@ export const NodeTitleText = styled.div`
     line-height: 16px;
     border-bottom: dashed 1px #fff;
   }
-`
-
-export const CloseIcon = styled(CloseOutlined)`
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
 `
 
 export const NodeContent = styled.div`
