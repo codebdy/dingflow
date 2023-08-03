@@ -6,7 +6,7 @@ import { EditorStore } from "../classes"
 import { WorkflowEditorStoreContext } from "../contexts"
 import { ConfigRoot } from "./ConfigRoot"
 import { ILocales, LocalesManager } from "@rxdrag/locales"
-import { LocalesContext } from "../react-locales"
+import { LocalesContext, useTranslate } from "../react-locales"
 import { defalutLocales } from "../locales"
 import { INodeMaterial } from "../interfaces/material"
 import { defaultMaterials } from "./defaultMaterials"
@@ -19,6 +19,7 @@ const WorkFlowScopeInner = memo((props: {
 }) => {
   const { mode, children, themeToken, materials } = props;
   const [, token] = useToken();
+  const t = useTranslate()
 
   const theme: { token: IThemeToken, mode?: 'dark' | 'light' } = useMemo(() => {
     return {
@@ -29,6 +30,10 @@ const WorkFlowScopeInner = memo((props: {
   const store: EditorStore = useMemo(() => {
     return new EditorStore()
   }, [])
+
+  useEffect(() => {
+    store.t = t
+  }, [store, t])
 
   useEffect(() => {
     store.materials = [...defaultMaterials, ...materials || []]

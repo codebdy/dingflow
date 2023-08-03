@@ -202,7 +202,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
             }
             <TitleWrapper>
               <TitleText>
-                {node.name}
+                {node.name || t("condition")}
               </TitleText>
               <ConditionButtons parent={parent} node={node} />
               <ConditionPriority index={index} />

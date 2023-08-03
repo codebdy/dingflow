@@ -27,6 +27,7 @@ export const defalutLocales: ILocales = {
     pleaseChooseApprover: "请选择审批人",
     pleaseChooseNotifier: "发起人自选",
     pleaseChooseDealer: "请选择办理人",
+    ofCopy: "的副本",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -54,5 +55,6 @@ export const defalutLocales: ILocales = {
     pleaseChooseApprover: "Choose Approver",
     pleaseChooseNotifier: "Selft Choose",
     pleaseChooseDealer: "Choose Dealer",
+    ofCopy:" of Copy",
   }
 }

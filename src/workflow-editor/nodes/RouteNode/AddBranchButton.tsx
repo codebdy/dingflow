@@ -54,9 +54,10 @@ export const AddBranchButton = memo((
   const handleClick = useCallback(() => {
     editorStore?.addCondition(node, {
       id: createUuid(),
-      nodeType: NodeType.condition
+      nodeType: NodeType.condition,
+      name: t("condition") + (node.conditionNodeList.length + 1)
     })
-  }, [editorStore, node])
+  }, [editorStore, node, t])
 
   return <AddBranch onClick={handleClick}>
     {t("addCondition")}

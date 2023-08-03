@@ -8,8 +8,11 @@ import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, 
 import { INodeMaterial } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
+export type Translate = (msg: string) => string | undefined
+
 export class EditorStore {
   store: Store<IState>
+  t?: Translate
   materials: INodeMaterial[] = []
   constructor(debugMode?: boolean,) {
     this.store = makeStoreInstance(debugMode || false)
@@ -85,11 +88,12 @@ export class EditorStore {
   //克隆一个条件
   cloneCondition(node: IRouteNode, condition: IConditionNode) {
     const newCondition = JSON.parse(JSON.stringify(condition))
+    newCondition.name = newCondition.name + this.t?.("ofCopy")
     //重写Id
     resetId(newCondition)
     const index = node.conditionNodeList.indexOf(condition)
     const newList = [...node.conditionNodeList]
-    newList.splice(index, 0, newCondition)
+    newList.splice(index + 1, 0, newCondition)
     const newNode: IRouteNode = { ...node, conditionNodeList: newList };
     this.changeNode(newNode)
   }
