@@ -31,8 +31,10 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#15bc83",
     label: "condition",
     icon: conditionIcon,
-    defaultConfig: {
-      nodeType: NodeType.route,
+    createDefault: () => {
+      return {
+        nodeType: NodeType.route,
+      }
     }
   },
 ]

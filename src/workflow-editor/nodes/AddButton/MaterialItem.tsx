@@ -47,10 +47,18 @@ export const MaterialItem = memo((
 
   const handleClick = useCallback(() => {
     const newId = createUuid()
-    editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId, name: t(material.label) })
+    const newName = t(material.label)
+    if (material.defaultConfig) {
+      editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId, name: newName })
+    } else if (material.createDefault) {
+      editorStore?.addNode(nodeId, { ...material.createDefault(), id: newId, name: newName })
+    } else {
+      console.error("Material no defutConfig or createDefault")
+    }
+
     editorStore?.selectNode(newId);
     onClick?.()
-  }, [editorStore, material.defaultConfig, material.label, nodeId, onClick, t])
+  }, [editorStore, material, nodeId, onClick, t])
 
   return (
     <MaterialSchell>

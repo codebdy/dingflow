@@ -4,5 +4,8 @@ export interface INodeMaterial {
   color: string
   label: string
   icon?: React.ReactElement
-  defaultConfig: IWorkFlowNode
+  //默认配置
+  defaultConfig?: IWorkFlowNode
+  //创建一个默认节点，跟defaultCofig只选一个
+  createDefault?: () => IWorkFlowNode
 }

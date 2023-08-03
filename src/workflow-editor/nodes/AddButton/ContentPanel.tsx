@@ -26,7 +26,7 @@ export const ContentPanel = memo((
           return (
             <MaterialItem
               nodeId={nodeId}
-              key={material.defaultConfig.nodeType}
+              key={material.defaultConfig?.nodeType}
               material={material}
               onClick={() => onClickMaterial?.(material)}
             />

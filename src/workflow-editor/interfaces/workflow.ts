@@ -7,8 +7,10 @@ export enum NodeType {
   notifier = "notifier",
   //处理人？
   audit = "audit",
-  //路由(条件节点)
-  route = "route"
+  //路由(条件节点)，下面包含分支节点
+  route = "route",
+  //分支节点
+  condition = "condition",
 }
 
 export interface IWorkFlowNode {
@@ -16,11 +18,26 @@ export interface IWorkFlowNode {
   nodeType: NodeType | string //string可以用于自定义节点，暂时用不上
   name?: string
   childNode?: IWorkFlowNode
+}
+
+export interface IRouteNode extends IWorkFlowNode{
   conditionNodeList?: IConditionNode[]
 }
 
-export interface IConditionNode extends IWorkFlowNode {
+export enum OperatorType {
+  Gt = "gt",
+}
 
+//这个命名需要优化
+export interface ICondition {
+  fieldEnName?: string,
+  fieldName?: string,
+  fieldValue?: unknown,
+  operatorType?: OperatorType,
+}
+
+export interface IConditionNode extends IWorkFlowNode {
+  flowNodeConditionVOList?: ICondition[]
 }
 
 export interface IWorkflow {
