@@ -3,7 +3,7 @@ import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
-import { IConditionNode, IWorkFlowNode } from "../interfaces"
+import { IConditionNode, IRouteNode, IWorkFlowNode } from "../interfaces"
 import { Action, ActionType, AddNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 
@@ -36,7 +36,7 @@ export class EditorStore {
     this.dispatch(setRedoListAction)
   }
 
-  addCondition(nodeId: string, condition: IConditionNode) {
+  addCondition(nodeId: IRouteNode, condition: IConditionNode) {
     this.backup()
   }
 

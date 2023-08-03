@@ -1,7 +1,10 @@
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import styled from "styled-components"
 import { useTranslate } from "../../react-locales"
 import { nodeColor } from "../../utils/nodeColor"
+import { IRouteNode, NodeType } from "../../interfaces"
+import { useEditorStore } from "../../hooks"
+import { createUuid } from "../../utils/create-uuid"
 
 const AddBranch = styled.button`
   border: none;
@@ -39,10 +42,23 @@ const AddBranch = styled.button`
   }
 `
 
-export const AddBranchButton = memo(() => {
+export const AddBranchButton = memo((
+  props: {
+    node: IRouteNode
+  }
+) => {
+  const { node } = props
   const t = useTranslate()
+  const editorStore = useEditorStore()
 
-  return <AddBranch>
+  const handleClick = useCallback(() => {
+    editorStore?.addCondition(node, {
+      id: createUuid(),
+      nodeType: NodeType.condition
+    })
+  }, [editorStore, node])
+
+  return <AddBranch onClick={handleClick}>
     {t("addCondition")}
   </AddBranch>
 })

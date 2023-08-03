@@ -52,7 +52,7 @@ export const RouteNode = memo((
     <RouteWrap className="route-wrap">
       <RouteBoxWrap className="route-box-wrap">
         <RouteBox className="route-box">
-          <AddBranchButton />
+          <AddBranchButton node={node} />
           {
             node.conditionNodeList?.map((child, index) => {
               return (
