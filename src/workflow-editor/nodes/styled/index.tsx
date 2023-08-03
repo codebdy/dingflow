@@ -102,6 +102,7 @@ export const NodeContent = styled.div`
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      white-space: nowrap;
     }
     .arrow {
       position: absolute;
