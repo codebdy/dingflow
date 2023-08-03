@@ -4,7 +4,7 @@ import { AddButton } from "./AddButton"
 import { useTranslate } from "../react-locales"
 import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
-import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./styled"
+import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./NormalNode"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()

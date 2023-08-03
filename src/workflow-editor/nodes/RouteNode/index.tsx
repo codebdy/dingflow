@@ -2,6 +2,7 @@ import { memo } from "react"
 import { IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { AddBranchButton } from "./AddBranchButton"
+import { AddButton } from "../AddButton"
 
 const RouteWrap = styled.div`
   display: inline-flex;
@@ -197,6 +198,7 @@ export const RouteNode = memo((
             })
           }
         </RouteBox>
+        {node?.id && <AddButton nodeId={node?.id} />}
       </RouteBoxWrap>
     </RouteWrap>
   )
