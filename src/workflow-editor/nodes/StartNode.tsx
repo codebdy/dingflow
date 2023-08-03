@@ -5,6 +5,7 @@ import { useTranslate } from "../react-locales"
 import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
 import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./NormalNode"
+import { EndNode } from "./EndNode"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
@@ -24,6 +25,7 @@ export const StartNode = memo(() => {
       </NodeWrapBox>
       {startNode?.id && <AddButton nodeId={startNode?.id} />}
       {startNode?.childNode && <ChildNode node={startNode?.childNode} />}
+      <EndNode />
     </NodeWrap>
   )
 })

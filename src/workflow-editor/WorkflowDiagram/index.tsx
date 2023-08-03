@@ -2,7 +2,6 @@ import { CSSProperties, memo } from "react"
 import { styled } from "styled-components"
 import { ZoomBar } from "../ZoomBar"
 import { StartNode } from "../nodes/StartNode"
-import { EndNode } from "../nodes/EndNode"
 import { canvasColor } from "../utils/canvasColor"
 
 const DiagramContainer = styled.div`
@@ -30,9 +29,8 @@ export const WorkflowDiagram = memo((
   const { style, ...other } = props;
   return (
     <DiagramContainer style={{ transform: `scale(1)`, ...style }}{...other}>
-      <Canvas>
+      <Canvas className="flow-canvas">
         <StartNode />
-        <EndNode />
       </Canvas>
       <ZoomBar />
     </DiagramContainer >

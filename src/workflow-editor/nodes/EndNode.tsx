@@ -3,7 +3,8 @@ import { styled } from "styled-components"
 import { useTranslate } from "../react-locales"
 
 const Container = styled.div`
-  border-radius: 50%;
+  width: 100%;
+  //border-radius: 50%;
   font-size: 14px;
   color: ${props => props.theme.token?.colorTextSecondary};
   text-align: left;

@@ -9,7 +9,6 @@ import { ConditionNode } from "./ConditionNode"
 
 const RouteWrap = styled.div`
   display: inline-flex;
-  width: 100%;
 `
 const RouteBoxWrap = styled.div`
   display: flex;
