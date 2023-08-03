@@ -1,8 +1,8 @@
-import { CSSProperties, memo, useCallback, useState } from "react"
+import { CSSProperties, memo, useCallback, useRef, useState } from "react"
 import { styled } from "styled-components"
-import { ZoomBar } from "../ZoomBar"
 import { StartNode } from "../nodes/StartNode"
 import { canvasColor } from "../utils/canvasColor"
+import { ZoomBar } from "./ZoomBar"
 
 const DiagramContainer = styled.div`
   flex: 1;
@@ -31,6 +31,11 @@ function toDecimal(x: number) {
   return f;
 }
 
+export interface IPosition {
+  x: number,
+  y: number,
+}
+
 export const WorkflowDiagram = memo((
   props: {
     className?: string,
@@ -38,6 +43,8 @@ export const WorkflowDiagram = memo((
   }
 ) => {
   const [zoom, setZoom] = useState(1)
+  const [mousePressedPoint, setMousePressedPoint] = useState<IPosition>()
+  const canvasRef = useRef<HTMLDivElement>(null)
 
   const haneldZoomIn = useCallback(() => {
     setZoom(zoom => toDecimal(zoom < 3 ? (zoom + 0.1) : zoom))
@@ -47,9 +54,33 @@ export const WorkflowDiagram = memo((
     setZoom(zoom => toDecimal(zoom > 0.1 ? (zoom - 0.1) : zoom))
   }, [])
 
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setMousePressedPoint({ x: e.clientX, y: e.clientY })
+  }, [])
+
+  const handleMouseUp = useCallback(() => {
+    setMousePressedPoint(undefined)
+  }, [])
+
+  const handleMouseMove = useCallback(() => {
+    if (!mousePressedPoint) {
+      return
+    }
+  }, [mousePressedPoint])
+
   return (
     <DiagramContainer {...props}>
-      <Canvas className="flow-canvas" key={zoom}>
+      <Canvas
+        ref={canvasRef}
+        className={"flow-canvas"}
+        style={{
+          cursor: mousePressedPoint ? "grabbing" : "grab"
+        }}
+        key={zoom}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
         <CanvasInner style={{ transform: `scale(${zoom})` }}>
           <StartNode />
         </CanvasInner>

@@ -137,7 +137,6 @@ export class EditorStore {
     return this.store.subscribe(handleChange)
   }
 
-
   subscribeSelectedChange(listener: SelectedListener) {
     let previousState: string | undefined = this.store.getState().selectedId
 

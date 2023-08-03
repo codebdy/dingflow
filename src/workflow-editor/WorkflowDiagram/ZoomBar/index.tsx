@@ -9,6 +9,7 @@ const Container = styled.div`
   position: absolute;
   right: 32px;
   top: 32px;
+  user-select: none;
 `
 
 export const ZoomBar = memo((
