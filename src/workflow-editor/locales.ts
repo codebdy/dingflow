@@ -23,6 +23,7 @@ export const defalutLocales: ILocales = {
     addCondition: "添加条件",
     copyCodition: "复制条件",
     priority: "优先级",
+    pleaseSetCondition: "请设置条件",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -46,5 +47,6 @@ export const defalutLocales: ILocales = {
     addCondition: "Add Condition",
     copyCodition: "Copy Condition",
     priority: "Priority",
+    pleaseSetCondition: "Please set condition",
   }
 }

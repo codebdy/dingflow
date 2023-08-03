@@ -8,6 +8,7 @@ import { AddButton } from "../AddButton"
 import { ChildNode } from "../ChildNode"
 import { ConditionButtons } from "./ConditionButtons"
 import { ConditionPriority } from "./ConditionPriority"
+import { useTranslate } from "../../react-locales"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -166,8 +167,18 @@ export const TitleText = styled.div`
   }
 `
 
+const NodeContent = styled.div`
+    position: relative;
+    font-size: 14px;
+    padding: 16px 0;
+    padding-right: 30px;
+    user-select: none;
+`
+
 export const ConditionNode = memo((props: { node: IConditionNode, index: number, length: number }) => {
   const { node, index, length } = props
+  const t = useTranslate()
+
   return (
     <ColBox className="col-box">
       <ConditionStyleNode className="condition-node">
@@ -186,6 +197,9 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
               <ConditionButtons />
               <ConditionPriority index={index} />
             </TitleWrapper>
+            <NodeContent className="content">
+              {node.desc || t("pleaseSetCondition")}
+            </NodeContent>
             {
               index !== (length - 1) &&
               <SortHandler className="sort-handler right">
