@@ -48,7 +48,7 @@ export const WorkflowDiagram = memo((
 
   return (
     <DiagramContainer {...props}>
-      <Canvas className="flow-canvas">
+      <Canvas className="flow-canvas" key={zoom}>
         <CanvasInner style={{ transform: `scale(${zoom})` }}>
           <StartNode />
         </CanvasInner>
