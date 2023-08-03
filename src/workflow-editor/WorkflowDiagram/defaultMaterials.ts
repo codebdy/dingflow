@@ -47,6 +47,11 @@ export const defaultMaterials: INodeMaterial[] = [
             id: createUuid(),
             nodeType: NodeType.condition,
             name: t?.("condition") + " 2"
+          },
+          {
+            id: createUuid(),
+            nodeType: NodeType.condition,
+            name: t?.("condition") + " 2"
           }
         ]
       }

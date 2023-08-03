@@ -97,6 +97,42 @@ const ConditionNodeBox = styled.div`
   }
 `
 
+const AutoJudge = styled.div`
+  position: relative;
+  width: 220px;
+  min-height: 72px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 14px 19px;
+  cursor: pointer;
+  &::after{
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: all .1s cubic-bezier(.645, .045, .355, 1);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+  }
+  &.active{
+    &::after{
+      border: 1px solid #3296fa;
+      box-shadow: 0 0 6px 0 rgba(50, 150, 250, .3)
+    }
+  }
+  &:hover{
+    &::after{
+      border: 1px solid #3296fa;
+      box-shadow: 0 0 6px 0 rgba(50, 150, 250, .3)
+    }
+  }
+`
+
 export const RouteNode = memo((
   props: {
     node: IRouteNode
@@ -114,7 +150,9 @@ export const RouteNode = memo((
                 <ColBox className="col-box" key={child.id}>
                   <ConditionNode className="condition-node">
                     <ConditionNodeBox className="condition-node-box">
-                      
+                      <AutoJudge className="auto-judge">
+
+                      </AutoJudge>
                     </ConditionNodeBox>
                   </ConditionNode>
                 </ColBox>
