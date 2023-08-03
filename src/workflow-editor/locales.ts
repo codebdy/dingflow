@@ -21,6 +21,8 @@ export const defalutLocales: ILocales = {
     allMember: "所有人",
     flowFinished: "流程结束",
     addCondition: "添加条件",
+    copyCodition: "复制条件",
+    priority: "优先级",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -42,5 +44,7 @@ export const defalutLocales: ILocales = {
     allMember: "All",
     flowFinished: "Flow Finished",
     addCondition: "Add Condition",
+    copyCodition: "Copy Condition",
+    priority: "Priority",
   }
 }

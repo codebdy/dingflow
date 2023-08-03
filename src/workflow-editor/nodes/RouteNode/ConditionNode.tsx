@@ -7,6 +7,7 @@ import { canvasColor } from "../../utils/canvasColor"
 import { AddButton } from "../AddButton"
 import { ChildNode } from "../ChildNode"
 import { ConditionButtons } from "./ConditionButtons"
+import { ConditionPriority } from "./ConditionPriority"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -85,6 +86,12 @@ const AutoJudge = styled.div`
       box-shadow: 0 0 6px 0 rgba(50, 150, 250, .3)
     }
   }
+  .mini-bar{
+    display: none;
+  }
+  .priority{
+    display: flex;
+  }
   &:hover{
     &::after{
       border: 1px solid #3296fa;
@@ -93,6 +100,12 @@ const AutoJudge = styled.div`
     .sort-handler{
       display: flex;
       align-items: center;
+    }
+    .mini-bar{
+      display: flex;
+    }
+    .priority{
+      display: none;
     }
   }
 `
@@ -171,6 +184,7 @@ export const ConditionNode = memo((props: { node: IConditionNode, index: number,
                 {node.name}
               </TitleText>
               <ConditionButtons />
+              <ConditionPriority index={index} />
             </TitleWrapper>
             {
               index !== (length - 1) &&
