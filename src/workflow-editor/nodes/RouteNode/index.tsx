@@ -65,12 +65,21 @@ export const RouteNode = memo((
     node: IRouteNode
   }
 ) => {
+  const { node } = props
   return (
     <RouteWrap>
       <RouteBoxWrap>
         <RouteBox>
           <AddBranchButton />
-          ddddddddddddddddddddddddddddd
+          {
+            node.conditionNodeList?.map((child) => {
+              return (
+                <ColBox key={child.id}>
+                  哈哈
+                </ColBox>
+              )
+            })
+          }
         </RouteBox>
       </RouteBoxWrap>
     </RouteWrap>
