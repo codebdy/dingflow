@@ -47,7 +47,7 @@ export const defalutLocales: ILocales = {
     dealer: "Dealer",
     conditionNode: "Condition Branch",
     condition: "Condition",
-    promoter: "promoter",
+    promoter: "Promoter",
     allMember: "All",
     flowFinished: "Flow Finished",
     addCondition: "Add Condition",

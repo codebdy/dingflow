@@ -59,11 +59,16 @@ export const WorkFlowScope = memo((props: {
   materials?: INodeMaterial[],
 }) => {
   const { children, lang, locales, ...other } = props
-  const [localesManager] = useState(new LocalesManager(lang, defalutLocales))
-
+  const [localesManager, setLocalesManager] = useState(new LocalesManager(lang, defalutLocales))
+  
   useEffect(() => {
     locales && localesManager.registerLocales(locales)
   }, [localesManager, locales])
+
+  useEffect(() => {
+    //暂时这么处理，后面把语言切换移动到locales-react
+    setLocalesManager(new LocalesManager(lang, defalutLocales))
+  }, [lang])
 
   return (
     <LocalesContext.Provider value={localesManager}>
