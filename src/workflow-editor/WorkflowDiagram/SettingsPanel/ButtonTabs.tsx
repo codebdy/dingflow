@@ -12,6 +12,11 @@ const Shell = styled.div`
   border-radius: 6px;
 `
 
+const StyledDivider = styled(Divider)`
+  margin: 0 4px;
+  border-color: ${props => props.theme.token?.colorBorder};
+`
+
 const StyleButton = styled(Button)`
   flex:1;
   color: ${props => props.theme.token?.colorTextSecondary};
@@ -68,7 +73,7 @@ export const TypeSwitch = memo((
       >
         {nodeTitle === undefined ? t("promoterSettings") : (nodeTitle + t("settingsSuffix"))}
       </StyleButton>
-      <Divider type="vertical" />
+      <StyledDivider type="vertical" />
       <StyleButton
         type={inputValue !== SettingsType.formAuth ? "text" : undefined}
         className={inputValue === SettingsType.formAuth ? "active" : undefined}

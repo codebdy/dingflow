@@ -6,7 +6,7 @@ import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
 import { styled } from "styled-components"
-import { SettingsType, TypeSwitch } from "./TypeSwitch"
+import { SettingsType, TypeSwitch } from "./ButtonTabs"
 import { FormAuth } from "./FormAuth"
 
 const Content = styled.div`
