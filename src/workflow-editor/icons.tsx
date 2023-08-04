@@ -1,3 +1,13 @@
+export const redoIcon = <span role="img" className="anticon">
+  <svg width='1em' height="1em" fill="currentColor" viewBox="0 0 1024 1024">
+    <path d="M0 576a510.848 510.848 0 0 0 173.376 384l84.672-96a384 384 0 1 1 525.568-559.552L640.064 448h384V64l-149.952 149.952A512 512 0 0 0 0.064 576z" p-id="2271"></path>
+  </svg>
+</span>
+export const undoIcon = <span role="img" className="anticon">
+  <svg width='1em' height="1em" fill="currentColor" viewBox="0 0 1024 1024">
+    <path d="M512 64a510.656 510.656 0 0 0-362.048 149.952L0 64v384h384L240.448 304.448a384 384 0 1 1 525.504 559.552l84.672 96A512 512 0 0 0 512 64z" p-id="1866"></path>
+  </svg>
+</span>
 export const copyIcon = <span role="img" className="anticon">
   <svg width='0.9em' height="0.9em" fill="currentColor" viewBox="0 0 1024 1024">
     <path d="M720 192h-544A80.096 80.096 0 0 0 96 272v608C96 924.128 131.904 960 176 960h544c44.128 0 80-35.872 80-80v-608C800 227.904 764.128 192 720 192z m16 688c0 8.8-7.2 16-16 16h-544a16 16 0 0 1-16-16v-608a16 16 0 0 1 16-16h544a16 16 0 0 1 16 16v608z" p-id="2356"></path><path d="M848 64h-544a32 32 0 0 0 0 64h544a16 16 0 0 1 16 16v608a32 32 0 1 0 64 0v-608C928 99.904 892.128 64 848 64z" p-id="2357"></path><path d="M608 360H288a32 32 0 0 0 0 64h320a32 32 0 1 0 0-64zM608 520H288a32 32 0 1 0 0 64h320a32 32 0 1 0 0-64zM480 678.656H288a32 32 0 1 0 0 64h192a32 32 0 1 0 0-64z" p-id="2358"></path>

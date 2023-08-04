@@ -4,6 +4,7 @@ import { StartNode } from "../nodes/StartNode"
 import { canvasColor } from "../utils/canvasColor"
 import { ZoomBar } from "./ZoomBar"
 import { SettingsPannel } from "./SettingsPannel"
+import { OperationBar } from "./OperationBar"
 
 const DiagramContainer = styled.div`
   flex: 1;
@@ -117,6 +118,7 @@ export const WorkflowDiagram = memo((
           <StartNode />
         </CanvasInner>
       </Canvas>
+      <OperationBar float={scrolled} />
       <ZoomBar
         float={scrolled}
         zoom={zoom}

@@ -12,13 +12,16 @@ export const MiniFloatContainer = styled.div`
   background-color: ${canvasColor};
   padding: 4px 8px;
   border-radius: 5px;
+  top: 16px;
   &.float{
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, ${props => props.theme.mode === "dark" ? "0.5" : "0.15"});
   }
-  transition: all 0.8s;
+  transition: all 0.6s;
   &.workflow-editor-zoombar{
     right: 32px;
-    top: 16px;
+  }
+  &.workflow-operation-bar{
+    left: 32px;
   }
 `
 
