@@ -19,7 +19,7 @@ export const NotifierPanel = memo((
   const t = useTranslate()
 
   return (
-    <Form>
+    <Form layout="vertical" colon={false}>
       <ButtonSelect
         options={[
           {

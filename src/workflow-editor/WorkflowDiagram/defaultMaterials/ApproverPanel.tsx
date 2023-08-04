@@ -20,7 +20,7 @@ export const ApproverPanel = memo((
   const t = useTranslate()
 
   return (
-    <Form layout="vertical">
+    <Form layout="vertical" colon={false}>
       <FormItem label={t("approveType")}>
         <Radio.Group>
           <Radio value={1}>{t("manualApproval")}</Radio>
