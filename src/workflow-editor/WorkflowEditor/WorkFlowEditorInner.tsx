@@ -6,6 +6,7 @@ import { WorkflowDiagram } from "../WorkflowDiagram"
 import { useTranslate } from "../react-locales"
 import { NavTabs } from "./NavTabs"
 import { Toolbar } from "./Toolbar"
+import classNames from "classnames"
 
 const Container = styled.div`
   flex:1;
@@ -46,7 +47,7 @@ export const WorkFlowEditorInner = memo((props: {
   }, [])
 
   return (
-    <Container className={"workflow-editor " + className || ""} {...other}>
+    <Container className={classNames("workflow-editor", className || "")} {...other}>
       <Toolbar
         title={
           <Space>
@@ -88,7 +89,6 @@ export const WorkFlowEditorInner = memo((props: {
               },
             ]
           }
-
           value={selectedTab}
           onChange={handleNavChange}
         />
