@@ -20,21 +20,7 @@ export const ConditionPanel = memo((
   
   return (
     <Form>
-      <ButtonSelect
-        options={[
-          {
-            key: "node",
-            label: t("promoter") + t("settingsSuffix"),
-          },
-          {
-            key: "formAuth",
-            label: <>{t("formAuth")} <QuestionCircleOutlined /></>
-          }
-        ]}
-        value={settingsType}
-        onChange={setSettingsType}
-      />
-      {settingsType === 'formAuth' && <FormAuth />}
+      条件面板
     </Form>
   )
 })
