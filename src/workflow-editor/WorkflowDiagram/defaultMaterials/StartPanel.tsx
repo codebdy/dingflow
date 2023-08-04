@@ -17,14 +17,14 @@ export const StartPanel = memo((
 ) => {
   const [settingsType, setSettingsType] = useState<string>("node")
   const t = useTranslate()
-  
+
   return (
     <Form>
       <ButtonSelect
         options={[
           {
             key: "node",
-            label: t("promoter") + t("settingsSuffix"),
+            label: t("setPromoter"),
           },
           {
             key: "formAuth",
@@ -34,6 +34,11 @@ export const StartPanel = memo((
         value={settingsType}
         onChange={setSettingsType}
       />
+      {settingsType === "node" && <>
+        <Form.Item label={t("whoCanSubmit")}>
+
+        </Form.Item>
+      </>}
       {settingsType === 'formAuth' && <FormAuth />}
     </Form>
   )

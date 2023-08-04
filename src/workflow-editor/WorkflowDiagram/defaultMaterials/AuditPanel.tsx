@@ -24,7 +24,7 @@ export const AuditPanel = memo((
         options={[
           {
             key: "node",
-            label: t("promoter") + t("settingsSuffix"),
+            label: t("setDealer"),
           },
           {
             key: "formAuth",

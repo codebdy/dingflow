@@ -17,14 +17,14 @@ export const NotifierPanel = memo((
 ) => {
   const [settingsType, setSettingsType] = useState<string>("node")
   const t = useTranslate()
-  
+
   return (
     <Form>
       <ButtonSelect
         options={[
           {
             key: "node",
-            label: t("promoter") + t("settingsSuffix"),
+            label: t("setNotifier"),
           },
           {
             key: "formAuth",

@@ -32,7 +32,7 @@ export const ApproverPanel = memo((
         options={[
           {
             key: "node",
-            label: t("approver") + t("settingsSuffix"),
+            label: t("setApprover"),
           },
           {
             key: "formAuth",
