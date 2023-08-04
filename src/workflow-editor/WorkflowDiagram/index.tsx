@@ -46,6 +46,7 @@ export const WorkflowDiagram = memo((
   }
 ) => {
   const [zoom, setZoom] = useState(1)
+  const [scrolled, setScrolled] = useState(false)
   const [mousePressedPoint, setMousePressedPoint] = useState<IPosition>()
   const canvasRef = useRef<HTMLDivElement>(null)
 
@@ -87,6 +88,15 @@ export const WorkflowDiagram = memo((
 
   }, [mousePressedPoint])
 
+  const handleScroll = useCallback((e: React.UIEvent<HTMLElement>) => {
+    if (e.currentTarget.scrollTop > 60 || e.currentTarget.scrollLeft > 60) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+
+  }, [])
+
   return (
     <DiagramContainer {...props}>
       <Canvas
@@ -101,12 +111,18 @@ export const WorkflowDiagram = memo((
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseUp}
+        onScroll={handleScroll}
       >
         <CanvasInner style={{ transform: `scale(${zoom})` }} draggable={false}>
           <StartNode />
         </CanvasInner>
       </Canvas>
-      <ZoomBar zoom={zoom} onZoomIn={haneldZoomIn} onZoomOut={haneldZoomOut} />
+      <ZoomBar
+        float={scrolled}
+        zoom={zoom}
+        onZoomIn={haneldZoomIn}
+        onZoomOut={haneldZoomOut}
+      />
       <SettingsPannel />
     </DiagramContainer >
   )
