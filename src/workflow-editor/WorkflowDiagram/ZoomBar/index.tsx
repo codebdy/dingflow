@@ -15,7 +15,7 @@ export const MiniFloatContainer = styled.div`
   top: 16px;
   &.float{
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, ${props => props.theme.mode === "dark" ? "0.5" : "0.15"});
-    transform: scale(1.05);
+    transform: ${props => props.theme.mode === "dark" ? "" : "scale(1.05)"};
   }
   transition: all 0.3s;
   &.workflow-editor-zoombar{
