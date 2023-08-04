@@ -1,18 +1,20 @@
 import { CloseOutlined } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
-import { memo, useCallback } from "react"
+import { memo, useCallback, useState } from "react"
 import { NodeTitle } from "./NodeTitle"
 import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
 import { styled } from "styled-components"
-import { TypeSwitch } from "./TypeSwitch"
+import { SettingsType, TypeSwitch } from "./TypeSwitch"
+import { FormAuth } from "./FormAuth"
 
 const Content = styled.div`
   display: flex;
   flex-flow: column;
 `
 export const SettingsPanel = memo(() => {
+  const [settingsType, setSettingsType] = useState<SettingsType>(SettingsType.node)
   const selectedNode = useSelectedNode()
   const store = useEditorStore();
   const handelClose = useCallback(() => {
@@ -26,6 +28,7 @@ export const SettingsPanel = memo(() => {
   const handleNameChange = useCallback((name?: string) => {
 
   }, [])
+
 
   return (
     <Drawer
@@ -56,7 +59,8 @@ export const SettingsPanel = memo(() => {
       open={!!selectedNode}
     >
       <Content className="settings-panel-content">
-        <TypeSwitch />
+        <TypeSwitch value={settingsType} onChange={setSettingsType} />
+        {settingsType === SettingsType.formAuth && <FormAuth />}
       </Content>
     </Drawer>
   )

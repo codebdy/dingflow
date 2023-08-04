@@ -35,11 +35,12 @@ export enum SettingsType {
 
 export const TypeSwitch = memo((
   props: {
-    value?: SettingsType,
-    onChange?: (value?: SettingsType) => void
+    nodeTitle?: boolean,
+    value: SettingsType,
+    onChange?: (value: SettingsType) => void
   }
 ) => {
-  const { value = SettingsType.node, onChange } = props
+  const { nodeTitle, value, onChange } = props
   const [inputValue, setInputValue] = useState<SettingsType>()
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export const TypeSwitch = memo((
         className={inputValue === SettingsType.node ? "active" : undefined}
         onClick={handleNodeClick}
       >
-        发起人设置
+        {nodeTitle === undefined ? t("promoterSettings") : (nodeTitle + t("settingsSuffix"))}
       </StyleButton>
       <Divider type="vertical" />
       <StyleButton

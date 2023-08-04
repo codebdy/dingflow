@@ -31,6 +31,8 @@ export const defalutLocales: ILocales = {
     confirm: "确定",
     cancel: "取消",
     formAuth: "表单操作权限",
+    promoterSettings: "发起人设置",
+    settingsSuffix: "设置",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -62,5 +64,7 @@ export const defalutLocales: ILocales = {
     confirm: "Confirm",
     cancel: "Cancel",
     formAuth: "Form Auth",
+    promoterSettings: "Promoter Settings",
+    settingsSuffix: " Settings",
   }
 }
