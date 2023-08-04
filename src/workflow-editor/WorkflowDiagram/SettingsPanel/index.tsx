@@ -1,4 +1,4 @@
-import { CloseOutlined } from "@ant-design/icons"
+import { CloseOutlined, QuestionCircleOutlined } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
 import { memo, useCallback, useState } from "react"
 import { NodeTitle } from "./NodeTitle"
@@ -6,16 +6,18 @@ import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
 import { styled } from "styled-components"
-import { SettingsType, TypeSwitch } from "./ButtonTabs"
+import { ButtonSelect } from "./ButtonSelect"
 import { FormAuth } from "./FormAuth"
+import { useTranslate } from "../../react-locales"
 
 const Content = styled.div`
   display: flex;
   flex-flow: column;
 `
 export const SettingsPanel = memo(() => {
-  const [settingsType, setSettingsType] = useState<SettingsType>(SettingsType.node)
+  const [settingsType, setSettingsType] = useState<string>("node")
   const selectedNode = useSelectedNode()
+  const t = useTranslate()
   const store = useEditorStore();
   const handelClose = useCallback(() => {
     store?.selectNode(undefined)
@@ -59,8 +61,21 @@ export const SettingsPanel = memo(() => {
       open={!!selectedNode}
     >
       <Content className="settings-panel-content">
-        <TypeSwitch value={settingsType} onChange={setSettingsType} />
-        {settingsType === SettingsType.formAuth && <FormAuth />}
+        <ButtonSelect
+          options={[
+            {
+              key: "node",
+              label: t("promoter") + t("settingsSuffix"),
+            },
+            {
+              key: "formAuth",
+              label: <>{t("formAuth")} <QuestionCircleOutlined /></>
+            }
+          ]}
+          value={settingsType}
+          onChange={setSettingsType}
+        />
+        {settingsType === 'formAuth' && <FormAuth />}
       </Content>
     </Drawer>
   )
