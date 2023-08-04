@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from "react"
 import { useTranslate } from "../../../react-locales"
 import { PlusOutlined } from "@ant-design/icons"
-import { Button, Modal, Space, Typography } from "antd"
+import { Button, Input, Modal, Space, Typography } from "antd"
 import styled from "styled-components"
 
 const { Text } = Typography;
@@ -94,6 +94,7 @@ export const AddDialog = memo(() => {
       >
         <Content>
           <SubContent className="left">
+            <Input placeholder={t("search")} allowClear/>
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>
