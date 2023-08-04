@@ -10,15 +10,19 @@ const Shell = styled.div`
   height: 48px;
 `
 
-export const Footer = memo(() => {
+export const Footer = memo((props: {
+  onConfirm: () => void,
+  onCancel: () => void
+}) => {
+  const { onConfirm, onCancel } = props
   const t = useTranslate()
   return (
     <Shell className="settings-footer">
       <Space>
-        <Button>
+        <Button onClick={onCancel}>
           {t("cancel")}
         </Button>
-        <Button type="primary">
+        <Button type="primary" onClick={onConfirm}>
           {t("confirm")}
         </Button>
       </Space>
