@@ -35,7 +35,7 @@ export const StartPanel = memo((
         onChange={setSettingsType}
       />
       {settingsType === "node" && <>
-        <Form.Item label={t("whoCanSubmit")}>
+        <Form.Item label={t("whoCanSubmit")} style={{ marginTop: 16 }}>
 
         </Form.Item>
       </>}
