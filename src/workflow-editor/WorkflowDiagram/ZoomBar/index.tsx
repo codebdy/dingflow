@@ -18,7 +18,7 @@ const Container = styled.div`
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, ${props => props.theme.mode === "dark" ? "0.5" : "0.15"});
   }
 
-  transition: all 0.3s;
+  transition: all 0.8s;
 `
 
 export const ZoomBar = memo((
