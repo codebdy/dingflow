@@ -14,11 +14,21 @@ const Toolbar = styled.div`
   box-sizing: border-box;
 `
 
+export enum Lang {
+  cn = "zh-CN",
+  en = "en-US"
+}
+
 export const Example = memo(() => {
+  const [lang, setlang] = useState<Lang>(Lang.cn)
   const [themeMode, setThemeMode] = useState<"dark" | "light">("light")
 
   const handleToggleTheme = useCallback(() => {
     setThemeMode(mode => mode === "light" ? "dark" : "light")
+  }, [])
+
+  const handleSwitchLang = useCallback(() => {
+    setlang(lang => lang === Lang.cn ? Lang.en : Lang.cn)
   }, [])
 
   return (
@@ -29,10 +39,10 @@ export const Example = memo(() => {
         </span>
         <Space>
           <Button onClick={handleToggleTheme}>主题切换</Button>
-          <Button >English</Button>
+          <Button onClick={handleSwitchLang}>{lang === Lang.cn ? "English" : "中文"}</Button>
         </Space>
       </Toolbar>
-      <WorkflowEditor themeMode={themeMode} />
+      <WorkflowEditor themeMode={themeMode} lang={lang} />
     </ShellContainer>
   )
 })
