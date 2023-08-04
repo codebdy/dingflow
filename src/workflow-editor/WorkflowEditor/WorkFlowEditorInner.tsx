@@ -1,9 +1,10 @@
 import { EllipsisOutlined, ExportOutlined, ImportOutlined, LeftOutlined, MobileOutlined, QuestionCircleOutlined, RocketOutlined, SaveOutlined } from "@ant-design/icons"
 import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
-import { memo, useMemo } from "react"
+import { memo, useCallback, useMemo, useState } from "react"
 import { styled } from "styled-components"
 import { WorkflowDiagram } from "../WorkflowDiagram"
 import { useTranslate } from "../react-locales"
+import { NavTabs } from "./NavTabs"
 
 const Container = styled.div`
   flex:1;
@@ -29,35 +30,18 @@ const ToolbarTitle = styled.div`
   display: flex;
 `
 
-const ToolbarContent = styled.div`
-  flex:1;
-  display: flex;
-  justify-content: center;
-  color: ${props => props.theme.token?.colorTextSecondary};
-`
-
-const NavIcon = styled.span`
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: solid 1px ${props => props.theme.token?.colorTextSecondary};
-  line-height: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(-1px);
-  font-size: 12px;
-  &.selected{
-    background-color: ${props => props.theme.token?.colorPrimary};
-    border-color: ${props => props.theme.token?.colorPrimary};
-    color: #fff;
-  }
-`
+export enum TabType {
+  baseSettings = "baseSettings",
+  formDesign = "formDesign",
+  flowDesign = "flowDesign",
+  addvancedSettings = "addvancedSettings"
+}
 
 export const WorkFlowEditorInner = memo((props: {
   className?: string
 }) => {
   const { className, ...other } = props
+  const [selectedTab, setSelectedTab] = useState<TabType>(TabType.flowDesign)
   const t = useTranslate()
   const items: MenuProps['items'] = useMemo(() => [
     {
@@ -72,6 +56,10 @@ export const WorkFlowEditorInner = memo((props: {
     },
   ], [t]);
 
+  const handleNavChange = useCallback((key?: string) => {
+    setSelectedTab((key || TabType.flowDesign) as TabType)
+  }, [])
+
   return (
     <Container className={"workflow-editor " + className || ""} {...other}>
       <Toolbar>
@@ -82,12 +70,31 @@ export const WorkFlowEditorInner = memo((props: {
             请假管理
           </Space>
         </ToolbarTitle>
-        <ToolbarContent>
-          <Button type="text"><NavIcon role="img" className="anticon">1</NavIcon> {t("baseSettings")}</Button>
-          <Button type="text"><NavIcon role="img" className="anticon">2</NavIcon>{t("formDesign")}</Button>
-          <Button type="link"><NavIcon role="img" className="anticon selected">3</NavIcon>{t("flowDesign")}</Button>
-          <Button type="text"><NavIcon role="img" className="anticon">4</NavIcon>{t("addvancedSettings")}</Button>
-        </ToolbarContent>
+        <NavTabs
+          options={
+            [
+              {
+                key: TabType.baseSettings,
+                label: t("baseSettings"),
+              },
+              {
+                key: TabType.formDesign,
+                label: t("formDesign"),
+              },
+              {
+                key: TabType.flowDesign,
+                label: t("flowDesign"),
+              },
+              {
+                key: TabType.addvancedSettings,
+                label: t("addvancedSettings"),
+              },
+            ]
+          }
+
+          value={selectedTab}
+          onChange={handleNavChange}
+        />
         <Space>
           <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
           <Button type="text" icon={<MobileOutlined />}>{t("preview")}</Button>
@@ -98,7 +105,10 @@ export const WorkFlowEditorInner = memo((props: {
           </Dropdown>
         </Space>
       </Toolbar>
-      <WorkflowDiagram />
+      {
+        selectedTab === TabType.flowDesign &&
+        <WorkflowDiagram />
+      }
     </Container>
   )
 })
