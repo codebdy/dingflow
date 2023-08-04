@@ -1,8 +1,8 @@
-import { CloseCircleFilled, PlusOutlined } from "@ant-design/icons"
-import { Button, Tag } from "antd"
+import { CloseCircleFilled } from "@ant-design/icons"
+import { Tag } from "antd"
 import { memo } from "react"
 import styled from "styled-components"
-import { useTranslate } from "../../react-locales"
+import { AddDialog } from "./AddDialog"
 
 const Shell = styled.div`
   position: relative;
@@ -34,12 +34,6 @@ const Shell = styled.div`
   }
 `
 
-const AddButton = styled(Button)`
-  font-size: 12px !important;
-  border: solid 1px ${props => props.theme.token?.colorBorder};
-  margin-right: 8px;
-`
-
 const MemberTag = styled(Tag)`
   border: 0;
   background-color: ${props => props.theme.token?.colorBorderSecondary};
@@ -48,11 +42,10 @@ const MemberTag = styled(Tag)`
 `
 
 export const MemberSelect = memo(() => {
-  const t = useTranslate()
 
   return (
     <Shell>
-      <AddButton type="text" icon={<PlusOutlined />} size="small">{t("add")}</AddButton>
+      <AddDialog />
       <MemberTag
         closable
         onClose={() => { }}
