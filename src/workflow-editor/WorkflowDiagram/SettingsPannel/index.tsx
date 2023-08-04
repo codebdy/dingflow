@@ -17,9 +17,18 @@ export const SettingsPannel = memo(() => {
     store?.selectNode(undefined)
   }, [store])
 
+  const handleNameChange = useCallback((name?: string) => {
+
+  }, [])
+
   return (
     <Drawer
-      title={selectedNode && <NodeTitle node={selectedNode} />}
+      title={selectedNode &&
+        <NodeTitle
+          node={selectedNode}
+          onNameChange={handleNameChange}
+        />
+      }
       placement="right"
       width={656}
       closable={false}

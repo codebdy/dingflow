@@ -15,9 +15,10 @@ export const TitleText = styled.span`
 export const NodeTitle = memo((
   props: {
     node: IWorkFlowNode
+    onNameChange: (value?: string) => void
   }
 ) => {
-  const { node } = props
+  const { node, onNameChange } = props
 
   const t = useTranslate()
 
@@ -26,7 +27,7 @@ export const NodeTitle = memo((
       {
         node.nodeType === NodeType.start
           ? <TitleText className="title-text">{t("promoter")}</TitleText>
-          : <NodeTitleEditor node={node} />
+          : <NodeTitleEditor value={node.name} onChange={onNameChange} />
       }
 
     </Title>
