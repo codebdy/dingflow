@@ -1,5 +1,5 @@
 import { Button, Divider } from "antd"
-import { memo, useCallback, useEffect, useState } from "react"
+import { Fragment, memo, useCallback, useEffect, useState } from "react"
 import { styled } from "styled-components"
 
 const Shell = styled.div`
@@ -61,7 +61,7 @@ export const ButtonSelect = memo((
       {
         options.map((option, index) => {
           return (
-            <>
+            <Fragment key={option.key}>
               <StyleButton
                 type={inputValue !== option.key ? "text" : undefined}
                 className={inputValue === option.key ? "active" : undefined}
@@ -70,7 +70,7 @@ export const ButtonSelect = memo((
                 {option.label}
               </StyleButton>
               {index < (options.length - 1) && <StyledDivider type="vertical" />}
-            </>
+            </Fragment>
           )
         })
       }
