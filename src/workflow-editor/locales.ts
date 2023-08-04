@@ -41,6 +41,7 @@ export const defalutLocales: ILocales = {
     autoPass: "自动审批",
     autoReject: "自动拒绝",
     whoCanSubmit: "谁可以提交",
+    add: "添加",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -82,5 +83,6 @@ export const defalutLocales: ILocales = {
     autoPass: "Auto Pass",
     autoReject: "Auto Reject",
     whoCanSubmit: "Who can submit",
+    add: "Add",
   }
 }

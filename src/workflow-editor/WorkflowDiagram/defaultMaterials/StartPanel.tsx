@@ -4,6 +4,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons"
 import { FormAuth } from "./FormAuth"
 import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
+import { MemberSelect } from "../SettingsPanel/MemberSelect"
 
 export interface IStartSettings {
 
@@ -36,7 +37,7 @@ export const StartPanel = memo((
       />
       {settingsType === "node" && <>
         <Form.Item label={t("whoCanSubmit")} style={{ marginTop: 16 }}>
-
+          <MemberSelect />
         </Form.Item>
       </>}
       {settingsType === 'formAuth' && <FormAuth />}
