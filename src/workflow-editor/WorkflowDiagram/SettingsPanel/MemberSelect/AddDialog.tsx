@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from "react"
 import { useTranslate } from "../../../react-locales"
-import { PlusOutlined } from "@ant-design/icons"
+import { PlusOutlined, SearchOutlined } from "@ant-design/icons"
 import { Button, Input, Modal, Space, Typography } from "antd"
 import styled from "styled-components"
 
@@ -58,6 +58,11 @@ const Footer = styled.div`
   justify-content: flex-end;
 `
 
+const StyledSearch = styled(SearchOutlined)`
+  color: ${props => props.theme.token?.colorTextSecondary};
+  opacity: 0.8;
+`
+
 export const AddDialog = memo(() => {
   const [open, setOpen] = useState(false);
   const t = useTranslate()
@@ -94,7 +99,11 @@ export const AddDialog = memo(() => {
       >
         <Content>
           <SubContent className="left">
-            <Input placeholder={t("search")} allowClear/>
+            <Input
+              placeholder={t("search")}
+              allowClear
+              prefix={<StyledSearch />}
+            />
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>
