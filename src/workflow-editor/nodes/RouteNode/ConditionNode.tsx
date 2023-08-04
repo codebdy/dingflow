@@ -170,11 +170,13 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
     editorStore?.selectNode(node?.id)
   }, [editorStore, node?.id])
 
-  const hanldeMoveLeft = useCallback(() => {
+  const hanldeMoveLeft = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
     node.id && editorStore?.transConditionOneStepToLeft(parent, index)
   }, [editorStore, index, node.id, parent])
 
-  const handleMoveRight = useCallback(() => {
+  const handleMoveRight = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
     node.id && editorStore?.transConditionOneStepToRight(parent, index)
   }, [editorStore, index, node.id, parent])
 
