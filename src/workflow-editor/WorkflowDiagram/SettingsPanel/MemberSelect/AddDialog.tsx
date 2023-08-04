@@ -1,8 +1,10 @@
 import { memo, useCallback, useState } from "react"
 import { useTranslate } from "../../../react-locales"
 import { PlusOutlined } from "@ant-design/icons"
-import { Button, Modal, Space } from "antd"
+import { Button, Modal, Space, Typography } from "antd"
 import styled from "styled-components"
+
+const { Text } = Typography;
 
 const AddButton = styled(Button)`
   font-size: 12px !important;
@@ -39,6 +41,14 @@ const SubContent = styled.div`
 
 const SelectedContent = styled.div`
   flex: 1;
+  display: flex;
+  flex-flow: column;
+`
+
+const SelectedTitle = styled.div`
+  .ant-typography-secondary{
+    font-size: 12px;
+  }
 `
 
 const Footer = styled.div`
@@ -90,7 +100,9 @@ export const AddDialog = memo(() => {
           </SubContent>
           <SubContent>
             <SelectedContent>
-
+              <SelectedTitle>
+                已选择（9/<Text type="secondary">1000</Text>）
+              </SelectedTitle>
             </SelectedContent>
             <Footer>
               <Space>
