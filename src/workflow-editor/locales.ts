@@ -42,6 +42,7 @@ export const defalutLocales: ILocales = {
     autoReject: "自动拒绝",
     whoCanSubmit: "谁可以提交",
     add: "添加",
+    departmentsAndMembersVisable: "以下部门和人员可看到审批模板",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -84,5 +85,6 @@ export const defalutLocales: ILocales = {
     autoReject: "Auto Reject",
     whoCanSubmit: "Who can submit",
     add: "Add",
+    departmentsAndMembersVisable: "Departments and Members",
   }
 }
