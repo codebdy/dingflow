@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 import { StartNode } from "../nodes/StartNode"
 import { canvasColor } from "../utils/canvasColor"
 import { ZoomBar } from "./ZoomBar"
-import { SettingsPannel } from "./SettingsPannel"
+import { SettingsPanel } from "./SettingsPanel"
 import { OperationBar } from "./OperationBar"
 
 const DiagramContainer = styled.div`
@@ -125,7 +125,7 @@ export const WorkflowDiagram = memo((
         onZoomIn={haneldZoomIn}
         onZoomOut={haneldZoomOut}
       />
-      <SettingsPannel />
+      <SettingsPanel />
     </DiagramContainer >
   )
 })

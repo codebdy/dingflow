@@ -30,6 +30,7 @@ export const defalutLocales: ILocales = {
     ofCopy: "的副本",
     confirm: "确定",
     cancel: "取消",
+    formAuth: "表单操作权限",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -60,5 +61,6 @@ export const defalutLocales: ILocales = {
     ofCopy: " of Copy",
     confirm: "Confirm",
     cancel: "Cancel",
+    formAuth: "Form Auth",
   }
 }

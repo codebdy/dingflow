@@ -5,8 +5,14 @@ import { NodeTitle } from "./NodeTitle"
 import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
+import { styled } from "styled-components"
+import { TypeSwitch } from "./TypeSwitch"
 
-export const SettingsPannel = memo(() => {
+const Content = styled.div`
+  display: flex;
+  flex-flow: column;
+`
+export const SettingsPanel = memo(() => {
   const selectedNode = useSelectedNode()
   const store = useEditorStore();
   const handelClose = useCallback(() => {
@@ -49,9 +55,9 @@ export const SettingsPannel = memo(() => {
       onClose={handelClose}
       open={!!selectedNode}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <Content className="settings-panel-content">
+        <TypeSwitch />
+      </Content>
     </Drawer>
   )
 })
