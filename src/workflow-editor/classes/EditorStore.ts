@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
-import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
+import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetStartNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
@@ -44,12 +44,42 @@ export class EditorStore {
     this.dispatch(setRedoListAction)
   }
 
-  undo = ()=>{
+  undo = () => {
+    const state = this.store.getState();
+    const newUndoList = [...state.undoList]
+    const snapshot = newUndoList.pop()
+    if (!snapshot) {
+      console.error("No element in undo list")
+      return
+    }
+    const setUndoListAction: UnRedoListAction = {
+      type: ActionType.SET_UNOLIST,
+      payload: {
+        list: newUndoList
+      }
+    }
 
+    this.dispatch(setUndoListAction)
+
+    const setRedoListAction: UnRedoListAction = {
+      type: ActionType.SET_REDOLIST,
+      payload: {
+        list: [...state.redoList, { startNode: state.startNode }]
+      }
+    }
+    this.dispatch(setRedoListAction)
+    const setStartNodeAction: SetStartNodeAction = {
+      type: ActionType.SET_START_NODE,
+      payload: {
+        node: snapshot?.startNode
+      }
+    }
+
+    this.dispatch(setStartNodeAction)
   }
 
-  redo = ()=>{
-    
+  redo = () => {
+
   }
 
   changeNode(node: IWorkFlowNode) {
