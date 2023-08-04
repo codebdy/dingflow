@@ -18,6 +18,10 @@ export class EditorStore {
     this.store = makeStoreInstance(debugMode || false)
   }
 
+  validate = ()=>{
+    throw new Error("Not implements")
+  }
+
   dispatch = (action: Action) => {
     this.store.dispatch(action)
   }

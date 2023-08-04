@@ -11,7 +11,8 @@ export enum ActionType {
   SET_UNOLIST = 'workflow/SET_UNOLIST',
   SET_START_NODE = 'workflow/SET_START_NODE',
   CHANGE_NODE = 'workflow/CHANGE_NODE',
-  SELECT_NODE = 'workflow/SELECTED_NODE'
+  SELECT_NODE = 'workflow/SELECTED_NODE',
+  SET_VALIDATED = 'workflow/SET_VALIDATED',
 }
 
 export interface Action {
@@ -87,4 +88,12 @@ export interface SelectNodePayload {
 
 export interface SelectNodeAction extends Action {
   payload: SelectNodePayload
+}
+
+export interface SetValidatedPayload {
+  validated: boolean,
+}
+
+export interface SetValidatedAction extends Action {
+  payload: SetValidatedPayload
 }
