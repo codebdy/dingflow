@@ -1,4 +1,4 @@
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import { IWorkFlowNode } from "../interfaces"
 import { RightOutlined } from "@ant-design/icons"
 import { AddButton } from "./AddButton"
@@ -10,6 +10,7 @@ import { canvasColor } from "../utils/canvasColor"
 import { lineColor } from "../utils/lineColor"
 import { nodeColor } from "../utils/nodeColor"
 import { useTranslate } from "../react-locales"
+import { useEditorStore } from "../hooks"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -150,9 +151,15 @@ export const NormalNode = memo((
   const { node } = props
   const t = useTranslate()
   const material = useNodeMaterial(node)
+  const store = useEditorStore();
+  
+  const handleClick = useCallback(()=>{
+    store?.selectNode(node?.id)
+  },[node?.id, store])
+
   return (
     <NodeWrap className="node-wrap start-node-wrap">
-      <NodeWrapBox className="node-wrap-box">
+      <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
         <NodeTitle className="node-title" style={{ backgroundColor: material?.color, color: "#fff" }}>
           <NodeIcon>
             {material?.icon}

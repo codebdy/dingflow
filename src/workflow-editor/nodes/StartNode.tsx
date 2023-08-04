@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react"
+import { memo, useCallback, useMemo } from "react"
 import { useStartNode } from "../hooks/useStartNode"
 import { AddButton } from "./AddButton"
 import { useTranslate } from "../react-locales"
@@ -6,15 +6,21 @@ import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
 import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./NormalNode"
 import { EndNode } from "./EndNode"
+import { useEditorStore } from "../hooks"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
   const t = useTranslate()
   const allText = useMemo(() => t("allMember"), [t])
+  const store = useEditorStore();
+
+  const handleClick = useCallback(()=>{
+    store?.selectNode(startNode?.id)
+  },[startNode?.id, store])
 
   return (
     <NodeWrap className="node-wrap start">
-      <NodeWrapBox className="node-wrap-box">
+      <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
         <NodeTitle className="node-title start-node-title">
           {t("promoter")}
         </NodeTitle>

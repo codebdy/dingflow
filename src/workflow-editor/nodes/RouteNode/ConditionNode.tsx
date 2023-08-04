@@ -187,6 +187,10 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
   const t = useTranslate()
   const editorStore = useEditorStore()
 
+  const handleClick = useCallback(() => {
+    editorStore?.selectNode(node?.id)
+  }, [editorStore, node?.id])
+
   const hanldeMoveLeft = useCallback(() => {
     node.id && editorStore?.transConditionOneStepToLeft(parent, index)
   }, [editorStore, index, node.id, parent])
@@ -199,7 +203,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
     <ColBox className="col-box" draggable={false}>
       <ConditionStyleNode className="condition-node" draggable={false}>
         <ConditionNodeBox className="condition-node-box" draggable={false}>
-          <AutoJudge className="auto-judge" draggable={false}>
+          <AutoJudge className="auto-judge" draggable={false} onClick={handleClick}>
             {
               index !== 0 &&
               <SortHandler className="sort-handler left" onClick={hanldeMoveLeft}>
