@@ -32,6 +32,8 @@ export const NodeIcon = styled.div`
 export const NodeTextShell = styled.div`
   flex:1;
   display: flex;
+  padding: 2px 0;
+  align-items: center;
 `
 
 export const NodeTitleText = styled.div`

@@ -4,12 +4,10 @@ import { memo } from "react"
 import { styled } from "styled-components"
 import { canvasColor } from "../../utils/canvasColor"
 
-const Container = styled.div`
+export const MiniFloatContainer = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 32px;
-  top: 16px;
   user-select: none;
   background-color: ${canvasColor};
   padding: 4px 8px;
@@ -17,8 +15,11 @@ const Container = styled.div`
   &.float{
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, ${props => props.theme.mode === "dark" ? "0.5" : "0.15"});
   }
-
   transition: all 0.8s;
+  &.workflow-editor-zoombar{
+    right: 32px;
+    top: 16px;
+  }
 `
 
 export const ZoomBar = memo((
@@ -32,22 +33,24 @@ export const ZoomBar = memo((
   const { float, zoom, onZoomIn, onZoomOut } = props
 
   return (
-    <Container className={"workflow-editor-zoombar" + (float ? " float" : "")}>
+    <MiniFloatContainer className={"workflow-editor-zoombar" + (float ? " float" : "")}>
       <Space>
         <Button
-          type={float ? "text" : "text"}
+          type={"text"}
+          size="small"
           icon={<MinusOutlined />}
           disabled={zoom <= 0.1}
           onClick={onZoomOut}
         />
         {Math.round(zoom * 100)}%
         <Button
-          type={float ? "text" : "text"}
+          type={"text"}
+          size="small"
           icon={<PlusOutlined />}
           disabled={zoom >= 3}
           onClick={onZoomIn}
         />
       </Space>
-    </Container>
+    </MiniFloatContainer>
   )
 })
