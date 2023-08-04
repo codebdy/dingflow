@@ -1,7 +1,4 @@
 import { memo, useState } from "react"
-import { ButtonSelect } from "../SettingsPanel/ButtonSelect"
-import { QuestionCircleOutlined } from "@ant-design/icons"
-import { FormAuth } from "./FormAuth"
 import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
 

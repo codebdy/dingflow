@@ -2,7 +2,7 @@ import { Store } from "redux"
 import { IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
-import { SelectedListener, StartNodeListener } from "../interfaces/listeners"
+import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
 import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, UnRedoListAction } from "../actions"
 import { INodeMaterial } from "../interfaces/material"
@@ -36,12 +36,20 @@ export class EditorStore {
     }
     this.dispatch(setUndoListAction)
     const setRedoListAction: UnRedoListAction = {
-      type: ActionType.SET_UNOLIST,
+      type: ActionType.SET_REDOLIST,
       payload: {
         list: []
       }
     }
     this.dispatch(setRedoListAction)
+  }
+
+  undo = ()=>{
+
+  }
+
+  redo = ()=>{
+    
   }
 
   changeNode(node: IWorkFlowNode) {
@@ -151,6 +159,36 @@ export class EditorStore {
 
     const handleChange = () => {
       const nextState = this.store.getState().selectedId
+      if (nextState === previousState) {
+        return
+      }
+      previousState = nextState
+      listener(nextState)
+    }
+
+    return this.store.subscribe(handleChange)
+  }
+
+  subscribeUndoListChange(listener: UndoListChangeListener) {
+    let previousState = this.store.getState().undoList
+
+    const handleChange = () => {
+      const nextState = this.store.getState().undoList
+      if (nextState === previousState) {
+        return
+      }
+      previousState = nextState
+      listener(nextState)
+    }
+
+    return this.store.subscribe(handleChange)
+  }
+
+  subscribeRedoListChange(listener: RedoListChangeListener) {
+    let previousState = this.store.getState().redoList
+
+    const handleChange = () => {
+      const nextState = this.store.getState().redoList
       if (nextState === previousState) {
         return
       }

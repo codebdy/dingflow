@@ -11,7 +11,7 @@ import { NodeTitleSchell } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 
 export const StartNode = memo(() => {
-  const { startNode } = useStartNode()
+  const startNode = useStartNode()
   const t = useTranslate()
   const allText = useMemo(() => t("allMember"), [t])
   const store = useEditorStore();
@@ -23,7 +23,7 @@ export const StartNode = memo(() => {
   return (
     <NodeWrap className="node-wrap start">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
-        <NodeTitleSchell className="node-title start-node-title" style={{backgroundColor: material?.color}}>
+        <NodeTitleSchell className="node-title start-node-title" style={{ backgroundColor: material?.color }}>
           {t(material?.label || "")}
         </NodeTitleSchell>
         <NodeContent className="content">
