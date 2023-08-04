@@ -33,6 +33,10 @@ export const defalutLocales: ILocales = {
     formAuth: "表单操作权限",
     promoterSettings: "发起人设置",
     settingsSuffix: "设置",
+    approveType: "审批类型",
+    manualApproval: "人工审批",
+    autoPass: "自动审批",
+    autoReject: "自动拒绝",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -66,5 +70,9 @@ export const defalutLocales: ILocales = {
     formAuth: "Form Auth",
     promoterSettings: "Promoter Settings",
     settingsSuffix: " Settings",
+    approveType: "Approve Type",
+    manualApproval: "Manual approval",
+    autoPass: "Auto Pass",
+    autoReject: "Auto Reject",
   }
 }
