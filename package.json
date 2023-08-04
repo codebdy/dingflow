@@ -1,5 +1,5 @@
 {
-  "name": "workflow",
+  "name": "dingflow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

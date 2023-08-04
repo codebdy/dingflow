@@ -3,6 +3,7 @@ import { styled } from "styled-components"
 import { StartNode } from "../nodes/StartNode"
 import { canvasColor } from "../utils/canvasColor"
 import { ZoomBar } from "./ZoomBar"
+import { SettingsPannel } from "./SettingsPannel"
 
 const DiagramContainer = styled.div`
   flex: 1;
@@ -106,6 +107,7 @@ export const WorkflowDiagram = memo((
         </CanvasInner>
       </Canvas>
       <ZoomBar zoom={zoom} onZoomIn={haneldZoomIn} onZoomOut={haneldZoomOut} />
+      <SettingsPannel />
     </DiagramContainer >
   )
 })
