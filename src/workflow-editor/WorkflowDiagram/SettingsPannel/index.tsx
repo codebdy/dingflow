@@ -19,7 +19,7 @@ export const SettingsPannel = memo(() => {
 
   return (
     <Drawer
-      title={<NodeTitle />}
+      title={selectedNode && <NodeTitle node={selectedNode} />}
       placement="right"
       width={656}
       closable={false}
