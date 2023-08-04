@@ -106,7 +106,7 @@ export const AddDialog = memo(() => {
             </SelectedContent>
             <Footer>
               <Space>
-                <Button>{t("cancel")}</Button>
+                <Button onClick={handleCancel}>{t("cancel")}</Button>
                 <Button type="primary">{t("confirm")}</Button>
               </Space>
             </Footer>
