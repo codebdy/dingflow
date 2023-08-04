@@ -3,14 +3,14 @@ import { IWorkFlowNode } from "../interfaces"
 import { RightOutlined } from "@ant-design/icons"
 import { AddButton } from "./AddButton"
 import { ChildNode } from "./ChildNode"
-import { useNodeMaterial } from "../hooks/useNodeMaterial"
-import { CloseButton } from "./CloseButton"
 import { styled } from "styled-components"
 import { canvasColor } from "../utils/canvasColor"
 import { lineColor } from "../utils/lineColor"
 import { nodeColor } from "../utils/nodeColor"
 import { useTranslate } from "../react-locales"
 import { useEditorStore } from "../hooks"
+import { NodeTitle } from "./NodeTitle"
+import { useNodeMaterial } from "../hooks/useNodeMaterial"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -80,39 +80,6 @@ export const NodeWrapBox = styled.div`
     }
   }
 `
-
-export const NodeTitle = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 30px;
-  width: 100%;
-  height: 24px;
-  line-height: 24px;
-  font-size: 12px;
-  color: #fff;
-  text-align: left;
-  background: #576a95;
-  border-radius: 4px 4px 0 0;
-  user-select: none;
-  &.start-node-title{
-    background: rgb(87, 106, 149);
-  }
-`
-export const NodeIcon = styled.div`
-  font-size: 14px;
-  margin-right: 8px;
-`
-
-export const NodeTitleText = styled.div`
-  border: solid transparent 1px;
-  &:hover{
-    line-height: 16px;
-    border-bottom: dashed 1px #fff;
-  }
-`
-
 export const NodeContent = styled.div`
     position: relative;
     font-size: 14px;
@@ -152,21 +119,15 @@ export const NormalNode = memo((
   const t = useTranslate()
   const material = useNodeMaterial(node)
   const store = useEditorStore();
-  
-  const handleClick = useCallback(()=>{
+
+  const handleClick = useCallback(() => {
     store?.selectNode(node?.id)
-  },[node?.id, store])
+  }, [node?.id, store])
 
   return (
     <NodeWrap className="node-wrap start-node-wrap">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
-        <NodeTitle className="node-title" style={{ backgroundColor: material?.color, color: "#fff" }}>
-          <NodeIcon>
-            {material?.icon}
-          </NodeIcon>
-          <NodeTitleText className="text">{node.name}</NodeTitleText>
-          <CloseButton nodeId={node.id} />
-        </NodeTitle>
+        <NodeTitle node={node} material={material} />
         <NodeContent className="content">
           <span
             className={"text" + ((material?.placeholderSecondary && !node.desc) ? " secondary" : "")}>

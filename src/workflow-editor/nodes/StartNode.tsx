@@ -4,9 +4,10 @@ import { AddButton } from "./AddButton"
 import { useTranslate } from "../react-locales"
 import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
-import { NodeWrap, NodeWrapBox, NodeTitle, NodeContent } from "./NormalNode"
+import { NodeWrap, NodeWrapBox, NodeContent } from "./NormalNode"
 import { EndNode } from "./EndNode"
 import { useEditorStore } from "../hooks"
+import { NodeTitleSchell } from "./NodeTitle"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
@@ -14,16 +15,16 @@ export const StartNode = memo(() => {
   const allText = useMemo(() => t("allMember"), [t])
   const store = useEditorStore();
 
-  const handleClick = useCallback(()=>{
+  const handleClick = useCallback(() => {
     store?.selectNode(startNode?.id)
-  },[startNode?.id, store])
+  }, [startNode?.id, store])
 
   return (
     <NodeWrap className="node-wrap start">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
-        <NodeTitle className="node-title start-node-title">
+        <NodeTitleSchell className="node-title start-node-title">
           {t("promoter")}
-        </NodeTitle>
+        </NodeTitleSchell>
         <NodeContent className="content">
           <span className="text">{allText}</span>
           <RightOutlined className="arrow" />
