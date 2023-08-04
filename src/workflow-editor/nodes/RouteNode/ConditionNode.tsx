@@ -6,10 +6,9 @@ import { nodeColor } from "../../utils/nodeColor"
 import { canvasColor } from "../../utils/canvasColor"
 import { AddButton } from "../AddButton"
 import { ChildNode } from "../ChildNode"
-import { ConditionButtons } from "./ConditionButtons"
-import { ConditionPriority } from "./ConditionPriority"
 import { useTranslate } from "../../react-locales"
 import { useEditorStore } from "../../hooks"
+import { ConditionNodeTitle } from "./ConditionNodeTitle"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -154,26 +153,6 @@ const SortHandler = styled.div`
     background-color: ${props => props.theme.token?.colorBorderSecondary};
   }
 `
-
-const TitleWrapper = styled.div`
-  position: relative;
-  font-size: 12px;
-  color: ${props => props.theme?.token?.colorTextSecondary};
-  text-align: left;
-  line-height: 16px;
-  display: flex;
-  user-select: none;
-`
-
-export const TitleText = styled.div`
-  border: solid transparent 1px;
-  &:hover{
-    line-height: 16px;
-    border-bottom: dashed 1px ${props => props.theme.token?.colorTextSecondary};
-  }
-  user-select: none;
-`
-
 const NodeContent = styled.div`
   position: relative;
   font-size: 14px;
@@ -210,13 +189,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
                 &lt;
               </SortHandler>
             }
-            <TitleWrapper>
-              <TitleText>
-                {node.name || t("condition")}
-              </TitleText>
-              <ConditionButtons parent={parent} node={node} />
-              <ConditionPriority index={index} />
-            </TitleWrapper>
+            <ConditionNodeTitle node={node} parent={parent} index={index} />
             <NodeContent className="content">
               {node.desc || t("pleaseSetCondition")}
             </NodeContent>

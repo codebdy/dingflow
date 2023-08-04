@@ -29,7 +29,7 @@ export const NodeIcon = styled.div`
   margin-right: 8px;
 `
 
-export const NodeTextShell = styled.div`
+export const TitleResponse = styled.div`
   flex:1;
   display: flex;
   padding: 2px 0;
@@ -105,9 +105,9 @@ export const NodeTitle = memo((props: {
     </NodeIcon>
     {!editting &&
       <>
-        <NodeTextShell onClick={handleNameClick}>
+        <TitleResponse onClick={handleNameClick}>
           <NodeTitleText className="text" >{node.name}</NodeTitleText>
-        </NodeTextShell>
+        </TitleResponse>
         <CloseButton nodeId={node.id} />
       </>
     }
