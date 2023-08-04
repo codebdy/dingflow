@@ -5,14 +5,14 @@ import { FormAuth } from "./FormAuth"
 import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
 
-export interface IStartSettings {
+export interface IConditionSettings {
 
 }
 
-export const StartPanel = memo((
+export const ConditionPanel = memo((
   props: {
-    value?: IStartSettings
-    onChange?: (value?: IStartSettings) => void
+    value?: IConditionSettings
+    onChange?: (value?: IConditionSettings) => void
   }
 ) => {
   const [settingsType, setSettingsType] = useState<string>("node")

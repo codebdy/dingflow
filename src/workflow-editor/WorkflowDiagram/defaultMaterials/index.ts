@@ -2,6 +2,10 @@ import { conditionIcon, dealIcon, notifierIcon, sealIcon } from "../../icons";
 import { NodeType } from "../../interfaces";
 import { INodeMaterial } from "../../interfaces/material";
 import { createUuid } from "../../utils/create-uuid";
+import { ApproverPanel } from "./ApproverPanel";
+import { AuditPanel } from "./AuditPanel";
+import { ConditionPanel } from "./ConditionPanel";
+import { NotifierPanel } from "./NotifierPanel";
 import { StartPanel } from "./StartPanel";
 
 export const defaultMaterials: INodeMaterial[] = [
@@ -23,7 +27,8 @@ export const defaultMaterials: INodeMaterial[] = [
     placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.approver,
-    }
+    },
+    settingsPanel: ApproverPanel,
   },
   {
     color: "#4ca3fb",
@@ -32,7 +37,8 @@ export const defaultMaterials: INodeMaterial[] = [
     placeholder: "pleaseChooseNotifier",
     defaultConfig: {
       nodeType: NodeType.notifier,
-    }
+    },
+    settingsPanel: NotifierPanel,
   },
   {
     color: "#fb602d",
@@ -42,7 +48,8 @@ export const defaultMaterials: INodeMaterial[] = [
     placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.audit,
-    }
+    },
+    settingsPanel: AuditPanel,
   },
   {
     color: "#15bc83",
@@ -66,6 +73,17 @@ export const defaultMaterials: INodeMaterial[] = [
           }
         ]
       }
-    }
+    },
+
+  },
+  {
+    label: "condition",
+    color: "",
+    defaultConfig: {
+      nodeType: NodeType.condition,
+    },
+    //不在物料板显示
+    hidden: true,
+    settingsPanel: ConditionPanel,
   },
 ]
