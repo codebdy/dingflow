@@ -1,9 +1,10 @@
 import { Space, Button } from "antd"
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import { MiniFloatContainer } from "../ZoomBar"
 import { undoIcon, redoIcon } from "../../icons"
 import { useRedoList } from "../../hooks/useRedoList"
 import { useUndoList } from "../../hooks/useUndoList"
+import { useEditorStore } from "../../hooks"
 
 export const OperationBar = memo((
   props: {
@@ -14,6 +15,16 @@ export const OperationBar = memo((
   const redoList = useRedoList();
   const undoList = useUndoList();
 
+  const store = useEditorStore();
+
+  const handleUndo = useCallback(()=>{
+    store?.undo()
+  },[store])
+
+  const handleRedo = useCallback(()=>{
+    store?.redo()
+  },[store])
+
   return (
     <MiniFloatContainer className={"workflow-operation-bar" + (float ? " float" : "")}>
       <Space>
@@ -22,12 +33,14 @@ export const OperationBar = memo((
           size="small"
           icon={undoIcon}
           disabled={undoList.length === 0}
+          onClick={handleUndo}
         />
         <Button
           type={"text"}
           size="small"
           disabled={redoList.length === 0}
           icon={redoIcon}
+          onClick = {handleRedo}
         />
       </Space>
     </MiniFloatContainer>

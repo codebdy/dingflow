@@ -79,7 +79,38 @@ export class EditorStore {
   }
 
   redo = () => {
+    const state = this.store.getState();
+    const newRedoList = [...state.redoList]
+    const snapshot = newRedoList.pop()
+    if (!snapshot) {
+      console.error("No element in redo list")
+      return
+    }
+    const setRedoListAction: UnRedoListAction = {
+      type: ActionType.SET_REDOLIST,
+      payload: {
+        list: newRedoList
+      }
+    }
 
+    this.dispatch(setRedoListAction)
+
+    const setUndoListAction: UnRedoListAction = {
+      type: ActionType.SET_UNOLIST,
+      payload: {
+        list: [...state.undoList, { startNode: state.startNode }]
+      }
+    }
+    this.dispatch(setUndoListAction)
+    
+    const setStartNodeAction: SetStartNodeAction = {
+      type: ActionType.SET_START_NODE,
+      payload: {
+        node: snapshot?.startNode
+      }
+    }
+
+    this.dispatch(setStartNodeAction)
   }
 
   changeNode(node: IWorkFlowNode) {
