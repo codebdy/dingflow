@@ -1,11 +1,11 @@
-import { memo } from "react"
+import { memo, useCallback, useEffect, useState } from "react"
 import { IConditionNode, IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { ConditionButtons } from "./ConditionButtons"
 import { ConditionPriority } from "./ConditionPriority"
 import { useTranslate } from "../../react-locales"
 import { useEditorStore } from "../../hooks"
-import { TitleResponse } from "../NodeTitle"
+import { Input, TitleResponse } from "../NodeTitle"
 
 const TitleWrapper = styled.div`
   position: relative;
@@ -34,18 +34,69 @@ export const ConditionNodeTitle = memo((
   }
 ) => {
   const { node, parent, index } = props
+  const [editting, setEditting] = useState(false)
+  const [inputValue, setInputValue] = useState(node.name)
+
+
+  useEffect(() => {
+    setInputValue(node.name)
+  }, [node.name])
+
+
   const t = useTranslate()
   const editorStore = useEditorStore()
 
+  const changeName = useCallback(() => {
+    editorStore?.changeCondition(parent, { ...node, name: inputValue })
+  }, [editorStore, inputValue, node, parent])
+
+  const handleNameClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    setEditting(true)
+  }, [])
+
+  const handleInputClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+  }, [])
+
+  const handleBlur = useCallback(() => {
+    changeName()
+    setEditting(false)
+  }, [changeName])
+
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleBlur()
+    }
+  }, [handleBlur])
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value)
+  }, [])
+
   return (
     <TitleWrapper>
-      <TitleResponse>
-        <TitleText>
-          {node.name || t("condition")}
-        </TitleText>
-      </TitleResponse>
-      <ConditionButtons parent={parent} node={node} />
-      <ConditionPriority index={index} />
+      {
+        !editting && <>
+          <TitleResponse onClick={handleNameClick}>
+            <TitleText>
+              {node.name || t("condition")}
+            </TitleText>
+          </TitleResponse>
+          <ConditionButtons parent={parent} node={node} />
+        </>
+      }
+      {
+        editting && <Input
+          autoFocus
+          value={inputValue}
+          onClick={handleInputClick}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
+        />
+      }
+      {!editting && <ConditionPriority index={index} />}
     </TitleWrapper>
   )
 })

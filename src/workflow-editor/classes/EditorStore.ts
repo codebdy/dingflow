@@ -18,7 +18,7 @@ export class EditorStore {
     this.store = makeStoreInstance(debugMode || false)
   }
 
-  validate = ()=>{
+  validate = () => {
     throw new Error("Not implements")
   }
 
@@ -58,6 +58,11 @@ export class EditorStore {
 
   addCondition(node: IRouteNode, condition: IConditionNode) {
     const newNode: IRouteNode = { ...node, conditionNodeList: [...node.conditionNodeList, condition] };
+    this.changeNode(newNode)
+  }
+
+  changeCondition(node: IRouteNode, condition: IConditionNode) {
+    const newNode: IRouteNode = { ...node, conditionNodeList: node.conditionNodeList.map(con => con.id === condition.id ? condition : con) };
     this.changeNode(newNode)
   }
 

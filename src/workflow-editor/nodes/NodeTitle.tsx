@@ -45,7 +45,7 @@ export const NodeTitleText = styled.div`
 `
 
 export const Input = styled.input`
-  flex: none;
+  flex: 1;
   height: 18px;
   padding-left: 4px;
   text-indent: 0;
