@@ -8,13 +8,14 @@ import { NodeWrap, NodeWrapBox, NodeContent } from "./NormalNode"
 import { EndNode } from "./EndNode"
 import { useEditorStore } from "../hooks"
 import { NodeTitleSchell } from "./NodeTitle"
+import { useNodeMaterial } from "../hooks/useNodeMaterial"
 
 export const StartNode = memo(() => {
   const { startNode } = useStartNode()
   const t = useTranslate()
   const allText = useMemo(() => t("allMember"), [t])
   const store = useEditorStore();
-
+  const material = useNodeMaterial(startNode)
   const handleClick = useCallback(() => {
     store?.selectNode(startNode?.id)
   }, [startNode?.id, store])
@@ -22,8 +23,8 @@ export const StartNode = memo(() => {
   return (
     <NodeWrap className="node-wrap start">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
-        <NodeTitleSchell className="node-title start-node-title">
-          {t("promoter")}
+        <NodeTitleSchell className="node-title start-node-title" style={{backgroundColor: material?.color}}>
+          {t(material?.label || "")}
         </NodeTitleSchell>
         <NodeContent className="content">
           <span className="text">{allText}</span>

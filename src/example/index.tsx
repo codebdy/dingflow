@@ -35,7 +35,7 @@ export const Example = memo(() => {
     <ShellContainer>
       <Toolbar>
         <span>
-          工作流演示
+          审批流演示
         </span>
         <Space>
           <Button onClick={handleToggleTheme}>主题切换</Button>

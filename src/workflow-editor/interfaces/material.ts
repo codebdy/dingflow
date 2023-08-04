@@ -1,6 +1,6 @@
 import { IWorkFlowNode } from "./workflow"
 
-export interface INodeMaterial<IContext = any> {
+export interface INodeMaterial<Settings = any, IContext = any> {
   color: string
   label: string
   icon?: React.ReactElement
@@ -11,4 +11,8 @@ export interface INodeMaterial<IContext = any> {
   defaultConfig?: IWorkFlowNode
   //创建一个默认节点，跟defaultCofig只选一个
   createDefault?: (context?: IContext) => IWorkFlowNode
+  //属性面板设置组件
+  settingsPanel?: React.FC<{ value: Settings, onChange: (value: Settings) => void }>
+  //从物料面板隐藏，比如发起人节点
+  hidden?: boolean
 }

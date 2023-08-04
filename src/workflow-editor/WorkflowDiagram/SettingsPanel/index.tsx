@@ -1,24 +1,22 @@
-import { CloseOutlined, QuestionCircleOutlined } from "@ant-design/icons"
+import { CloseOutlined } from "@ant-design/icons"
 import { Button, Drawer } from "antd"
-import { memo, useCallback, useState } from "react"
+import { memo, useCallback } from "react"
 import { NodeTitle } from "./NodeTitle"
 import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
 import { styled } from "styled-components"
-import { ButtonSelect } from "./ButtonSelect"
-import { FormAuth } from "./FormAuth"
-import { useTranslate } from "../../react-locales"
+import { useNodeMaterial } from "../../hooks/useNodeMaterial"
 
 const Content = styled.div`
   display: flex;
   flex-flow: column;
 `
 export const SettingsPanel = memo(() => {
-  const [settingsType, setSettingsType] = useState<string>("node")
+
   const selectedNode = useSelectedNode()
-  const t = useTranslate()
-  const store = useEditorStore();
+  const material = useNodeMaterial(selectedNode)
+  const store = useEditorStore()
   const handelClose = useCallback(() => {
     store?.selectNode(undefined)
   }, [store])
@@ -31,7 +29,9 @@ export const SettingsPanel = memo(() => {
 
   }, [])
 
+  const handleSettingsChange = useCallback((value: any) => {
 
+  }, [])
   return (
     <Drawer
       title={selectedNode &&
@@ -61,21 +61,7 @@ export const SettingsPanel = memo(() => {
       open={!!selectedNode}
     >
       <Content className="settings-panel-content">
-        <ButtonSelect
-          options={[
-            {
-              key: "node",
-              label: t("promoter") + t("settingsSuffix"),
-            },
-            {
-              key: "formAuth",
-              label: <>{t("formAuth")} <QuestionCircleOutlined /></>
-            }
-          ]}
-          value={settingsType}
-          onChange={setSettingsType}
-        />
-        {settingsType === 'formAuth' && <FormAuth />}
+        {material?.settingsPanel && <material.settingsPanel value={""} onChange={handleSettingsChange} />}
       </Content>
     </Drawer>
   )

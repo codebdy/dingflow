@@ -125,7 +125,7 @@ export const NormalNode = memo((
   }, [node?.id, store])
 
   return (
-    <NodeWrap className="node-wrap start-node-wrap">
+    <NodeWrap className="node-wrap">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
         <NodeTitle node={node} material={material} />
         <NodeContent className="content">

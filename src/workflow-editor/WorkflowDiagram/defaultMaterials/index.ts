@@ -1,9 +1,20 @@
-import { conditionIcon, dealIcon, notifierIcon, sealIcon } from "../icons";
-import { NodeType } from "../interfaces";
-import { INodeMaterial } from "../interfaces/material";
-import { createUuid } from "../utils/create-uuid";
+import { conditionIcon, dealIcon, notifierIcon, sealIcon } from "../../icons";
+import { NodeType } from "../../interfaces";
+import { INodeMaterial } from "../../interfaces/material";
+import { createUuid } from "../../utils/create-uuid";
+import { StartPanel } from "./StartPanel";
 
 export const defaultMaterials: INodeMaterial[] = [
+  {
+    label: "promoter",
+    color: "rgb(87, 106, 149)",
+    defaultConfig: {
+      nodeType: NodeType.start,
+    },
+    //不在物料板显示
+    hidden: true,
+    settingsPanel: StartPanel,
+  },
   {
     color: "#ff943e",
     label: "approver",

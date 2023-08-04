@@ -22,7 +22,7 @@ export const ContentPanel = memo((
   return (
     <Container className="add-node-content">
       {
-        editorStore?.materials?.map((material, index) => {
+        editorStore?.materials?.filter(material => !material.hidden).map((material, index) => {
           return (
             <MaterialItem
               nodeId={nodeId}

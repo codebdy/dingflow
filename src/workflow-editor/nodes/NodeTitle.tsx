@@ -17,11 +17,11 @@ export const NodeTitleSchell = styled.div`
   font-size: 12px;
   color: #fff;
   text-align: left;
-  background: #576a95;
+  //background: #576a95;
   border-radius: 4px 4px 0 0;
   user-select: none;
   &.start-node-title{
-    background: rgb(87, 106, 149);
+    //background: rgb(87, 106, 149);
   }
 `
 export const NodeIcon = styled.div`
