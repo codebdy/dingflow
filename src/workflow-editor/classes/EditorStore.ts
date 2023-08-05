@@ -2,7 +2,7 @@ import { Store } from "redux"
 import { IErrors, IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
-import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
+import { ErrorsListener, RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
 import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetErrorsAction, SetStartNodeAction, SetValidatedAction, UnRedoListAction } from "../actions"
 import { IMaterialUIs, INodeMaterial, Translate } from "../interfaces/material"
@@ -305,6 +305,21 @@ export class EditorStore {
 
     const handleChange = () => {
       const nextState = this.store.getState().redoList
+      if (nextState === previousState) {
+        return
+      }
+      previousState = nextState
+      listener(nextState)
+    }
+
+    return this.store.subscribe(handleChange)
+  }
+
+  subscribeErrorsChange(listener: ErrorsListener) {
+    let previousState = this.store.getState().errors
+
+    const handleChange = () => {
+      const nextState = this.store.getState().errors
       if (nextState === previousState) {
         return
       }
