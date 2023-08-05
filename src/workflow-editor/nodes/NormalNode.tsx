@@ -11,6 +11,7 @@ import { useTranslate } from "../react-locales"
 import { useEditorStore } from "../hooks"
 import { NodeTitle } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
+import { useMaterialUI } from "../hooks/useMaterialUI"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -118,6 +119,7 @@ export const NormalNode = memo((
   const { node } = props
   const t = useTranslate()
   const material = useNodeMaterial(node)
+  const materialUi = useMaterialUI(node)
   const store = useEditorStore();
 
   const handleClick = useCallback(() => {
@@ -129,10 +131,7 @@ export const NormalNode = memo((
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
         <NodeTitle node={node} material={material} />
         <NodeContent className="content">
-          <span
-            className={"text" + ((material?.placeholderSecondary && !node.desc) ? " secondary" : "")}>
-            {node.desc || t(material?.placeholder || "")}
-          </span>
+          {materialUi?.viewContent && materialUi?.viewContent(node, { t })}
           <RightOutlined className="arrow" />
         </NodeContent>
       </NodeWrapBox>

@@ -9,6 +9,7 @@ import { ChildNode } from "../ChildNode"
 import { useTranslate } from "../../react-locales"
 import { useEditorStore } from "../../hooks"
 import { ConditionNodeTitle } from "./ConditionNodeTitle"
+import { useMaterialUI } from "../../hooks/useMaterialUI"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -165,6 +166,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
   const { parent, node, index, length } = props
   const t = useTranslate()
   const editorStore = useEditorStore()
+  const materialUi = useMaterialUI(node)
 
   const handleClick = useCallback(() => {
     editorStore?.selectNode(node?.id)
@@ -193,7 +195,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
             }
             <ConditionNodeTitle node={node} parent={parent} index={index} />
             <NodeContent className="content">
-              {node.desc || t("pleaseSetCondition")}
+              {materialUi?.viewContent && materialUi?.viewContent(node, { t })}
             </NodeContent>
             {
               index !== (length - 1) &&

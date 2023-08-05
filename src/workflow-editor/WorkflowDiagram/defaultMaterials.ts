@@ -17,8 +17,6 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#ff943e",
     label: "approver",
     icon: sealIcon,
-    placeholder: "pleaseChooseApprover",
-    placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.approver,
     },
@@ -27,7 +25,6 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#4ca3fb",
     label: "notifier",
     icon: notifierIcon,
-    placeholder: "pleaseChooseNotifier",
     defaultConfig: {
       nodeType: NodeType.notifier,
     },
@@ -36,18 +33,15 @@ export const defaultMaterials: INodeMaterial[] = [
     color: "#fb602d",
     label: "dealer",
     icon: dealIcon,
-    placeholder: "pleaseChooseDealer",
-    placeholderSecondary: true,
     defaultConfig: {
       nodeType: NodeType.audit,
     },
   },
   {
     color: "#15bc83",
-    label: "conditionNode",
+    label: "routeNode",
     icon: conditionIcon,
-    createDefault: (context) => {
-      const { t } = context
+    createDefault: ({t}) => {
       return {
         id: createUuid(),
         nodeType: NodeType.route,

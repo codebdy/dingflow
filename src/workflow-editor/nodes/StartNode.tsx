@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from "react"
+import { memo, useCallback } from "react"
 import { useStartNode } from "../hooks/useStartNode"
 import { AddButton } from "./AddButton"
 import { useTranslate } from "../react-locales"
@@ -9,11 +9,12 @@ import { EndNode } from "./EndNode"
 import { useEditorStore } from "../hooks"
 import { NodeTitleSchell } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
+import { useMaterialUI } from "../hooks/useMaterialUI"
 
 export const StartNode = memo(() => {
   const startNode = useStartNode()
   const t = useTranslate()
-  const allText = useMemo(() => t("allMember"), [t])
+  const materialUi = useMaterialUI(startNode)
   const store = useEditorStore();
   const material = useNodeMaterial(startNode)
   const handleClick = useCallback(() => {
@@ -27,7 +28,7 @@ export const StartNode = memo(() => {
           {t(material?.label || "")}
         </NodeTitleSchell>
         <NodeContent className="content">
-          <span className="text">{allText}</span>
+          {materialUi?.viewContent && materialUi?.viewContent(startNode, { t })}
           <RightOutlined className="arrow" />
         </NodeContent>
       </NodeWrapBox>
