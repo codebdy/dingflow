@@ -33,6 +33,7 @@ const ErrorItem = styled.div`
 
 const ErrorCagetory = styled.div`
   color:${props => props.theme.token?.colorTextSecondary};
+  opacity: 0.8;
 `
 
 const ErrorMessage = styled.div`
