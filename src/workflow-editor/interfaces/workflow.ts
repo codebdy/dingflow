@@ -52,6 +52,7 @@ export interface IExpression {
 //条件分支的子节点，条件节点
 export interface IConditionNode extends IWorkFlowNode {
   //条件表达式，后端就是这样的名字，保留了
+  //后面考虑通过泛型放入config，视条件复杂度决定
   flowNodeConditionVOList?: IExpression[]
 }
 

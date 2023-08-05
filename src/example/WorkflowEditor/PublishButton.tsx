@@ -1,6 +1,6 @@
 import { Button, Modal, message } from "antd"
 import { memo, useState } from "react"
-import { useEditorStore } from "../../workflow-editor"
+import { useEditorEngine } from "../../workflow-editor"
 import { useTranslate } from "../../workflow-editor/react-locales"
 import { CloseCircleOutlined } from "@ant-design/icons"
 import { styled } from "styled-components"
@@ -49,7 +49,7 @@ export const PublishButton = memo(() => {
   const [errors, setErrors] = useState<IErrorItem[]>();
 
   const t = useTranslate()
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
 
   const handleValidate = () => {
     const result = editorStore?.validate()

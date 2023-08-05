@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
-import { useEditorStore } from "./useEditorStore"
+import { useEditorEngine } from "./useEditorEngine"
 
 export function useSelectedId() {
   const [selectedId, setSelectedId] = useState<string>()
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleSelectedChange = useCallback((selected: string | undefined) => {
     setSelectedId(selected)

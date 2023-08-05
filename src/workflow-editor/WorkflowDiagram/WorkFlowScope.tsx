@@ -2,7 +2,7 @@ import { memo, useEffect, useMemo, useState } from "react"
 import { ThemeProvider } from "styled-components"
 import { IThemeToken } from "../theme"
 import { useToken } from "antd/es/theme/internal"
-import { EditorStore } from "../classes"
+import { EditorEngine } from "../classes"
 import { WorkflowEditorStoreContext } from "../contexts"
 import { ConfigRoot } from "./ConfigRoot"
 import { ILocales, LocalesManager } from "@rxdrag/locales"
@@ -28,8 +28,8 @@ const WorkFlowScopeInner = memo((props: {
       mode
     }
   }, [mode, themeToken, token])
-  const store: EditorStore = useMemo(() => {
-    return new EditorStore()
+  const store: EditorEngine = useMemo(() => {
+    return new EditorEngine()
   }, [])
 
   useEffect(() => {

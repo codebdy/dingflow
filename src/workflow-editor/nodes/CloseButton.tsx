@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useEditorStore } from "../hooks"
+import { useEditorEngine } from "../hooks"
 import { CloseOutlined } from "@ant-design/icons"
 import { styled } from "styled-components"
 import { Button } from "antd"
@@ -20,7 +20,7 @@ export const CloseButton = ((
   }
 ) => {
   const { nodeId } = props
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleClose = useCallback(() => {
     store?.removeNode(nodeId)

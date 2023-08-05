@@ -6,7 +6,7 @@ import { RightOutlined } from "@ant-design/icons"
 import { ChildNode } from "./ChildNode"
 import { NodeWrap, NodeWrapBox, NodeContent } from "./NormalNode"
 import { EndNode } from "./EndNode"
-import { useEditorStore } from "../hooks"
+import { useEditorEngine } from "../hooks"
 import { NodeTitleSchell } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { useMaterialUI } from "../hooks/useMaterialUI"
@@ -16,7 +16,7 @@ export const StartNode = memo(() => {
   const startNode = useStartNode()
   const t = useTranslate()
   const materialUi = useMaterialUI(startNode)
-  const store = useEditorStore();
+  const store = useEditorEngine();
   const material = useNodeMaterial(startNode)
   const handleClick = useCallback(() => {
     store?.selectNode(startNode?.id)

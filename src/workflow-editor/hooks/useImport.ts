@@ -2,7 +2,7 @@ import { message } from "antd";
 import { useCallback } from "react";
 import { getTheFiles } from "../utils/getFIles";
 import { IWorkFlowNode } from "../interfaces";
-import { useEditorStore } from "./useEditorStore";
+import { useEditorEngine } from "./useEditorEngine";
 import { useTranslate } from "../react-locales";
 
 export interface IFlowJson {
@@ -10,7 +10,7 @@ export interface IFlowJson {
 }
 
 export function useImport() {
-  const edtorStore = useEditorStore()
+  const edtorStore = useEditorEngine()
   const t = useTranslate()
 
   const doImport = useCallback(() => {

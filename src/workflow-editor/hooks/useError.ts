@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react"
 import { IErrors } from "../interfaces/state"
-import { useEditorStore } from "./useEditorStore"
+import { useEditorEngine } from "./useEditorEngine"
 
 export function useError(nodeId: string) {
   const [errors, setErrors] = useState<IErrors>()
 
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleErrorsChange = useCallback((errs: IErrors) => {
     setErrors(errs)

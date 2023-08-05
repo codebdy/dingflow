@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
 import { IWorkFlowNode } from "../interfaces"
-import { useEditorStore } from "./useEditorStore"
+import { useEditorEngine } from "./useEditorEngine"
 
 export function useStartNode() {
   const [startNode, setStartNode] = useState<IWorkFlowNode>()
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleStartNodeChange = useCallback((startNode: IWorkFlowNode) => {
     setStartNode(startNode)

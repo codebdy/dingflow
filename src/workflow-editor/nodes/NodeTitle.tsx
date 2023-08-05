@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { IWorkFlowNode } from "../interfaces";
 import { CloseButton } from "./CloseButton";
 import { INodeMaterial } from "../interfaces/material";
-import { useEditorStore } from "../hooks";
+import { useEditorEngine } from "../hooks";
 
 export const NodeTitleSchell = styled.div`
   position: relative;
@@ -65,7 +65,7 @@ export const NodeTitle = memo((props: {
   const [editting, setEditting] = useState(false)
   const [inputValue, setInputValue] = useState(node.name)
 
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
 
   useEffect(() => {
     setInputValue(node.name)

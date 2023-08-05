@@ -4,7 +4,7 @@ import { memo, useCallback } from "react"
 import { NodeTitle } from "./NodeTitle"
 import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { styled } from "styled-components"
 import { useMaterialUI } from "../../hooks/useMaterialUI"
 
@@ -15,7 +15,7 @@ const Content = styled.div`
 export const SettingsPanel = memo(() => {
   const selectedNode = useSelectedNode()
   const materialUi = useMaterialUI(selectedNode)
-  const store = useEditorStore()
+  const store = useEditorEngine()
   const handelClose = useCallback(() => {
     store?.selectNode(undefined)
   }, [store])

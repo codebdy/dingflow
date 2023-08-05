@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { EditorStore } from "./classes";
+import { EditorEngine } from "./classes";
 
-export const WorkflowEditorStoreContext = createContext<EditorStore | undefined>(undefined)
+export const WorkflowEditorStoreContext = createContext<EditorEngine | undefined>(undefined)

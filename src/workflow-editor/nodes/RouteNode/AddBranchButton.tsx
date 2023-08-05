@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { useTranslate } from "../../react-locales"
 import { nodeColor } from "../../utils/nodeColor"
 import { IRouteNode, NodeType } from "../../interfaces"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { createUuid } from "../../utils/create-uuid"
 
 const AddBranch = styled.button`
@@ -49,7 +49,7 @@ export const AddBranchButton = memo((
 ) => {
   const { node } = props
   const t = useTranslate()
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
 
   const handleClick = useCallback(() => {
     const newId = createUuid()

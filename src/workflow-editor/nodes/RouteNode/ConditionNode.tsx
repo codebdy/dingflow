@@ -7,7 +7,7 @@ import { canvasColor } from "../../utils/canvasColor"
 import { AddButton } from "../AddButton"
 import { ChildNode } from "../ChildNode"
 import { useTranslate } from "../../react-locales"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { ConditionNodeTitle } from "./ConditionNodeTitle"
 import { useMaterialUI } from "../../hooks/useMaterialUI"
 import { ErrorTip } from "../ErrorTip"
@@ -166,7 +166,7 @@ const NodeContent = styled.div`
 export const ConditionNode = memo((props: { parent: IRouteNode, node: IConditionNode, index: number, length: number }) => {
   const { parent, node, index, length } = props
   const t = useTranslate()
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
   const materialUi = useMaterialUI(node)
 
   const handleClick = useCallback(() => {

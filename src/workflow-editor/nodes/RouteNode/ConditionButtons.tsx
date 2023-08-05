@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { CloseOutlined } from "@ant-design/icons"
 import { styled } from "styled-components"
 import { Button, Tooltip } from "antd"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { copyIcon } from "../../icons"
 import { useTranslate } from "../../react-locales"
 import { IRouteNode, IConditionNode } from "../../interfaces"
@@ -23,7 +23,7 @@ export const ConditionButtons = ((
   }
 ) => {
   const { parent, node } = props
-  const store = useEditorStore()
+  const store = useEditorEngine()
   const t = useTranslate()
 
   const handleClose = useCallback(() => {

@@ -4,7 +4,7 @@ import { styled } from "styled-components"
 import { ConditionButtons } from "./ConditionButtons"
 import { ConditionPriority } from "./ConditionPriority"
 import { useTranslate } from "../../react-locales"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { Input, TitleResponse } from "../NodeTitle"
 
 const TitleWrapper = styled.div`
@@ -44,7 +44,7 @@ export const ConditionNodeTitle = memo((
 
 
   const t = useTranslate()
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
 
   const changeName = useCallback(() => {
     editorStore?.changeCondition(parent, { ...node, name: inputValue })

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
-import { useEditorStore } from "./useEditorStore"
+import { useEditorEngine } from "./useEditorEngine"
 import { ISnapshot } from "../interfaces/state"
 
 export function useUndoList() {
   const [undoList, setSetUndoList] = useState<ISnapshot[]>([])
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleUndoListChange = useCallback((list: ISnapshot[]) => {
     setSetUndoList(list)

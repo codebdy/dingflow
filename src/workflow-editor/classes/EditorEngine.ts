@@ -8,7 +8,7 @@ import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, 
 import { IMaterialUIs, INodeMaterial, Translate } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
-export class EditorStore {
+export class EditorEngine {
   store: Store<IState>
   t: Translate = (msg: string) => msg
   materials: INodeMaterial[] = []

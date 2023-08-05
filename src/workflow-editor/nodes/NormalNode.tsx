@@ -8,7 +8,7 @@ import { canvasColor } from "../utils/canvasColor"
 import { lineColor } from "../utils/lineColor"
 import { nodeColor } from "../utils/nodeColor"
 import { useTranslate } from "../react-locales"
-import { useEditorStore } from "../hooks"
+import { useEditorEngine } from "../hooks"
 import { NodeTitle } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { useMaterialUI } from "../hooks/useMaterialUI"
@@ -121,7 +121,7 @@ export const NormalNode = memo((
   const t = useTranslate()
   const material = useNodeMaterial(node)
   const materialUi = useMaterialUI(node)
-  const store = useEditorStore();
+  const store = useEditorEngine();
 
   const handleClick = useCallback(() => {
     store?.selectNode(node?.id)

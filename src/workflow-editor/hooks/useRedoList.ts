@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
-import { useEditorStore } from "./useEditorStore"
+import { useEditorEngine } from "./useEditorEngine"
 import { ISnapshot } from "../interfaces/state"
 
 export function useRedoList() {
   const [redoList, setRedoList] = useState<ISnapshot[]>([])
-  const store = useEditorStore()
+  const store = useEditorEngine()
 
   const handleRedoListChange = useCallback((list: ISnapshot[]) => {
     setRedoList(list)

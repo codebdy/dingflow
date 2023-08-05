@@ -2,7 +2,7 @@ import { memo, useCallback } from "react"
 import { INodeMaterial } from "../../interfaces/material"
 import { useTranslate } from "../../react-locales"
 import { styled } from "styled-components"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { createUuid } from "../../utils/create-uuid"
 
 const MaterialSchell = styled.div`
@@ -43,7 +43,7 @@ export const MaterialItem = memo((
 ) => {
   const { nodeId, material, onClick } = props
   const t = useTranslate();
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
 
   const handleClick = useCallback(() => {
     const newId = createUuid()

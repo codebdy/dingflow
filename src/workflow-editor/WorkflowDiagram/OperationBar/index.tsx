@@ -4,7 +4,7 @@ import { MiniFloatContainer } from "../ZoomBar"
 import { undoIcon, redoIcon } from "../../icons"
 import { useRedoList } from "../../hooks/useRedoList"
 import { useUndoList } from "../../hooks/useUndoList"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 
 export const OperationBar = memo((
   props: {
@@ -15,7 +15,7 @@ export const OperationBar = memo((
   const redoList = useRedoList();
   const undoList = useUndoList();
 
-  const store = useEditorStore();
+  const store = useEditorEngine();
 
   const handleUndo = useCallback(()=>{
     store?.undo()

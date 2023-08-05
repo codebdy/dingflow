@@ -1,6 +1,6 @@
 import { memo } from "react"
 import { styled } from "styled-components"
-import { useEditorStore } from "../../hooks"
+import { useEditorEngine } from "../../hooks"
 import { MaterialItem } from "./MaterialItem"
 import { INodeMaterial } from "../../interfaces/material"
 
@@ -18,7 +18,7 @@ export const ContentPanel = memo((
   }
 ) => {
   const { nodeId, onClickMaterial } = props
-  const editorStore = useEditorStore()
+  const editorStore = useEditorEngine()
   return (
     <Container className="add-node-content">
       {
