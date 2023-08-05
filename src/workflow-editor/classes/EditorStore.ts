@@ -5,7 +5,7 @@ import { mainReducer } from "../reducers"
 import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
 import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetStartNodeAction, UnRedoListAction } from "../actions"
-import { INodeMaterial } from "../interfaces/material"
+import { IMaterialUIs, INodeMaterial } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
 
 export type Translate = (msg: string) => string | undefined
@@ -14,6 +14,7 @@ export class EditorStore {
   store: Store<IState>
   t?: Translate
   materials: INodeMaterial[] = []
+  materialUis: IMaterialUIs = {}
   constructor(debugMode?: boolean,) {
     this.store = makeStoreInstance(debugMode || false)
   }
@@ -102,7 +103,7 @@ export class EditorStore {
       }
     }
     this.dispatch(setUndoListAction)
-    
+
     const setStartNodeAction: SetStartNodeAction = {
       type: ActionType.SET_START_NODE,
       payload: {

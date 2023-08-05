@@ -6,16 +6,15 @@ import { Footer } from "./Footer"
 import { useSelectedNode } from "../../hooks/useSelectedNode"
 import { useEditorStore } from "../../hooks"
 import { styled } from "styled-components"
-import { useNodeMaterial } from "../../hooks/useNodeMaterial"
+import { useMaterialUI } from "../../hooks/useMaterialUI"
 
 const Content = styled.div`
   display: flex;
   flex-flow: column;
 `
 export const SettingsPanel = memo(() => {
-
   const selectedNode = useSelectedNode()
-  const material = useNodeMaterial(selectedNode)
+  const materialUi = useMaterialUI(selectedNode)
   const store = useEditorStore()
   const handelClose = useCallback(() => {
     store?.selectNode(undefined)
@@ -61,7 +60,7 @@ export const SettingsPanel = memo(() => {
       open={!!selectedNode}
     >
       <Content className="settings-panel-content">
-        {material?.settingsPanel && <material.settingsPanel value={""} onChange={handleSettingsChange} />}
+        {materialUi?.settingsPanel && <materialUi.settingsPanel value={""} onChange={handleSettingsChange} />}
       </Content>
     </Drawer>
   )

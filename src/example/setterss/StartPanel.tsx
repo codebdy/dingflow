@@ -1,18 +1,18 @@
 import { memo, useState } from "react"
-import { ButtonSelect } from "../SettingsPanel/ButtonSelect"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { FormAuth } from "./FormAuth"
-import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
+import { ButtonSelect, MemberSelect } from "../../workflow-editor"
+import { useTranslate } from "../../workflow-editor/react-locales"
 
-export interface INotifierSettings {
+export interface IStartSettings {
 
 }
 
-export const NotifierPanel = memo((
+export const StartPanel = memo((
   props: {
-    value?: INotifierSettings
-    onChange?: (value?: INotifierSettings) => void
+    value?: IStartSettings
+    onChange?: (value?: IStartSettings) => void
   }
 ) => {
   const [settingsType, setSettingsType] = useState<string>("node")
@@ -24,7 +24,7 @@ export const NotifierPanel = memo((
         options={[
           {
             key: "node",
-            label: t("setNotifier"),
+            label: t("setPromoter"),
           },
           {
             key: "formAuth",
@@ -34,6 +34,11 @@ export const NotifierPanel = memo((
         value={settingsType}
         onChange={setSettingsType}
       />
+      {settingsType === "node" && <>
+        <Form.Item label={t("whoCanSubmit")} style={{ marginTop: 16 }}>
+          <MemberSelect />
+        </Form.Item>
+      </>}
       {settingsType === 'formAuth' && <FormAuth />}
     </Form>
   )

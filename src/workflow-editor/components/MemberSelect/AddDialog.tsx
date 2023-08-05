@@ -1,8 +1,8 @@
 import { memo, useCallback, useState } from "react"
-import { useTranslate } from "../../../react-locales"
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons"
 import { Button, Input, Modal, Space, Typography } from "antd"
 import styled from "styled-components"
+import { useTranslate } from "../../react-locales";
 
 const { Text } = Typography;
 

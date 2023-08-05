@@ -1,31 +1,30 @@
 import { memo, useState } from "react"
-import { ButtonSelect } from "../SettingsPanel/ButtonSelect"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import { FormAuth } from "./FormAuth"
-import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
-import { MemberSelect } from "../SettingsPanel/MemberSelect"
+import { useTranslate } from "../../workflow-editor/react-locales"
+import { ButtonSelect } from "../../workflow-editor"
 
-export interface IStartSettings {
+export interface IAuditSettings {
 
 }
 
-export const StartPanel = memo((
+export const AuditPanel = memo((
   props: {
-    value?: IStartSettings
-    onChange?: (value?: IStartSettings) => void
+    value?: IAuditSettings
+    onChange?: (value?: IAuditSettings) => void
   }
 ) => {
   const [settingsType, setSettingsType] = useState<string>("node")
   const t = useTranslate()
-
+  
   return (
     <Form layout="vertical" colon={false}>
       <ButtonSelect
         options={[
           {
             key: "node",
-            label: t("setPromoter"),
+            label: t("setDealer"),
           },
           {
             key: "formAuth",
@@ -35,11 +34,6 @@ export const StartPanel = memo((
         value={settingsType}
         onChange={setSettingsType}
       />
-      {settingsType === "node" && <>
-        <Form.Item label={t("whoCanSubmit")} style={{ marginTop: 16 }}>
-          <MemberSelect />
-        </Form.Item>
-      </>}
       {settingsType === 'formAuth' && <FormAuth />}
     </Form>
   )

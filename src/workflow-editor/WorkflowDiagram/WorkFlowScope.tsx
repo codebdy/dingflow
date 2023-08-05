@@ -8,7 +8,7 @@ import { ConfigRoot } from "./ConfigRoot"
 import { ILocales, LocalesManager } from "@rxdrag/locales"
 import { LocalesContext, useTranslate } from "../react-locales"
 import { defalutLocales } from "../locales"
-import { INodeMaterial } from "../interfaces/material"
+import { IMaterialUIs, INodeMaterial } from "../interfaces/material"
 import { defaultMaterials } from "./defaultMaterials"
 
 const WorkFlowScopeInner = memo((props: {
@@ -16,8 +16,9 @@ const WorkFlowScopeInner = memo((props: {
   themeToken?: IThemeToken,
   children?: React.ReactNode,
   materials?: INodeMaterial[],
+  materialUis?: IMaterialUIs,
 }) => {
-  const { mode, children, themeToken, materials } = props;
+  const { mode, children, themeToken, materials, materialUis } = props;
   const [, token] = useToken();
   const t = useTranslate()
 
@@ -36,8 +37,15 @@ const WorkFlowScopeInner = memo((props: {
   }, [store, t])
 
   useEffect(() => {
-    store.materials = [...defaultMaterials, ...materials || []]
-  }, [materials, store])
+    const oldMaterials = store.materials
+    const oldMaterialUis = store.materialUis
+    store.materials = [...oldMaterials, ...defaultMaterials, ...materials || []]
+    store.materialUis = { ...oldMaterialUis, ...materialUis }
+    return () => {
+      store.materials = oldMaterials;
+      store.materialUis = oldMaterialUis;
+    }
+  }, [materialUis, materials, store])
 
   return (
     <WorkflowEditorStoreContext.Provider value={store}>
@@ -57,10 +65,11 @@ export const WorkFlowScope = memo((props: {
   lang?: string,
   locales?: ILocales,
   materials?: INodeMaterial[],
+  materialUis?: IMaterialUIs,
 }) => {
   const { children, lang, locales, ...other } = props
   const [localesManager, setLocalesManager] = useState(new LocalesManager(lang, defalutLocales))
-  
+
   useEffect(() => {
     locales && localesManager.registerLocales(locales)
   }, [localesManager, locales])

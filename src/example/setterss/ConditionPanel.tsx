@@ -1,6 +1,6 @@
 import { memo, useState } from "react"
-import { useTranslate } from "../../react-locales"
 import { Form } from "antd"
+import { useTranslate } from "../../workflow-editor/react-locales"
 
 export interface IConditionSettings {
 

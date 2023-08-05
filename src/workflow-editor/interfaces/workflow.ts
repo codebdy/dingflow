@@ -13,12 +13,13 @@ export enum NodeType {
   condition = "condition",
 }
 
-export interface IWorkFlowNode {
+export interface IWorkFlowNode<Config = unknown> {
   id?: string
   nodeType: NodeType | string //string可以用于自定义节点，暂时用不上
   name?: string
   desc?: string
   childNode?: IWorkFlowNode
+  const?: Config
 }
 
 export interface IRouteNode extends IWorkFlowNode {

@@ -1,12 +1,7 @@
-import { conditionIcon, dealIcon, notifierIcon, sealIcon } from "../../icons";
-import { NodeType } from "../../interfaces";
-import { INodeMaterial } from "../../interfaces/material";
-import { createUuid } from "../../utils/create-uuid";
-import { ApproverPanel } from "./ApproverPanel";
-import { AuditPanel } from "./AuditPanel";
-import { ConditionPanel } from "./ConditionPanel";
-import { NotifierPanel } from "./NotifierPanel";
-import { StartPanel } from "./StartPanel";
+import { conditionIcon, dealIcon, notifierIcon, sealIcon } from "../icons";
+import { NodeType } from "../interfaces";
+import { INodeMaterial } from "../interfaces/material";
+import { createUuid } from "../utils/create-uuid";
 
 export const defaultMaterials: INodeMaterial[] = [
   {
@@ -17,7 +12,6 @@ export const defaultMaterials: INodeMaterial[] = [
     },
     //不在物料板显示
     hidden: true,
-    settingsPanel: StartPanel,
   },
   {
     color: "#ff943e",
@@ -28,7 +22,6 @@ export const defaultMaterials: INodeMaterial[] = [
     defaultConfig: {
       nodeType: NodeType.approver,
     },
-    settingsPanel: ApproverPanel,
   },
   {
     color: "#4ca3fb",
@@ -38,7 +31,6 @@ export const defaultMaterials: INodeMaterial[] = [
     defaultConfig: {
       nodeType: NodeType.notifier,
     },
-    settingsPanel: NotifierPanel,
   },
   {
     color: "#fb602d",
@@ -49,7 +41,6 @@ export const defaultMaterials: INodeMaterial[] = [
     defaultConfig: {
       nodeType: NodeType.audit,
     },
-    settingsPanel: AuditPanel,
   },
   {
     color: "#15bc83",
@@ -84,6 +75,5 @@ export const defaultMaterials: INodeMaterial[] = [
     },
     //不在物料板显示
     hidden: true,
-    settingsPanel: ConditionPanel,
   },
 ]

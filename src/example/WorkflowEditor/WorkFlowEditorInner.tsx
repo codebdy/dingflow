@@ -2,11 +2,9 @@ import { EllipsisOutlined, ExportOutlined, ImportOutlined, LeftOutlined, MobileO
 import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
 import { memo, useCallback, useMemo, useState } from "react"
 import { styled } from "styled-components"
-import { WorkflowDiagram } from "../WorkflowDiagram"
-import { useTranslate } from "../react-locales"
-import { NavTabs } from "./NavTabs"
-import { Toolbar } from "./Toolbar"
 import classNames from "classnames"
+import { NavTabs, Toolbar, WorkflowDiagram } from "../../workflow-editor"
+import { useTranslate } from "../../workflow-editor/react-locales"
 
 const Container = styled.div`
   flex:1;

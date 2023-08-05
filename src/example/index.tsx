@@ -1,8 +1,9 @@
 import { Button, Space } from "antd"
 import { memo, useCallback, useState } from "react"
-import { WorkflowEditor } from "../workflow-editor/WorkflowEditor"
 import { ShellContainer } from "./ShellContainer"
 import { styled } from "styled-components"
+import { WorkflowEditor } from "./WorkflowEditor"
+import { materialUis } from "./materialUis"
 
 const Toolbar = styled.div`
   height: 56px;
@@ -42,7 +43,11 @@ export const Example = memo(() => {
           <Button onClick={handleSwitchLang}>{lang === Lang.cn ? "English" : "中文"}</Button>
         </Space>
       </Toolbar>
-      <WorkflowEditor themeMode={themeMode} lang={lang} />
+      <WorkflowEditor
+        themeMode={themeMode}
+        lang={lang}
+        materialUis = {materialUis}
+      />
     </ShellContainer>
   )
 })
