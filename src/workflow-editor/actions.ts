@@ -1,5 +1,5 @@
 import { IConditionNode, IWorkFlowNode } from "./interfaces";
-import { ISnapshot } from "./interfaces/state";
+import { IErrors, ISnapshot } from "./interfaces/state";
 
 export enum ActionType {
   SET_CHANGE_FLAG = "workflow/SET_CHANGE_FLAG",
@@ -13,6 +13,7 @@ export enum ActionType {
   CHANGE_NODE = 'workflow/CHANGE_NODE',
   SELECT_NODE = 'workflow/SELECTED_NODE',
   SET_VALIDATED = 'workflow/SET_VALIDATED',
+  SET_ERRORS = 'workflow/SET_ERRORS',
 }
 
 export interface Action {
@@ -96,4 +97,12 @@ export interface SetValidatedPayload {
 
 export interface SetValidatedAction extends Action {
   payload: SetValidatedPayload
+}
+
+export interface SetErrorsPayload {
+  errors: IErrors,
+}
+
+export interface SetErrorsAction extends Action {
+  payload: SetErrorsPayload
 }

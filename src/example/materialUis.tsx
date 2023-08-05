@@ -25,7 +25,7 @@ export const materialUis: IMaterialUIs = {
     settingsPanel: AuditPanel,
     validate: (node: IWorkFlowNode<IApproverSettings>, { t }) => {
       if (!node.config) {
-        return (t("noSelectedDealer"))
+        return t("noSelectedDealer")
       }
       return true
     }

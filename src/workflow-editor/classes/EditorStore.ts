@@ -4,15 +4,13 @@ import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
 import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
-import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetStartNodeAction, UnRedoListAction } from "../actions"
-import { IMaterialUIs, INodeMaterial } from "../interfaces/material"
+import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetErrorsAction, SetStartNodeAction, SetValidatedAction, UnRedoListAction } from "../actions"
+import { IMaterialUIs, INodeMaterial, Translate } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
-
-export type Translate = (msg: string) => string | undefined
 
 export class EditorStore {
   store: Store<IState>
-  t?: Translate
+  t: Translate = (msg: string) => msg
   materials: INodeMaterial[] = []
   materialUis: IMaterialUIs = {}
   constructor(debugMode?: boolean,) {
@@ -20,7 +18,33 @@ export class EditorStore {
   }
 
   validate = (): IErrors | true => {
+    const setValidatedAction: SetValidatedAction = {
+      type: ActionType.SET_VALIDATED,
+      payload: {
+        validated: true
+      }
+    }
+    this.dispatch(setValidatedAction)
+
+    const errors: IErrors = {}
+    this.setErrors({})
+    this.doValidateNode(this.store.getState().startNode, errors)
+    if (Object.keys(errors).length > 0) {
+      this.setErrors(errors)
+      return errors
+    }
     return true;
+  }
+
+
+  setErrors(errors: IErrors) {
+    const setErrorsAction: SetErrorsAction = {
+      type: ActionType.SET_ERRORS,
+      payload: {
+        errors
+      }
+    }
+    this.store.dispatch(setErrorsAction)
   }
 
   dispatch = (action: Action) => {
@@ -124,6 +148,7 @@ export class EditorStore {
     }
 
     this.dispatch(setStartNodeAction)
+    this.revalidate()
   }
 
   changeNode(node: IWorkFlowNode) {
@@ -136,6 +161,7 @@ export class EditorStore {
     }
 
     this.dispatch(changeNodeAction)
+    this.revalidate()
   }
 
   addCondition(node: IRouteNode, condition: IConditionNode) {
@@ -198,6 +224,7 @@ export class EditorStore {
     this.backup()
     const addAction: AddNodeAction = { type: ActionType.ADD_NODE, payload: { parentId, node } }
     this.store.dispatch(addAction)
+    this.revalidate()
   }
 
   selectNode(id: string | undefined) {
@@ -210,6 +237,7 @@ export class EditorStore {
       this.backup()
       const removeAction: DeleteNodeAction = { type: ActionType.DELETE_NODE, payload: { id } }
       this.store.dispatch(removeAction)
+      this.revalidate()
     }
   }
 
@@ -271,6 +299,32 @@ export class EditorStore {
     }
 
     return this.store.subscribe(handleChange)
+  }
+
+
+  //审批流节点不多，节点变化全部重新校验一遍，无需担心性能问题，以后有需求再优化
+  private revalidate = () => {
+    if (this.store.getState().validated) {
+      this.validate()
+    }
+  }
+
+  private doValidateNode = (node: IWorkFlowNode, errors: IErrors) => {
+    const materialUi = this.materialUis[node.nodeType]
+    if (materialUi?.validate) {
+      const result = materialUi.validate(node, { t: this.t })
+      if (result !== true && result !== undefined) {
+        errors[node.id] = result
+      }
+    }
+    if (node.childNode) {
+      this.doValidateNode(node.childNode, errors)
+    }
+    if (node.nodeType === NodeType.route) {
+      for (const condition of (node as IRouteNode).conditionNodeList) {
+        this.doValidateNode(condition, errors)
+      }
+    }
   }
 }
 
