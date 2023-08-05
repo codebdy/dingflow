@@ -7,6 +7,7 @@ import { useError } from "../hooks/useError"
 const Schell = styled.div`
   position: absolute;
   z-index: 2;
+  top: 0;
   right: -40px;
 `
 const ErrorIcon = styled(InfoCircleOutlined)`

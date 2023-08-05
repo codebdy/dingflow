@@ -35,6 +35,12 @@ export const materialUis: IMaterialUIs = {
       return <ContentPlaceholder text={t("pleaseSetCondition")} />
     },
     settingsPanel: ConditionPanel,
+    validate: (node: IWorkFlowNode<IApproverSettings>, { t }) => {
+      if (!node.config) {
+        return t("noSetCondition")
+      }
+      return true
+    }
   },
   [NodeType.notifier]: {
     viewContent: (node: IWorkFlowNode<INotifierSettings>, { t }) => {
