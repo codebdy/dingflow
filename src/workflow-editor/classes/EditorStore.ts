@@ -20,7 +20,7 @@ export class EditorStore {
   }
 
   validate = (): IErrors | true => {
-    throw new Error("Not implements")
+    return true;
   }
 
   dispatch = (action: Action) => {

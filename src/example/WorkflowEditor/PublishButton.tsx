@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd"
+import { Button, Modal, message } from "antd"
 import { memo, useState } from "react"
 import { useEditorStore } from "../../workflow-editor"
 import { useTranslate } from "../../workflow-editor/react-locales"
@@ -20,19 +20,24 @@ const Tip = styled.div`
   color: ${props => props.theme.token?.colorTextSecondary};
 `
 
-export interface ErrorItem {
+export interface IErrorItem {
   category: string,
   message: string,
 }
 
 export const PublishButton = memo(() => {
-  const [errors, setErrors] = useState<ErrorItem[]>();
+  const [errors, setErrors] = useState<IErrorItem[]>();
 
   const t = useTranslate()
   const editorStore = useEditorStore()
 
   const handleValidate = () => {
-    setErrors([{ category: "", message: "" }]);
+    const result = editorStore?.validate()
+    if (result !== true) {
+      setErrors([{ category: "", message: "" }]);
+    } else {
+      message.info("验证成功")
+    }
   };
 
   const handleOk = () => {
