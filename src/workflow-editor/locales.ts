@@ -44,6 +44,8 @@ export const defalutLocales: ILocales = {
     add: "添加",
     departmentsAndMembersVisable: "以下部门和人员可看到审批模板",
     search: "搜索",
+    operateSuccess: "操作成功",
+    fileIllegal: "文件不合法",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -88,5 +90,7 @@ export const defalutLocales: ILocales = {
     add: "Add",
     departmentsAndMembersVisable: "Departments and Members",
     search: "Search",
+    operateSuccess: "Operate success",
+    fileIllegal: "File Illegal",
   }
 }

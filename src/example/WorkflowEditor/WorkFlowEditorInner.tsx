@@ -3,8 +3,9 @@ import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
 import { memo, useCallback, useMemo, useState } from "react"
 import { styled } from "styled-components"
 import classNames from "classnames"
-import { NavTabs, Toolbar, WorkflowDiagram } from "../../workflow-editor"
+import { NavTabs, Toolbar, WorkflowDiagram, useImport } from "../../workflow-editor"
 import { useTranslate } from "../../workflow-editor/react-locales"
+import { useExport } from "../../workflow-editor"
 
 const Container = styled.div`
   flex:1;
@@ -27,18 +28,22 @@ export const WorkFlowEditorInner = memo((props: {
   const { className, ...other } = props
   const [selectedTab, setSelectedTab] = useState<TabType>(TabType.flowDesign)
   const t = useTranslate()
+  const exportjson = useExport()
+  const importJson = useImport()
   const items: MenuProps['items'] = useMemo(() => [
     {
       label: t("import"),
       key: 'import',
-      icon: <ImportOutlined />
+      icon: <ImportOutlined />,
+      onClick: importJson,
     },
     {
       label: t("export"),
       key: 'export',
-      icon: <ExportOutlined />
+      icon: <ExportOutlined />,
+      onClick: exportjson,
     },
-  ], [t]);
+  ], [exportjson, importJson, t]);
 
   const handleNavChange = useCallback((key?: string) => {
     setSelectedTab((key || TabType.flowDesign) as TabType)

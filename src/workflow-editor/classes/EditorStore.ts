@@ -114,6 +114,18 @@ export class EditorStore {
     this.dispatch(setStartNodeAction)
   }
 
+  setStartNode(node: IWorkFlowNode) {
+    this.backup()
+    const setStartNodeAction: SetStartNodeAction = {
+      type: ActionType.SET_START_NODE,
+      payload: {
+        node
+      }
+    }
+
+    this.dispatch(setStartNodeAction)
+  }
+
   changeNode(node: IWorkFlowNode) {
     this.backup()
     const changeNodeAction: ChangeNodeAction = {
