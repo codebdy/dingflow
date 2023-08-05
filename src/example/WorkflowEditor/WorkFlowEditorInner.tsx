@@ -6,6 +6,7 @@ import classNames from "classnames"
 import { NavTabs, Toolbar, WorkflowDiagram, useImport } from "../../workflow-editor"
 import { useTranslate } from "../../workflow-editor/react-locales"
 import { useExport } from "../../workflow-editor"
+import { PublishButton } from "./PublishButton"
 
 const Container = styled.div`
   flex:1;
@@ -30,6 +31,7 @@ export const WorkFlowEditorInner = memo((props: {
   const t = useTranslate()
   const exportjson = useExport()
   const importJson = useImport()
+
   const items: MenuProps['items'] = useMemo(() => [
     {
       label: t("import"),
@@ -64,7 +66,7 @@ export const WorkFlowEditorInner = memo((props: {
             <Button type="text" icon={<QuestionCircleOutlined />}>{t("help")}</Button>
             <Button type="text" icon={<MobileOutlined />}>{t("preview")}</Button>
             <Button type="text" icon={<SaveOutlined />}>{t("save")}</Button>
-            <Button type="primary">{t("publish")}</Button>
+            <PublishButton />
             <Dropdown menu={{ items }} trigger={['click']}>
               <Button icon={<EllipsisOutlined />} />
             </Dropdown>

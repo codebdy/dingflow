@@ -11,12 +11,24 @@ export const materialUis: IMaterialUIs = {
       return <ContentPlaceholder secondary text={t("pleaseChooseApprover")} />
     },
     settingsPanel: ApproverPanel,
+    validate: (node: IWorkFlowNode<IApproverSettings>, { t }) => {
+      if (!node.config) {
+        return (t("noSelectedApprover"))
+      }
+      return true
+    }
   },
   [NodeType.audit]: {
     viewContent: (node: IWorkFlowNode<IAuditSettings>, { t }) => {
       return <ContentPlaceholder secondary text={t("pleaseChooseDealer")} />
     },
     settingsPanel: AuditPanel,
+    validate: (node: IWorkFlowNode<IApproverSettings>, { t }) => {
+      if (!node.config) {
+        return (t("noSelectedDealer"))
+      }
+      return true
+    }
   },
   [NodeType.condition]: {
     viewContent: (node: IWorkFlowNode<IConditionSettings>, { t }) => {

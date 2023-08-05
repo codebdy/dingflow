@@ -1,5 +1,5 @@
 import { Store } from "redux"
-import { IState } from "../interfaces/state"
+import { IErrors, IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
@@ -19,7 +19,7 @@ export class EditorStore {
     this.store = makeStoreInstance(debugMode || false)
   }
 
-  validate = () => {
+  validate = (): IErrors | true => {
     throw new Error("Not implements")
   }
 

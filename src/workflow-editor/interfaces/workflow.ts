@@ -19,7 +19,7 @@ export interface IWorkFlowNode<Config = unknown> {
   name?: string
   desc?: string
   childNode?: IWorkFlowNode
-  const?: Config
+  config?: Config
 }
 
 export interface IRouteNode extends IWorkFlowNode {

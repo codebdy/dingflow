@@ -22,6 +22,8 @@ export interface IMaterialUI<FlowNode extends IWorkFlowNode, Settings = any, Con
   viewContent?: (node: FlowNode, context: Context) => React.ReactNode
   //属性面板设置组件
   settingsPanel?: React.FC<{ value: Settings, onChange: (value: Settings) => void }>
+  //校验失败返回错误消息，成功返回ture
+  validate?: (node: FlowNode, context: Context) => string | true
 }
 
 export interface IMaterialUIs {

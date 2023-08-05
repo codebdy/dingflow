@@ -46,6 +46,12 @@ export const defalutLocales: ILocales = {
     search: "搜索",
     operateSuccess: "操作成功",
     fileIllegal: "文件不合法",
+    noSelectedApprover: "未选择审批人",
+    noSelectedDealer: "未选择办理人",
+    cantNotPublish: "当前无法发布",
+    canNotPublishTip: "以下内容不完善，请修改后发布",
+    gotIt: "我知道了",
+    gotoEdit: "前往修改",
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -92,5 +98,11 @@ export const defalutLocales: ILocales = {
     search: "Search",
     operateSuccess: "Operate success",
     fileIllegal: "File Illegal",
+    noSelectedApprover: "No selected approver",
+    noSelectedDealer: "NO selected dealer",
+    cantNotPublish: "Can not publish",
+    canNotPublishTip: "The following content is incomplete, please modify and publish it",
+    gotIt: "Got it",
+    gotoEdit: "Goto Edit",
   }
 }
