@@ -1,4 +1,4 @@
-import { IWorkFlowNode, IWorkflowNodeContent } from "./workflow"
+import { IWorkFlowNode, NodeType } from "./workflow"
 
 export type Translate = (msg: string) => string | undefined
 
@@ -12,7 +12,7 @@ export interface INodeMaterial<Context extends IContext = IContext> {
   label: string
   icon?: React.ReactElement
   //默认配置
-  defaultConfig?: IWorkflowNodeContent
+  defaultConfig?: { nodeType: NodeType | string }
   //创建一个默认节点，跟defaultCofig只选一个
   createDefault?: (context: Context) => IWorkFlowNode
   //从物料面板隐藏，比如发起人节点
