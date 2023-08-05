@@ -56,7 +56,7 @@ export class EditorStore {
     const setUndoListAction: UnRedoListAction = {
       type: ActionType.SET_UNOLIST,
       payload: {
-        list: [...state.undoList, { startNode: state.startNode }]
+        list: [...state.undoList, { startNode: state.startNode, validated: state.validated }]
       }
     }
     this.dispatch(setUndoListAction)
@@ -99,8 +99,15 @@ export class EditorStore {
         node: snapshot?.startNode
       }
     }
-
     this.dispatch(setStartNodeAction)
+
+    const setValidatedAction: SetValidatedAction = {
+      type: ActionType.SET_VALIDATED,
+      payload: {
+        validated: snapshot?.validated,
+      }
+    }
+    this.dispatch(setValidatedAction)
   }
 
   redo = () => {
@@ -134,8 +141,15 @@ export class EditorStore {
         node: snapshot?.startNode
       }
     }
-
     this.dispatch(setStartNodeAction)
+
+    const setValidatedAction: SetValidatedAction = {
+      type: ActionType.SET_VALIDATED,
+      payload: {
+        validated: snapshot?.validated,
+      }
+    }
+    this.dispatch(setValidatedAction)
   }
 
   setStartNode(node: IWorkFlowNode) {

@@ -3,6 +3,7 @@ import { IWorkFlowNode, NodeType } from "./workflow";
 //操作快照
 export interface ISnapshot {
   startNode: IWorkFlowNode,
+  validated?: boolean,
 }
 
 export interface IErrors {

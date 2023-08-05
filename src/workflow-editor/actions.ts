@@ -92,7 +92,7 @@ export interface SelectNodeAction extends Action {
 }
 
 export interface SetValidatedPayload {
-  validated: boolean,
+  validated: boolean | undefined,
 }
 
 export interface SetValidatedAction extends Action {
