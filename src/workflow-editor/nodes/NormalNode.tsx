@@ -12,6 +12,7 @@ import { useEditorStore } from "../hooks"
 import { NodeTitle } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { useMaterialUI } from "../hooks/useMaterialUI"
+import { ErrorTip } from "./ErrorTip"
 
 export const NodeWrap = styled.div`
   display: flex;
@@ -134,6 +135,7 @@ export const NormalNode = memo((
           {materialUi?.viewContent && materialUi?.viewContent(node, { t })}
           <RightOutlined className="arrow" />
         </NodeContent>
+        <ErrorTip nodeId={node.id} />
       </NodeWrapBox>
       {node?.id && <AddButton nodeId={node?.id} />}
       {node?.childNode && <ChildNode node={node?.childNode} />}

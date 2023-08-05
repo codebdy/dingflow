@@ -10,6 +10,7 @@ import { useTranslate } from "../../react-locales"
 import { useEditorStore } from "../../hooks"
 import { ConditionNodeTitle } from "./ConditionNodeTitle"
 import { useMaterialUI } from "../../hooks/useMaterialUI"
+import { ErrorTip } from "../ErrorTip"
 
 const ColBox = styled.div`
   display: inline-flex;
@@ -203,6 +204,7 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
                 &gt;
               </SortHandler>
             }
+            <ErrorTip nodeId={node.id} />
           </AutoJudge>
           {node?.id && <AddButton nodeId={node?.id} />}
           {node?.childNode && <ChildNode node={node?.childNode} />}

@@ -10,6 +10,7 @@ import { useEditorStore } from "../hooks"
 import { NodeTitleSchell } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { useMaterialUI } from "../hooks/useMaterialUI"
+import { ErrorTip } from "./ErrorTip"
 
 export const StartNode = memo(() => {
   const startNode = useStartNode()
@@ -31,6 +32,7 @@ export const StartNode = memo(() => {
           {materialUi?.viewContent && materialUi?.viewContent(startNode, { t })}
           <RightOutlined className="arrow" />
         </NodeContent>
+        {startNode?.id && <ErrorTip nodeId={startNode.id} />}
       </NodeWrapBox>
       {startNode?.id && <AddButton nodeId={startNode?.id} />}
       {startNode?.childNode && <ChildNode node={startNode?.childNode} />}
