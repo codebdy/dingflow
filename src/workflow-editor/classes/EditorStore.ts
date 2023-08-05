@@ -17,6 +17,28 @@ export class EditorStore {
     this.store = makeStoreInstance(debugMode || false)
   }
 
+  getNode(nodeId: string, parentNode?: IWorkFlowNode): IWorkFlowNode | undefined {
+    const startNode = parentNode || this.store.getState().startNode
+    if (startNode?.id === nodeId && nodeId) {
+      return startNode
+    }
+    if (startNode?.childNode) {
+      const foundNode = this.getNode(nodeId, startNode?.childNode)
+      if (foundNode) {
+        return foundNode
+      }
+    }
+    if (startNode?.nodeType === NodeType.route) {
+      for (const conditionNode of (startNode as IRouteNode).conditionNodeList) {
+        const foundNode = this.getNode(nodeId, conditionNode)
+        if (foundNode) {
+          return foundNode
+        }
+      }
+    }
+    return undefined
+  }
+
   validate = (): IErrors | true => {
     const setValidatedAction: SetValidatedAction = {
       type: ActionType.SET_VALIDATED,

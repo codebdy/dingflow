@@ -20,6 +20,25 @@ const Tip = styled.div`
   color: ${props => props.theme.token?.colorTextSecondary};
 `
 
+const ErrorItem = styled.div`
+  background-color: ${props => props.theme.token?.colorBorderSecondary};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  padding: 0 16px;
+  border-radius: 5px;
+  min-height: 48px;
+`
+
+const ErrorCagetory = styled.div`
+  color:${props => props.theme.token?.colorTextSecondary};
+`
+
+const ErrorMessage = styled.div`
+  font-size: 13px;
+`
+
 export interface IErrorItem {
   category: string,
   message: string,
@@ -33,8 +52,16 @@ export const PublishButton = memo(() => {
 
   const handleValidate = () => {
     const result = editorStore?.validate()
-    if (result !== true) {
-      setErrors([{ category: "", message: "" }]);
+    if (result !== true && result !== undefined) {
+      const errs: IErrorItem[] = [];
+      for (const nodeId of Object.keys(result)) {
+        const msg = result[nodeId]
+        const node = editorStore?.getNode(nodeId)
+        errs.push(
+          { category: t("flowDesign"), message: node?.name + ": " + msg }
+        )
+      }
+      setErrors(errs);
     } else {
       message.info("验证成功")
     }
@@ -67,9 +94,18 @@ export const PublishButton = memo(() => {
         <Tip>
           {t("canNotPublishTip")}
         </Tip>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {
+          errors?.map((err, index) => {
+            return (<ErrorItem key={index}>
+              <ErrorCagetory>
+                {err.category}
+              </ErrorCagetory>
+              <ErrorMessage>
+                {err.message}
+              </ErrorMessage>
+            </ErrorItem>)
+          })
+        }
       </Modal >
     </>
   )
