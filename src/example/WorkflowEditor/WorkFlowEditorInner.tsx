@@ -3,7 +3,7 @@ import { Avatar, Button, Dropdown, MenuProps, Space } from "antd"
 import { memo, useCallback, useMemo, useState } from "react"
 import { styled } from "styled-components"
 import classNames from "classnames"
-import { NavTabs, Toolbar, WorkflowDiagram, useImport } from "../../workflow-editor"
+import { NavTabs, Toolbar, FlowEditorCanvas, useImport } from "../../workflow-editor"
 import { useTranslate } from "../../workflow-editor/react-locales"
 import { useExport } from "../../workflow-editor"
 import { PublishButton } from "./PublishButton"
@@ -101,7 +101,7 @@ export const WorkFlowEditorInner = memo((props: {
       </Toolbar>
       {
         selectedTab === TabType.flowDesign &&
-        <WorkflowDiagram />
+        <FlowEditorCanvas />
       }
     </Container>
   )

@@ -6,7 +6,7 @@ import { ZoomBar } from "./ZoomBar"
 import { SettingsPanel } from "./SettingsPanel"
 import { OperationBar } from "./OperationBar"
 
-const DiagramContainer = styled.div`
+const CanvasContainer = styled.div`
   flex: 1;
   display: flex;
   flex-flow: column;
@@ -40,7 +40,7 @@ export interface IPosition {
   scrollTop: number
 }
 
-export const WorkflowDiagram = memo((
+export const FlowEditorCanvas = memo((
   props: {
     className?: string,
     style?: CSSProperties,
@@ -99,7 +99,7 @@ export const WorkflowDiagram = memo((
   }, [])
 
   return (
-    <DiagramContainer {...props}>
+    <CanvasContainer {...props}>
       <Canvas
         ref={canvasRef}
         className={"flow-canvas"}
@@ -126,6 +126,6 @@ export const WorkflowDiagram = memo((
         onZoomOut={haneldZoomOut}
       />
       <SettingsPanel />
-    </DiagramContainer >
+    </CanvasContainer >
   )
 })

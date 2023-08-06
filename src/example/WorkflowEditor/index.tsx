@@ -2,7 +2,7 @@ import { memo } from "react"
 import { WorkFlowEditorInner } from "./WorkFlowEditorInner"
 import { ILocales } from "@rxdrag/locales"
 import { IThemeToken } from "../../workflow-editor"
-import { IMaterialUIs, WorkFlowScope } from "../../workflow-editor/"
+import { IMaterialUIs, FlowEditorScope } from "../../workflow-editor/"
 
 export type WorkflowEditorProps = {
   themeMode?: 'dark' | 'light',
@@ -15,7 +15,7 @@ export type WorkflowEditorProps = {
 export const WorkflowEditor = memo((props: WorkflowEditorProps) => {
   const { themeMode, themeToken, lang, locales, materialUis, ...other } = props;
   return (
-    <WorkFlowScope
+    <FlowEditorScope
       mode={themeMode}
       themeToken={themeToken}
       lang={lang}
@@ -23,6 +23,6 @@ export const WorkflowEditor = memo((props: WorkflowEditorProps) => {
       materialUis = {materialUis}
     >
       <WorkFlowEditorInner {...other} />
-    </WorkFlowScope>
+    </FlowEditorScope>
   )
 })
