@@ -8,6 +8,7 @@ export interface IThemeToken {
   colorPrimary?: string;
 }
 
+//styled-components 的typescript使用
 export interface IDefaultTheme{
   token?: IThemeToken
   mode?: 'dark' | 'light'

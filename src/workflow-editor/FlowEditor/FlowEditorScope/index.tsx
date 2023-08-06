@@ -8,12 +8,18 @@ import { IMaterialUIs, INodeMaterial } from "../../interfaces/material"
 import { FlowEditorScopeInner } from "./FlowEditorScopeInner"
 
 export const FlowEditorScope = memo((props: {
+  //当前主题模式
   mode?: 'dark' | 'light',
+  //主题定义
   themeToken?: IThemeToken,
   children?: React.ReactNode,
+  //当前语言
   lang?: string,
+  //多语言资源
   locales?: ILocales,
+  //自定义物料
   materials?: INodeMaterial[],
+  //所有物料的Ui配置，包括自定义物料跟预定义物料
   materialUis?: IMaterialUIs,
 }) => {
   const { children, lang, locales, ...other } = props
