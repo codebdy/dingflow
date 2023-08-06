@@ -21,6 +21,7 @@ const ColBox = styled.div`
   align-items: center;
   position: relative;
   user-select: none;
+  background-color: ${canvasColor};
   &::before{
     content: "";
     position: absolute;
