@@ -49,7 +49,8 @@ export const MaterialItem = memo((
     const newId = createUuid()
     const newName = t(material.label)
     if (material.defaultConfig) {
-      editorStore?.addNode(nodeId, { ...material.defaultConfig, id: newId, name: newName })
+      //复制一份配置数据，保证immutable
+      editorStore?.addNode(nodeId, { ...JSON.parse(JSON.stringify(material.defaultConfig)), id: newId, name: newName })
     } else if (material.createDefault) {
       editorStore?.addNode(nodeId, { ...material.createDefault({ t }), name: newName })
     } else {
