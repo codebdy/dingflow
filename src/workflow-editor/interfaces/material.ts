@@ -26,15 +26,16 @@ export interface INodeMaterial<Context extends IContext = IContext> {
 }
 
 //物料UI配置
-export interface IMaterialUI<FlowNode extends IWorkFlowNode, Settings = any, Context extends IContext = IContext> {
+export interface IMaterialUI<FlowNode extends IWorkFlowNode, Config = any, Context extends IContext = IContext> {
   //节点内容区
   viewContent?: (node: FlowNode, context: Context) => React.ReactNode
   //属性面板设置组件
-  settingsPanel?: React.FC<{ value: Settings, onChange: (value: Settings) => void }>
+  settersPanel?: React.FC<{ value: Config, onChange: (value: Config) => void }>
   //校验失败返回错误消息，成功返回ture
   validate?: (node: FlowNode, context: Context) => string | true | undefined
 }
 
+//物料UI的一个map，用于组件间通过props传递物料UI，key是节点类型
 export interface IMaterialUIs {
   [nodeType: string]: IMaterialUI<any> | undefined
 }

@@ -60,7 +60,7 @@ export const SettingsPanel = memo(() => {
       open={!!selectedNode}
     >
       <Content className="settings-panel-content">
-        {materialUi?.settingsPanel && <materialUi.settingsPanel value={""} onChange={handleSettingsChange} />}
+        {materialUi?.settersPanel && <materialUi.settersPanel value={""} onChange={handleSettingsChange} />}
       </Content>
     </Drawer>
   )
