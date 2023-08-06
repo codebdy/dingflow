@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react"
-import { IConditionNode, IRouteNode } from "../../interfaces"
+import { IBranchNode, IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { lineColor } from "../../utils/lineColor"
 import { nodeColor } from "../../utils/nodeColor"
@@ -36,7 +36,7 @@ const ColBox = styled.div`
   }
 `
 
-const ConditionStyleNode = styled.div`
+const BranchStyleNode = styled.div`
   min-height: 220px;
   display: inline-flex;
   -webkit-box-orient: vertical;
@@ -45,7 +45,7 @@ const ConditionStyleNode = styled.div`
   -webkit-box-flex: 1;
   user-select: none;
 `
-const ConditionNodeBox = styled.div`
+const BranchNodeBox = styled.div`
   padding-top: 30px;
   padding-right: 50px;
   padding-left: 50px;
@@ -163,7 +163,7 @@ const NodeContent = styled.div`
   user-select: none;
 `
 
-export const ConditionNode = memo((props: { parent: IRouteNode, node: IConditionNode, index: number, length: number }) => {
+export const BranchNode = memo((props: { parent: IRouteNode, node: IBranchNode, index: number, length: number }) => {
   const { parent, node, index, length } = props
   const t = useTranslate()
   const editorStore = useEditorEngine()
@@ -185,8 +185,8 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
 
   return (
     <ColBox className="col-box" draggable={false}>
-      <ConditionStyleNode className="condition-node" draggable={false}>
-        <ConditionNodeBox className="condition-node-box" draggable={false}>
+      <BranchStyleNode className="condition-node" draggable={false}>
+        <BranchNodeBox className="condition-node-box" draggable={false}>
           <AutoJudge className="auto-judge" draggable={false} onClick={handleClick}>
             {
               index !== 0 &&
@@ -208,8 +208,8 @@ export const ConditionNode = memo((props: { parent: IRouteNode, node: ICondition
           </AutoJudge>
           {node?.id && <AddButton nodeId={node?.id} />}
           {node?.childNode && <ChildNode node={node?.childNode} />}
-        </ConditionNodeBox>
-      </ConditionStyleNode>
+        </BranchNodeBox>
+      </BranchStyleNode>
       {
         index === 0 &&
         <>

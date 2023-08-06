@@ -5,7 +5,7 @@ import { Button, Tooltip } from "antd"
 import { useEditorEngine } from "../../hooks"
 import { copyIcon } from "../../icons"
 import { useTranslate } from "../../react-locales"
-import { IRouteNode, IConditionNode } from "../../interfaces"
+import { IRouteNode, IBranchNode } from "../../interfaces"
 
 const Container = styled.div`
   position: absolute;
@@ -19,7 +19,7 @@ const Container = styled.div`
 export const ConditionButtons = ((
   props: {
     parent: IRouteNode,
-    node: IConditionNode
+    node: IBranchNode
   }
 ) => {
   const { parent, node } = props

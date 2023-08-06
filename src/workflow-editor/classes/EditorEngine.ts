@@ -3,7 +3,7 @@ import { IErrors, IState } from "../interfaces/state"
 import { configureStore } from "@reduxjs/toolkit"
 import { mainReducer } from "../reducers"
 import { ErrorsListener, RedoListChangeListener, SelectedListener, StartNodeListener, UndoListChangeListener } from "../interfaces/listeners"
-import { IConditionNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
+import { IBranchNode, IRouteNode, IWorkFlowNode, NodeType } from "../interfaces"
 import { Action, ActionType, AddNodeAction, ChangeNodeAction, DeleteNodeAction, SelectNodeAction, SetErrorsAction, SetStartNodeAction, SetValidatedAction, UnRedoListAction } from "../actions"
 import { IMaterialUIs, INodeMaterial, Translate } from "../interfaces/material"
 import { createUuid } from "../utils/create-uuid"
@@ -200,12 +200,12 @@ export class EditorEngine {
     this.revalidate()
   }
 
-  addCondition(node: IRouteNode, condition: IConditionNode) {
+  addCondition(node: IRouteNode, condition: IBranchNode) {
     const newNode: IRouteNode = { ...node, conditionNodeList: [...node.conditionNodeList, condition] };
     this.changeNode(newNode)
   }
 
-  changeCondition(node: IRouteNode, condition: IConditionNode) {
+  changeCondition(node: IRouteNode, condition: IBranchNode) {
     const newNode: IRouteNode = { ...node, conditionNodeList: node.conditionNodeList.map(con => con.id === condition.id ? condition : con) };
     this.changeNode(newNode)
   }
@@ -244,7 +244,7 @@ export class EditorEngine {
   }
 
   //克隆一个条件
-  cloneCondition(node: IRouteNode, condition: IConditionNode) {
+  cloneCondition(node: IRouteNode, condition: IBranchNode) {
     const newCondition = JSON.parse(JSON.stringify(condition))
     newCondition.name = newCondition.name + this.t?.("ofCopy")
     //重写Id

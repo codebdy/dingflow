@@ -5,7 +5,7 @@ import { AddBranchButton } from "./AddBranchButton"
 import { AddButton } from "../AddButton"
 import { lineColor } from "../../utils/lineColor"
 import { ChildNode } from "../ChildNode"
-import { ConditionNode } from "./ConditionNode"
+import { BranchNode } from "./BranchNode"
 
 const RouteWrap = styled.div`
   display: inline-flex;
@@ -53,7 +53,7 @@ export const RouteNode = memo((
           {
             node.conditionNodeList?.map((child, index) => {
               return (
-                <ConditionNode key={child.id} parent={node} node={child} index={index} length={node.conditionNodeList?.length || 0} />
+                <BranchNode key={child.id} parent={node} node={child} index={index} length={node.conditionNodeList?.length || 0} />
               )
             })
           }

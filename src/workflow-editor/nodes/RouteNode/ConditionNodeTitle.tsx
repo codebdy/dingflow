@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useState } from "react"
-import { IConditionNode, IRouteNode } from "../../interfaces"
+import { IBranchNode, IRouteNode } from "../../interfaces"
 import { styled } from "styled-components"
 import { ConditionButtons } from "./ConditionButtons"
 import { ConditionPriority } from "./ConditionPriority"
@@ -28,7 +28,7 @@ export const TitleText = styled.div`
 
 export const ConditionNodeTitle = memo((
   props: {
-    node: IConditionNode,
+    node: IBranchNode,
     parent: IRouteNode,
     index: number,
   }

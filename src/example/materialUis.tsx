@@ -30,7 +30,7 @@ export const materialUis: IMaterialUIs = {
       return true
     }
   },
-  [NodeType.condition]: {
+  [NodeType.branch]: {
     viewContent: (node: IWorkFlowNode<IConditionSettings>, { t }) => {
       return <ContentPlaceholder text={t("pleaseSetCondition")} />
     },

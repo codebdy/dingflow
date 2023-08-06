@@ -48,12 +48,12 @@ export const defaultMaterials: INodeMaterial[] = [
         conditionNodeList: [
           {
             id: createUuid(),
-            nodeType: NodeType.condition,
+            nodeType: NodeType.branch,
             name: t?.("condition") + "1"
           },
           {
             id: createUuid(),
-            nodeType: NodeType.condition,
+            nodeType: NodeType.branch,
             name: t?.("condition") + "2"
           }
         ]
@@ -65,7 +65,7 @@ export const defaultMaterials: INodeMaterial[] = [
     label: "condition",
     color: "",
     defaultConfig: {
-      nodeType: NodeType.condition,
+      nodeType: NodeType.branch,
     },
     //不在物料板显示
     hidden: true,

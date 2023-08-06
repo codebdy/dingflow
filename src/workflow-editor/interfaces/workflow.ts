@@ -10,7 +10,7 @@ export enum NodeType {
   //路由(条件节点)，下面包含分支节点
   route = "route",
   //分支节点
-  condition = "condition",
+  branch = "branch",
 }
 
 //审批流节点
@@ -31,7 +31,7 @@ export interface IWorkFlowNode<Config = unknown>{
 //条件根节点，下面包含各分支节点
 export interface IRouteNode extends IWorkFlowNode {
   //分支节点
-  conditionNodeList: IConditionNode[]
+  conditionNodeList: IBranchNode[]
 }
 
 //表达式操作符
@@ -49,8 +49,8 @@ export interface IExpression {
   operatorType?: OperatorType,
 }
 
-//条件分支的子节点，条件节点
-export interface IConditionNode extends IWorkFlowNode {
+//条件分支的子节点，分支节点
+export interface IBranchNode extends IWorkFlowNode {
   //条件表达式，后端就是这样的名字，保留了
   //后面考虑通过泛型放入config，视条件复杂度决定
   flowNodeConditionVOList?: IExpression[]
