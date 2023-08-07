@@ -1,4 +1,4 @@
-import { IExpression, IWorkFlowNode } from "../workflow-editor";
+import { IWorkFlowNode } from "../workflow-editor";
 
 //后端需要的扩展，增加一些冗余配置项
 export interface IExtWorkflowNode extends IWorkFlowNode {
@@ -7,6 +7,53 @@ export interface IExtWorkflowNode extends IWorkFlowNode {
   nodeLevel?: number
   parentNodeType?: string
   sort?: number
+}
+
+//表达式操作符
+export enum OperatorType {
+  //等于
+  Eq = "eq",
+  //不等于
+  Ne = "ne",
+  //大于
+  Gt = "gt",
+  //小于等于
+  Le = "le",
+  //大于等于
+  Ge = "ge",
+  //包含
+  Like = "like",
+  //开头包含
+  LikeStart = "like_start",
+  //结尾包含
+  LikeEnd = "like_end",
+  //不为空
+  NotEmpty = "not_empty",
+  //为空
+  Empty = "empty"
+}
+
+//这个命名需要优化
+// export interface IExpression {
+//   fieldEnName?: string,
+//   fieldName?: string,
+//   fieldValue?: unknown,
+//   operatorType?: OperatorType,
+// }
+export interface IExpression {
+  name?: string,
+  value?: unknown,
+  operator?: OperatorType,
+}
+
+export enum ExpressionGroupType {
+  And = "and",
+  Or = "or"
+}
+
+export interface IExpressionGroup {
+  type: ExpressionGroupType,
+  expressions: IExpression[]
 }
 
 export interface IExtCondition extends IExpression {

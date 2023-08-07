@@ -34,26 +34,11 @@ export interface IRouteNode extends IWorkFlowNode {
   conditionNodeList: IBranchNode[]
 }
 
-//表达式操作符
-export enum OperatorType {
-  Gt = "gt",
-  Eq = "eq",
-  //...还有其他的
-}
-
-//这个命名需要优化
-export interface IExpression {
-  fieldEnName?: string,
-  fieldName?: string,
-  fieldValue?: unknown,
-  operatorType?: OperatorType,
-}
-
 //条件分支的子节点，分支节点
 export interface IBranchNode extends IWorkFlowNode {
   //条件表达式，后端就是这样的名字，保留了
   //后面考虑通过泛型放入config，视条件复杂度决定
-  flowNodeConditionVOList?: IExpression[]
+  //flowNodeConditionVOList?: IExpression[]
 }
 
 //审批流，代表一张审批流图
