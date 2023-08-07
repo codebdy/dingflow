@@ -26,7 +26,7 @@ const Canvas = styled.div`
 
 const CanvasInner = styled.div`
   flex: 1;
-  transform-origin: 50% 0px 0px;
+  transform-origin: 0px 0px;
 `
 function toDecimal(x: number) {
   const f = Math.round(x * 10) / 10;
@@ -50,6 +50,7 @@ export const FlowEditorCanvas = memo((
   const [scrolled, setScrolled] = useState(false)
   const [mousePressedPoint, setMousePressedPoint] = useState<IPosition>()
   const canvasRef = useRef<HTMLDivElement>(null)
+  const scrollAreaRef = useRef<HTMLDivElement>(null)
 
   const haneldZoomIn = useCallback(() => {
     setZoom(zoom => toDecimal(zoom < 3 ? (zoom + 0.1) : zoom))
@@ -95,7 +96,6 @@ export const FlowEditorCanvas = memo((
     } else {
       setScrolled(false)
     }
-
   }, [])
 
   return (
@@ -107,14 +107,19 @@ export const FlowEditorCanvas = memo((
           cursor: mousePressedPoint ? "grabbing" : "grab"
         }}
         draggable={false}
-        key={zoom}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseUp}
         onScroll={handleScroll}
       >
-        <CanvasInner style={{ transform: `scale(${zoom})` }} draggable={false}>
+        <CanvasInner
+          ref={scrollAreaRef}
+          style={{
+            transform: `scale(${zoom})`,
+          }}
+          draggable={false}
+        >
           <StartNode />
         </CanvasInner>
       </Canvas>
