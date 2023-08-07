@@ -6,7 +6,7 @@ import { INotifierSettings, NotifierPanel } from "./setterss/NotifierPanel";
 import { IStartSettings, StartPanel } from "./setterss/StartPanel";
 
 export const materialUis: IMaterialUIs = {
-  //发起人物料UI
+  //审批人物料UI
   [NodeType.approver]: {
     //节点内容区，只实现了空逻辑，具体过几天实现
     viewContent: (node: IWorkFlowNode<IApproverSettings>, { t }) => {
@@ -39,7 +39,7 @@ export const materialUis: IMaterialUIs = {
     }
   },
   //条件分支节点的分支子节点
-  [NodeType.branch]: {
+  [NodeType.condition]: {
     //节点内容区
     viewContent: (node: IWorkFlowNode<IConditionSettings>, { t }) => {
       return <ContentPlaceholder text={t("pleaseSetCondition")} />

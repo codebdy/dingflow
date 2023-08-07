@@ -10,7 +10,7 @@ export enum NodeType {
   //路由(条件节点)，下面包含分支节点
   route = "route",
   //分支节点
-  branch = "branch",
+  condition = "condition",
 }
 
 //审批流节点
@@ -63,5 +63,5 @@ export interface IWorkflow {
   //审批流名称
   name?:string;
   //开始节点
-  childNode: IWorkFlowNode;
+  startNode: IWorkFlowNode;
 }

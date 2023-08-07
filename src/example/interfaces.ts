@@ -15,3 +15,14 @@ export interface IExtCondition extends IExpression {
   sort?: number
   groupIndex?: number
 }
+
+export enum AuthType {
+  read = "read",
+  edit = "edit",
+  hide = "hide",
+}
+
+export interface IAuthItem {
+  fieldEnName: string,
+  type: AuthType,
+}

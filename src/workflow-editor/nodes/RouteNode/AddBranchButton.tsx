@@ -55,7 +55,7 @@ export const AddBranchButton = memo((
     const newId = createUuid()
     editorStore?.addCondition(node, {
       id: newId,
-      nodeType: NodeType.branch,
+      nodeType: NodeType.condition,
       name: t("condition") + (node.conditionNodeList.length + 1)
     })
     editorStore?.selectNode(newId);
