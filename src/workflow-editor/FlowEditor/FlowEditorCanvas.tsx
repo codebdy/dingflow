@@ -50,7 +50,6 @@ export const FlowEditorCanvas = memo((
   const [scrolled, setScrolled] = useState(false)
   const [mousePressedPoint, setMousePressedPoint] = useState<IPosition>()
   const canvasRef = useRef<HTMLDivElement>(null)
-  const scrollAreaRef = useRef<HTMLDivElement>(null)
 
   const haneldZoomIn = useCallback(() => {
     setZoom(zoom => toDecimal(zoom < 3 ? (zoom + 0.1) : zoom))
@@ -114,7 +113,6 @@ export const FlowEditorCanvas = memo((
         onScroll={handleScroll}
       >
         <CanvasInner
-          ref={scrollAreaRef}
           style={{
             transform: `scale(${zoom})`,
           }}
