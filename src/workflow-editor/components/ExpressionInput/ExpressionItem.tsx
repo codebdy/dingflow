@@ -1,16 +1,21 @@
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
-import { memo } from "react"
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons"
+import { memo, useCallback, useState } from "react"
 import styled from "styled-components"
-import { IExtCondition } from "../../interfaces"
-import { ExpressionInputProps } from "./ExpressionInputProps"
 import { Space, Button } from "antd"
+import { AddMenu } from "./AddMenu";
+import classNames from "classnames";
+
+export const itemHeight = 48;
 
 export const Item = styled.div`
   display: flex;
   align-items: center;
-  min-height: 48px;
+  min-height: ${itemHeight}px;
   .actions-space{
     display: none;
+    &.add-open{
+      display: flex;
+    }
   }
   &:hover{
     .actions-space{
@@ -32,26 +37,32 @@ export const Actions = styled.div`
 export const AddIcon = styled(PlusOutlined)`
   font-size:12px;
 `
-export const RemoveIcon = styled(MinusOutlined)`
+export const RemoveIcon = styled(DeleteOutlined)`
   font-size:12px;
 `
 export const ExpressionItem = memo((
   props: {
-    ExpressInput: React.FC<ExpressionInputProps>
-    value?: IExtCondition,
-    onChange?: (value?: IExtCondition) => void
+    children?: React.ReactNode,
   }
 ) => {
-  const { ExpressInput, value, onChange } = props
+  const { children } = props
+  const [addOpen, setAddOpen] = useState(false);
+
+  const handleOpenChange = useCallback((open: boolean) => {
+    setAddOpen(open)
+  }, [])
+
   return (
     <Item>
       <ExpressionContent>
-        <ExpressInput />
+        {children}
       </ExpressionContent>
       <Actions className="actions">
-        <Space className="actions-space">
+        <Space className={classNames("actions-space", addOpen ? "add-open" : "")}>
           <Button size="small" type="text" icon={<RemoveIcon className="remove-icon" />} />
-          <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
+          <AddMenu onOpenChange={handleOpenChange}>
+            <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
+          </AddMenu>
         </Space>
       </Actions>
     </Item>

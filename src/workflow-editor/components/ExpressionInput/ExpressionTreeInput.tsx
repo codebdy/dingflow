@@ -3,15 +3,12 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo } from "react";
-import { ExpressionGroupType } from "../../interfaces";
+import { ExpressionGroupType, IExpressionGroup } from "../../interfaces";
 import { ExpressionInputProps } from "./ExpressionInputProps";
+import { ExpressionGroup } from "./ExpressionGroup";
 
 const itemHeight = 48;
 
-const ExpressionGroup = styled.div`
-  display: flex;
-  align-items: stretch;
-`
 const GroupOperator = styled.div`
   position: relative;
   width: 80px;
@@ -99,53 +96,18 @@ export const RemoveIcon = styled(MinusOutlined)`
 
 export const ExpressionTreeInput = memo((
   props: {
-    ExpressInput: React.FC<ExpressionInputProps>
+    ExpressInput: React.FC<ExpressionInputProps>,
+    value?: IExpressionGroup,
+    onChange?: (value?: IExpressionGroup) => void
   }
 ) => {
-  const { ExpressInput } = props
-  const t = useTranslate()
+  const { ExpressInput, value, onChange } = props
 
   return (
-    <ExpressionGroup className="expression-group">
-      <GroupOperator className="group-operator">
-        <GroupOperatorLine className="group-operator-line" />
-        <Select
-          defaultValue={ExpressionGroupType.And}
-          options={[
-            { value: ExpressionGroupType.And, label: t(ExpressionGroupType.And) },
-            { value: ExpressionGroupType.Or, label: t(ExpressionGroupType.Or) },
-          ]}
-        />
-      </GroupOperator>
-      <ExpressionItems className="expression-items-container">
-        <Item>
-          <ExpressionContent>
-            <ExpressInput />
-          </ExpressionContent>
-          <Actions className="actions">
-            <Space className="actions-space">
-              <Button size="small" type="text" icon={<RemoveIcon className="remove-icon" />} />
-              <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
-            </Space>
-          </Actions>
-        </Item>
-        <Item>
-          <Input />
-        </Item>
-        <Item>
-          <Input />
-        </Item>
-        <Input />
-        <Input />
-        <Input />
-        <Input />
-        <Input />
-        <Input />
-        <Input />
-        <Item>
-          <Input />
-        </Item>
-      </ExpressionItems>
-    </ExpressionGroup>
+    <ExpressionGroup
+      ExpressInput={ExpressInput}
+      value={value}
+      onChange={onChange}
+    />
   )
 })

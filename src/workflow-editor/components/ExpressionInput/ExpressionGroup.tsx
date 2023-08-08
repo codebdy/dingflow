@@ -1,17 +1,17 @@
 import { styled } from "styled-components"
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Input, Select, Space } from "antd"
+import { Button, Select, Space } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo } from "react";
 import { ExpressionGroupType, ExpressionNodeType, IExpressionGroup } from "../../interfaces";
 import { ExpressionInputProps } from "./ExpressionInputProps";
-import { ExpressionItem } from "./ExpressionItem";
-
-const itemHeight = 48;
+import { ExpressionItem, Item, itemHeight } from "./ExpressionItem";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { AddMenu } from "./AddMenu";
 
 const ExpressionGroupShell = styled.div`
   display: flex;
   align-items: stretch;
+  min-height: 88px;
 `
 const GroupOperator = styled.div`
   position: relative;
@@ -60,6 +60,12 @@ const ExpressionChildren = styled.div`
   flex-flow: column;
 `
 
+const GroupAction = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+`
+
 // const SuccessIcon = styled(CheckCircleFilled)`
 //   color:${props => props.theme.token?.colorSuccess};
 // `
@@ -72,9 +78,10 @@ export const ExpressionGroup = memo((
     ExpressInput: React.FC<ExpressionInputProps>
     value?: IExpressionGroup,
     onChange?: (value?: IExpressionGroup) => void
+    root?: boolean,
   }
 ) => {
-  const { ExpressInput, value, onChange } = props
+  const { ExpressInput, value, onChange, root } = props
   const t = useTranslate()
 
   return (
@@ -95,10 +102,33 @@ export const ExpressionGroup = memo((
             return (
               child.nodeType === ExpressionNodeType.Group ?
                 <ExpressionGroup key={child.id} ExpressInput={ExpressInput} />
-                : <ExpressionItem key={child.id} ExpressInput={ExpressInput} />
+                : <ExpressionItem key={child.id}>
+                  <ExpressInput />
+                </ExpressionItem>
             )
           })
         }
+        {
+          !value?.children.length && <Item></Item>
+        }
+        <Item>
+          <GroupAction>
+            <AddMenu>
+              <Button
+                type="dashed"
+                block
+                icon={<PlusOutlined />}
+              >
+                {t("add")}
+              </Button>
+            </AddMenu>
+            <Button
+              type="text"
+              icon={<DeleteOutlined />}
+              style={{ marginLeft: 8}}
+            />
+          </GroupAction>
+        </Item>
       </ExpressionChildren>
     </ExpressionGroupShell>
   )
