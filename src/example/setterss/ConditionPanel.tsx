@@ -1,9 +1,6 @@
 import { memo, useState } from "react"
 import { Form } from "antd"
-import { ExpressionInput } from "../../workflow-editor"
-
-
-
+import { DefaultConditionInput, ExpressionInput } from "../../workflow-editor"
 
 export interface IConditionSettings {
 
@@ -19,7 +16,7 @@ export const ConditionPanel = memo((
 
   return (
     <Form layout="vertical" colon={false}>
-      <ExpressionInput />
+      <ExpressionInput ConditionInput={DefaultConditionInput} />
     </Form>
   )
 })

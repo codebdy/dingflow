@@ -73,7 +73,7 @@ export const Item = styled.div`
   }
 `
 
-export const ExpressionContent = styled(Space)`
+export const ExpressionContent = styled.div`
   flex: 1;
 `
 
@@ -97,7 +97,12 @@ export const RemoveIcon = styled(MinusOutlined)`
 //   color:${props => props.theme.token?.colorError};
 // `
 
-export const ExpressionInput = memo(() => {
+export const ExpressionInput = memo((
+  props: {
+    ConditionInput: React.FC<any>
+  }
+) => {
+  const { ConditionInput } = props
   const t = useTranslate()
 
   return (
@@ -115,15 +120,7 @@ export const ExpressionInput = memo(() => {
       <ExpressionItems className="expression-items-container">
         <Item>
           <ExpressionContent>
-            <Select
-              defaultValue="xxx"
-              options={[
-                { value: 'xxx', label: '物料' },
-                { value: 'yyy', label: '或' },
-              ]}
-            />
-            <OperatorSelect />
-            <Input />
+            <ConditionInput />
           </ExpressionContent>
           <Actions className="actions">
             <Space className="actions-space">
