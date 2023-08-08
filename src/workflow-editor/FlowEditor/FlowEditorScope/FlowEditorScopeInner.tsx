@@ -18,7 +18,6 @@ export const FlowEditorScopeInner = memo((props: {
   const { mode, children, themeToken, materials, materialUis } = props;
   const [, token] = useToken();
   const t = useTranslate()
-
   const theme: { token: IThemeToken, mode?: 'dark' | 'light' } = useMemo(() => {
     return {
       token: themeToken || token,

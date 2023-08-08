@@ -1,7 +1,8 @@
 import { memo, useState } from "react"
-import { Form, Input, Select } from "antd"
+import { Button, Form, Input, Select, Space } from "antd"
 import { useTranslate } from "../../workflow-editor/react-locales"
 import { styled } from "styled-components"
+import { CheckCircleFilled, CloseCircleFilled, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
 const itemHeight = 48;
 
@@ -9,7 +10,7 @@ const ExpressionGroup = styled.div`
   display: flex;
   align-items: stretch;
 `
-const Operator = styled.div`
+const GroupOperator = styled.div`
   position: relative;
   width: 80px;
   //border: solid 1px;
@@ -18,7 +19,7 @@ const Operator = styled.div`
   padding-right: 16px;
 `
 
-const OperatorLine = styled.div`
+const GroupOperatorLine = styled.div`
   position: absolute;
   left: calc(50% - 8px);
   width: 20px;
@@ -60,7 +61,38 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   min-height: 48px;
+  .actions-space{
+    display: none;
+  }
+  &:hover{
+    .actions-space{
+      display: flex;
+    }    
+  }
 `
+
+export const ExpressionContent = styled(Space)`
+  flex: 1;
+`
+
+export const Actions = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`
+export const AddIcon = styled(PlusOutlined)`
+  font-size:12px;
+`
+export const RemoveIcon = styled(MinusOutlined)`
+  font-size:12px;
+`
+// const SuccessIcon = styled(CheckCircleFilled)`
+//   color:${props => props.theme.token?.colorSuccess};
+// `
+// const ErrorIcon = styled(CloseCircleFilled)`
+//   color:${props => props.theme.token?.colorError};
+// `
 
 export interface IConditionSettings {
 
@@ -78,8 +110,8 @@ export const ConditionPanel = memo((
   return (
     <Form layout="vertical" colon={false}>
       <ExpressionGroup className="expression-group">
-        <Operator className="operator">
-          <OperatorLine className="operator-line" />
+        <GroupOperator className="group-operator">
+          <GroupOperatorLine className="group-operator-line" />
           <Select
             defaultValue="and"
             options={[
@@ -87,10 +119,32 @@ export const ConditionPanel = memo((
               { value: 'or', label: '或' },
             ]}
           />
-        </Operator>
+        </GroupOperator>
         <ExpressionItems className="expression-items-container">
           <Item>
-            <Input />
+            <ExpressionContent>
+              <Select
+                defaultValue="and"
+                options={[
+                  { value: 'and', label: '物料' },
+                  { value: 'or', label: '或' },
+                ]}
+              />
+              <Select
+                defaultValue="and"
+                options={[
+                  { value: 'and', label: '大于等于' },
+                  { value: 'or', label: '或' },
+                ]}
+              />
+              <Input />
+            </ExpressionContent>
+            <Actions className="actions">
+              <Space className="actions-space">
+                <Button size="small" type="text" icon={<RemoveIcon className="remove-icon" />} />
+                <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
+              </Space>
+            </Actions>
           </Item>
           <Item>
             <Input />

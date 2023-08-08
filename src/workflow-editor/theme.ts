@@ -6,6 +6,8 @@ export interface IThemeToken {
   colorTextSecondary?: string;
   colorBgBase?: string;
   colorPrimary?: string;
+  colorError?: string;
+  colorSuccess?: string;
 }
 
 //styled-components 的typescript使用
