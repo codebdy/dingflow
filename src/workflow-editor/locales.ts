@@ -58,6 +58,7 @@ export const defalutLocales: ILocales = {
     eq: "等于",
     ne: "不等于",
     gt: "大于",
+    lt: "小于",
     le: "小于等于",
     ge: "大于等于",
     like: "包含",

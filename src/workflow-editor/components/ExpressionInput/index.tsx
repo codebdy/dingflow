@@ -3,7 +3,7 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo } from "react";
-import { ExpressionGroupType } from "../../interfaces";
+import { ExpressionGroupType, OperatorType } from "../../interfaces";
 
 const itemHeight = 48;
 
@@ -115,17 +115,26 @@ export const ExpressionInput = memo(() => {
         <Item>
           <ExpressionContent>
             <Select
-              defaultValue="and"
+              defaultValue="xxx"
               options={[
-                { value: 'and', label: '物料' },
-                { value: 'or', label: '或' },
+                { value: 'xxx', label: '物料' },
+                { value: 'yyy', label: '或' },
               ]}
             />
             <Select
-              defaultValue="and"
+              style={{ minWidth: 100 }}
               options={[
-                { value: 'and', label: '大于等于' },
-                { value: 'or', label: '或' },
+                { value: OperatorType.Eq, label: t(OperatorType.Eq) },
+                { value: OperatorType.Ne, label: t(OperatorType.Ne) },
+                { value: OperatorType.Gt, label: t(OperatorType.Gt) },
+                { value: OperatorType.Lt, label: t(OperatorType.Lt) },
+                { value: OperatorType.Le, label: t(OperatorType.Le) },
+                { value: OperatorType.Ge, label: t(OperatorType.Ge) },
+                { value: OperatorType.Like, label: t(OperatorType.Like) },
+                { value: OperatorType.LikeStart, label: t(OperatorType.LikeStart) },
+                { value: OperatorType.LikeEnd, label: t(OperatorType.LikeEnd) },
+                { value: OperatorType.NotEmpty, label: t(OperatorType.NotEmpty) },
+                { value: OperatorType.Empty, label: t(OperatorType.Empty) },
               ]}
             />
             <Input />
