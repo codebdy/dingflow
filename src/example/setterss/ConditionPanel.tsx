@@ -12,26 +12,40 @@ const Operator = styled.div`
   display: flex;
   align-items: center;
   padding-right: 16px;
-  &::before{
-    content: "";
-    position: absolute;
-    top:24px;
-    right: 0;
-    width: 8px;
-    height: 8px;
-    border: solid 1px;
-  }
 `
 
 const OperatorLine = styled.div`
   position: absolute;
   left: 50%;
   width: 20px;
-  border: solid 1px ${props=>props.theme.token?.colorBorder};
+  border: solid 1px ${props => props.theme.token?.colorBorder};
   border-right: 0;
   border-radius: 5px 0 0 5px;
   height: calc(100% - ${itemHeight}px);
+  &::before{
+    content: "";
+    position: absolute;
+    top:0;
+    right:0;
+    transform: translateX(100%) translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border: solid 1px ${props => props.theme.token?.colorBorder};
+    border-radius: 50%;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    bottom:0;
+    right:0;
+    transform: translateX(100%) translateY(50%);
+    width: 6px;
+    height: 6px;
+    border: solid 1px ${props => props.theme.token?.colorBorder};
+    border-radius: 50%;
+  }
 `
+
 
 const Expression = styled.div`
   flex: 1;
