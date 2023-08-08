@@ -5,6 +5,10 @@ import { styled } from "styled-components"
 
 const itemHeight = 48;
 
+const ExpressionGroup = styled.div`
+  display: flex;
+  align-items: stretch;
+`
 const Operator = styled.div`
   position: relative;
   width: 80px;
@@ -16,7 +20,7 @@ const Operator = styled.div`
 
 const OperatorLine = styled.div`
   position: absolute;
-  left: 50%;
+  left: calc(50% - 8px);
   width: 20px;
   border: solid 1px ${props => props.theme.token?.colorBorder};
   border-right: 0;
@@ -46,9 +50,16 @@ const OperatorLine = styled.div`
   }
 `
 
-
-const Expression = styled.div`
+const ExpressionItems = styled.div`
   flex: 1;
+  display: flex;
+  flex-flow: column;
+`
+
+export const Item = styled.div`
+  display: flex;
+  align-items: center;
+  min-height: 48px;
 `
 
 export interface IConditionSettings {
@@ -66,9 +77,9 @@ export const ConditionPanel = memo((
 
   return (
     <Form layout="vertical" colon={false}>
-      <div style={{ display: "flex", alignItems: "stretch" }}>
-        <Operator>
-          <OperatorLine />
+      <ExpressionGroup className="expression-group">
+        <Operator className="operator">
+          <OperatorLine className="operator-line" />
           <Select
             defaultValue="and"
             options={[
@@ -77,24 +88,28 @@ export const ConditionPanel = memo((
             ]}
           />
         </Operator>
-        <div>
-          <div style={{ height: 48, display: "flex", alignItems: "center" }}>
+        <ExpressionItems className="expression-items-container">
+          <Item>
             <Input />
-          </div>
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <Input />
-          <div style={{ height: 48, display: "flex", alignItems: "center" }}>
+          </Item>
+          <Item>
             <Input />
-          </div>
-        </div>
-      </div>
+          </Item>
+          <Item>
+            <Input />
+          </Item>
+          <Input />
+          <Input />
+          <Input />
+          <Input />
+          <Input />
+          <Input />
+          <Input />
+          <Item>
+            <Input />
+          </Item>
+        </ExpressionItems>
+      </ExpressionGroup>
     </Form>
   )
 })
