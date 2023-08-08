@@ -1,10 +1,10 @@
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons"
-import { memo, useCallback, useState } from "react"
+import { memo } from "react"
 import styled from "styled-components"
-import { Space, Button } from "antd"
+import { Button } from "antd"
 import { AddMenu } from "./AddMenu";
 import classNames from "classnames";
-import { ExpressionGroupType, ExpressionNodeType } from "../../interfaces";
+import { ExpressionGroupType } from "../../interfaces";
 
 export const itemHeight = 48;
 
@@ -23,6 +23,10 @@ export const Item = styled.div`
       display: flex;
     }    
   }
+`
+
+export const ActionSpace = styled.div`
+  display: flex;
 `
 
 export const ExpressionContent = styled.div`
@@ -45,15 +49,16 @@ export const ExpressionItem = memo((
   props: {
     onAddExpression?: () => void,
     onAddGroup?: (nodeType: ExpressionGroupType) => void,
+    onRemove?: () => void,
     children?: React.ReactNode,
   }
 ) => {
-  const { onAddExpression, onAddGroup, children } = props
-  const [addOpen, setAddOpen] = useState(false);
+  const { onAddExpression, onAddGroup, onRemove, children } = props
+  //const [addOpen, setAddOpen] = useState(false);
 
-  const handleOpenChange = useCallback((open: boolean) => {
-    setAddOpen(open)
-  }, [])
+  // const handleOpenChange = useCallback((open: boolean) => {
+  //   setAddOpen(open)
+  // }, [])
 
   return (
     <Item>
@@ -61,14 +66,13 @@ export const ExpressionItem = memo((
         {children}
       </ExpressionContent>
       <Actions className="actions">
-        <Space
-          size="small"
-          className={classNames("actions-space", addOpen ? "add-open" : "")}
+        <ActionSpace
+          className={classNames("actions-space")}
         >
           {
             onAddExpression && onAddGroup &&
             <AddMenu
-              onOpenChange={handleOpenChange}
+              //onOpenChange={handleOpenChange}
               onAddExpression={onAddExpression}
               onAddGroup={onAddGroup}
             >
@@ -76,8 +80,12 @@ export const ExpressionItem = memo((
             </AddMenu>
           }
 
-          <Button type="text" icon={<RemoveIcon className="remove-icon" />} />
-        </Space>
+          <Button
+            type="text"
+            icon={<RemoveIcon className="remove-icon" />}
+            onClick={onRemove}
+          />
+        </ActionSpace>
       </Actions>
     </Item>
   )

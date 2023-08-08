@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { Button, Select } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo, useCallback } from "react";
-import { ExpressionGroupType, ExpressionNodeType, IExpressionGroup, IExpressionNode } from "../../interfaces";
+import { ExpressionGroupType, ExpressionNodeType, IExpression, IExpressionGroup, IExpressionNode } from "../../interfaces";
 import { ExpressionInputProps } from "./ExpressionInputProps";
 import { ExpressionItem, Item, itemHeight } from "./ExpressionItem";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
@@ -26,7 +26,7 @@ const GroupOperator = styled.div`
 const GroupOperatorLine = styled.div`
   position: absolute;
   left: calc(50% - 8px);
-  width: 20px;
+  width: 30px;
   border: solid 1px ${props => props.theme.token?.colorBorder};
   border-right: 0;
   border-radius: 5px 0 0 5px;
@@ -78,11 +78,12 @@ export const ExpressionGroup = memo((
   props: {
     ExpressInput: React.FC<ExpressionInputProps>
     value: IExpressionGroup,
-    onChange?: (value: IExpressionGroup) => void
+    onChange?: (value: IExpressionGroup) => void,
+    onRemove?: (nodeId: string) => void
     root?: boolean,
   }
 ) => {
-  const { ExpressInput, value, onChange, root } = props
+  const { ExpressInput, value, onChange, onRemove, root } = props
   const t = useTranslate()
 
   const handleAddExp = useCallback(() => {
@@ -120,12 +121,37 @@ export const ExpressionGroup = memo((
   }, [onChange, value])
 
   const handleAddExpAfter = useCallback((index: number) => {
-
-  }, [])
+    const newNode: IExpression = {
+      id: createUuid(),
+      nodeType: ExpressionNodeType.Expression
+    }
+    const newChildren = [...value.children]
+    newChildren.splice(index + 1, 0, newNode)
+    onChange?.({
+      ...value,
+      children: newChildren
+    })
+  }, [onChange, value])
 
   const handleAddGroupAfter = useCallback((index: number, groupType: ExpressionGroupType) => {
-
-  }, [])
+    const newNode: IExpressionGroup = {
+      id: createUuid(),
+      nodeType: ExpressionNodeType.Group,
+      groupType,
+      children: [
+        {
+          id: createUuid(),
+          nodeType: ExpressionNodeType.Expression
+        }
+      ]
+    }
+    const newChildren = [...value.children]
+    newChildren.splice(index + 1, 0, newNode)
+    onChange?.({
+      ...value,
+      children: newChildren
+    })
+  }, [onChange, value])
 
   const handleChildChange = useCallback((node: IExpressionNode) => {
     onChange?.({
@@ -140,6 +166,17 @@ export const ExpressionGroup = memo((
       groupType,
     })
   }, [onChange, value])
+
+  const handleRemoveChild = useCallback((nodeId: string) => {
+    onChange?.({
+      ...value,
+      children: (value.children as IExpressionNode[]).filter((child) => child.id !== nodeId)
+    })
+  }, [onChange, value])
+
+  const handleDeleteClick = useCallback(() => {
+    onRemove?.(value.id)
+  }, [onRemove, value.id])
 
   return (
     <ExpressionGroupShell className="expression-group">
@@ -165,11 +202,13 @@ export const ExpressionGroup = memo((
                   ExpressInput={ExpressInput}
                   value={child as IExpressionGroup}
                   onChange={handleChildChange}
+                  onRemove={() => handleRemoveChild(child.id)}
                 />
                 : <ExpressionItem
                   key={child.id}
                   onAddExpression={() => handleAddExpAfter(index)}
                   onAddGroup={(nodType) => handleAddGroupAfter(index, nodType)}
+                  onRemove={() => handleRemoveChild(child.id)}
                 >
                   <ExpressInput />
                 </ExpressionItem>
@@ -193,11 +232,14 @@ export const ExpressionGroup = memo((
                 {t("add")}
               </Button>
             </AddMenu>
-            <Button
-              type="text"
-              icon={<DeleteOutlined />}
-              style={{ marginLeft: 8 }}
-            />
+            {
+              !root && <Button
+                type="text"
+                icon={<DeleteOutlined />}
+                style={{ marginLeft: 8 }}
+                onClick={handleDeleteClick}
+              />
+            }
           </GroupAction>
         </Item>
       </ExpressionChildren>

@@ -17,6 +17,7 @@ export const ExpressionTreeInput = memo((
       ExpressInput={ExpressInput}
       value={value}
       onChange={onChange}
+      root
     />
   )
 })
