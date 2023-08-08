@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Space, Button } from "antd"
 import { AddMenu } from "./AddMenu";
 import classNames from "classnames";
+import { ExpressionGroupType, ExpressionNodeType } from "../../interfaces";
 
 export const itemHeight = 48;
 
@@ -42,10 +43,12 @@ export const RemoveIcon = styled(DeleteOutlined)`
 `
 export const ExpressionItem = memo((
   props: {
+    onAddExpression?: () => void,
+    onAddGroup?: (nodeType: ExpressionGroupType) => void,
     children?: React.ReactNode,
   }
 ) => {
-  const { children } = props
+  const { onAddExpression, onAddGroup, children } = props
   const [addOpen, setAddOpen] = useState(false);
 
   const handleOpenChange = useCallback((open: boolean) => {
@@ -58,11 +61,22 @@ export const ExpressionItem = memo((
         {children}
       </ExpressionContent>
       <Actions className="actions">
-        <Space className={classNames("actions-space", addOpen ? "add-open" : "")}>
-          <Button size="small" type="text" icon={<RemoveIcon className="remove-icon" />} />
-          <AddMenu onOpenChange={handleOpenChange}>
-            <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
-          </AddMenu>
+        <Space
+          size="small"
+          className={classNames("actions-space", addOpen ? "add-open" : "")}
+        >
+          {
+            onAddExpression && onAddGroup &&
+            <AddMenu
+              onOpenChange={handleOpenChange}
+              onAddExpression={onAddExpression}
+              onAddGroup={onAddGroup}
+            >
+              <Button type="text" icon={<AddIcon className="add-icon" />} />
+            </AddMenu>
+          }
+
+          <Button type="text" icon={<RemoveIcon className="remove-icon" />} />
         </Space>
       </Actions>
     </Item>

@@ -66,6 +66,9 @@ export const defalutLocales: ILocales = {
     like_end: "结尾包含",
     not_empty: "不为空",
     empty: "为空",
+    addExpression: "添加条件",
+    addAndGroup: "添加且组",
+    addOrGroup: "添加或组"
   },
   'en-US': {
     baseSettings: "Base Settings",
@@ -132,5 +135,8 @@ export const defalutLocales: ILocales = {
     like_end: "Contian on end",
     not_empty: "Not empty",
     empty: "Empty",
+    addExpression: "Add Expression",
+    addAndGroup: "Add And Group",
+    addOrGroup: "Add Or Group",
   }
 }

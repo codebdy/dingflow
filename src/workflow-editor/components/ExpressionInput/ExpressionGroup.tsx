@@ -1,12 +1,13 @@
 import { styled } from "styled-components"
-import { Button, Select, Space } from "antd"
+import { Button, Select } from "antd"
 import { useTranslate } from "../../react-locales";
-import { memo } from "react";
-import { ExpressionGroupType, ExpressionNodeType, IExpressionGroup } from "../../interfaces";
+import { memo, useCallback } from "react";
+import { ExpressionGroupType, ExpressionNodeType, IExpressionGroup, IExpressionNode } from "../../interfaces";
 import { ExpressionInputProps } from "./ExpressionInputProps";
 import { ExpressionItem, Item, itemHeight } from "./ExpressionItem";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { AddMenu } from "./AddMenu";
+import { createUuid } from "../../utils/create-uuid";
 
 const ExpressionGroupShell = styled.div`
   display: flex;
@@ -76,13 +77,69 @@ const GroupAction = styled.div`
 export const ExpressionGroup = memo((
   props: {
     ExpressInput: React.FC<ExpressionInputProps>
-    value?: IExpressionGroup,
-    onChange?: (value?: IExpressionGroup) => void
+    value: IExpressionGroup,
+    onChange?: (value: IExpressionGroup) => void
     root?: boolean,
   }
 ) => {
   const { ExpressInput, value, onChange, root } = props
   const t = useTranslate()
+
+  const handleAddExp = useCallback(() => {
+    value && onChange?.({
+      ...value,
+      children: [
+        ...value.children,
+        {
+          id: createUuid(),
+          nodeType: ExpressionNodeType.Expression
+        }
+      ]
+    })
+  }, [onChange, value])
+
+  const handleAddGroup = useCallback((groupType: ExpressionGroupType) => {
+    const newNode: IExpressionGroup = {
+      id: createUuid(),
+      nodeType: ExpressionNodeType.Group,
+      groupType: groupType,
+      children: [
+        {
+          id: createUuid(),
+          nodeType: ExpressionNodeType.Expression
+        }
+      ]
+    }
+    onChange?.({
+      ...value,
+      children: [
+        ...value.children,
+        newNode,
+      ]
+    })
+  }, [onChange, value])
+
+  const handleAddExpAfter = useCallback((index: number) => {
+
+  }, [])
+
+  const handleAddGroupAfter = useCallback((index: number, groupType: ExpressionGroupType) => {
+
+  }, [])
+
+  const handleChildChange = useCallback((node: IExpressionNode) => {
+    onChange?.({
+      ...value,
+      children: value.children?.map(child => child.id === node.id ? node : child)
+    })
+  }, [onChange, value])
+
+  const handelGroupTypeChange = useCallback((groupType: ExpressionGroupType) => {
+    onChange?.({
+      ...value,
+      groupType,
+    })
+  }, [onChange, value])
 
   return (
     <ExpressionGroupShell className="expression-group">
@@ -90,10 +147,12 @@ export const ExpressionGroup = memo((
         <GroupOperatorLine className="group-operator-line" />
         <Select
           defaultValue={ExpressionGroupType.And}
+          value={value?.groupType}
           options={[
             { value: ExpressionGroupType.And, label: t(ExpressionGroupType.And) },
             { value: ExpressionGroupType.Or, label: t(ExpressionGroupType.Or) },
           ]}
+          onChange={handelGroupTypeChange}
         />
       </GroupOperator>
       <ExpressionChildren className="expression-children">
@@ -101,8 +160,17 @@ export const ExpressionGroup = memo((
           value?.children?.map((child, index) => {
             return (
               child.nodeType === ExpressionNodeType.Group ?
-                <ExpressionGroup key={child.id} ExpressInput={ExpressInput} />
-                : <ExpressionItem key={child.id}>
+                <ExpressionGroup
+                  key={child.id}
+                  ExpressInput={ExpressInput}
+                  value={child as IExpressionGroup}
+                  onChange={handleChildChange}
+                />
+                : <ExpressionItem
+                  key={child.id}
+                  onAddExpression={() => handleAddExpAfter(index)}
+                  onAddGroup={(nodType) => handleAddGroupAfter(index, nodType)}
+                >
                   <ExpressInput />
                 </ExpressionItem>
             )
@@ -113,7 +181,10 @@ export const ExpressionGroup = memo((
         }
         <Item>
           <GroupAction>
-            <AddMenu>
+            <AddMenu
+              onAddExpression={handleAddExp}
+              onAddGroup={handleAddGroup}
+            >
               <Button
                 type="dashed"
                 block
@@ -125,7 +196,7 @@ export const ExpressionGroup = memo((
             <Button
               type="text"
               icon={<DeleteOutlined />}
-              style={{ marginLeft: 8}}
+              style={{ marginLeft: 8 }}
             />
           </GroupAction>
         </Item>

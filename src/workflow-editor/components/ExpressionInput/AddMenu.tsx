@@ -1,24 +1,36 @@
 import { Dropdown, MenuProps } from "antd";
-import { memo } from "react"
-
-const items: MenuProps['items'] = [
-  {
-    label: "添加条件",
-    key: '0',
-  },
-  {
-    label: "添加条件组",
-    key: '1',
-  },
-];
+import { memo, useMemo } from "react"
+import { ExpressionGroupType, ExpressionNodeType } from "../../interfaces";
+import { useTranslate } from "../../react-locales";
 
 export const AddMenu = memo((
   props: {
     onOpenChange?: (open: boolean) => void,
-    children?: React.ReactNode
+    onAddExpression: () => void,
+    onAddGroup: (groupType: ExpressionGroupType) => void,
+    children?: React.ReactNode,
   }
 ) => {
-  const { onOpenChange, children } = props;
+  const { onOpenChange, onAddExpression, onAddGroup, children } = props;
+  const t = useTranslate();
+  const items: MenuProps['items'] = useMemo(() => [
+    {
+      label: t("addExpression"),
+      key: ExpressionNodeType.Expression,
+      onClick: onAddExpression,
+    },
+    {
+      label: t("addAndGroup"),
+      key: ExpressionGroupType.And,
+      onClick: () => onAddGroup(ExpressionGroupType.And)
+    },
+    {
+      label: t("addOrGroup"),
+      key: ExpressionGroupType.Or,
+      onClick: () => onAddGroup(ExpressionGroupType.Or)
+    },
+  ], [onAddExpression, onAddGroup, t]);
+
   return (
     <Dropdown
       menu={{ items }}
