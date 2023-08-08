@@ -3,8 +3,9 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo } from "react";
-import { ExpressionGroupType } from "../../interfaces";
+import { ExpressionGroupType, ExpressionNodeType, IExpressionGroup } from "../../interfaces";
 import { ExpressionInputProps } from "./ExpressionInputProps";
+import { ExpressionItem } from "./ExpressionItem";
 
 const itemHeight = 48;
 
@@ -53,43 +54,12 @@ const GroupOperatorLine = styled.div`
   }
 `
 
-const ExpressionItems = styled.div`
+const ExpressionChildren = styled.div`
   flex: 1;
   display: flex;
   flex-flow: column;
 `
 
-export const Item = styled.div`
-  display: flex;
-  align-items: center;
-  min-height: 48px;
-  .actions-space{
-    display: none;
-  }
-  &:hover{
-    .actions-space{
-      display: flex;
-    }    
-  }
-`
-
-export const ExpressionContent = styled.div`
-  flex: 1;
-`
-
-export const Actions = styled.div`
-  width: 60px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`
-export const AddIcon = styled(PlusOutlined)`
-  font-size:12px;
-`
-export const RemoveIcon = styled(MinusOutlined)`
-  font-size:12px;
-
-`
 // const SuccessIcon = styled(CheckCircleFilled)`
 //   color:${props => props.theme.token?.colorSuccess};
 // `
@@ -100,9 +70,11 @@ export const RemoveIcon = styled(MinusOutlined)`
 export const ExpressionGroup = memo((
   props: {
     ExpressInput: React.FC<ExpressionInputProps>
+    value?: IExpressionGroup,
+    onChange?: (value?: IExpressionGroup) => void
   }
 ) => {
-  const { ExpressInput } = props
+  const { ExpressInput, value, onChange } = props
   const t = useTranslate()
 
   return (
@@ -117,22 +89,17 @@ export const ExpressionGroup = memo((
           ]}
         />
       </GroupOperator>
-      <ExpressionItems className="expression-items-container">
-        <Item>
-          <ExpressionContent>
-            <ExpressInput />
-          </ExpressionContent>
-          <Actions className="actions">
-            <Space className="actions-space">
-              <Button size="small" type="text" icon={<RemoveIcon className="remove-icon" />} />
-              <Button size="small" type="text" icon={<AddIcon className="add-icon" />} />
-            </Space>
-          </Actions>
-        </Item>
-        <Item>
-          <Input />
-        </Item>
-      </ExpressionItems>
+      <ExpressionChildren className="expression-children">
+        {
+          value?.children?.map((child, index) => {
+            return (
+              child.nodeType === ExpressionNodeType.Group ?
+                <ExpressionGroup key={child.id} ExpressInput={ExpressInput} />
+                : <ExpressionItem key={child.id} ExpressInput={ExpressInput} />
+            )
+          })
+        }
+      </ExpressionChildren>
     </ExpressionGroupShell>
   )
 })

@@ -31,7 +31,18 @@ export enum OperatorType {
 //   fieldValue?: unknown,
 //   operatorType?: OperatorType,
 // }
-export interface IExpression {
+
+export enum ExpressionNodeType {
+  Expression = "expression",
+  Group = "group"
+}
+
+export interface IExpressionNode {
+  id: string
+  nodeType: ExpressionNodeType
+}
+
+export interface IExpression extends IExpressionNode {
   name?: string,
   value?: unknown,
   operator?: OperatorType,
@@ -42,9 +53,9 @@ export enum ExpressionGroupType {
   Or = "or"
 }
 
-export interface IExpressionGroup {
-  type: ExpressionGroupType,
-  expressions: IExpression[]
+export interface IExpressionGroup extends IExpressionNode {
+  groupType: ExpressionGroupType,
+  children: IExpression[] | IExpressionGroup[]
 }
 
 export interface IExtCondition extends IExpression {
