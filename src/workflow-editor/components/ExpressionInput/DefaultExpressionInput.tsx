@@ -1,8 +1,11 @@
 import { Select, Input, Space } from "antd"
 import { memo } from "react"
 import { OperatorSelect } from "./OperatorSelect"
+import { ExpressionInputProps } from "./ExpressionInputProps"
 
-export const DefaultConditionInput = memo(() => {
+export const DefaultExpressionInput = memo((
+  props: ExpressionInputProps
+) => {
   return (
     <Space>
       <Select

@@ -3,8 +3,8 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space } from "antd"
 import { useTranslate } from "../../react-locales";
 import { memo } from "react";
-import { ExpressionGroupType, OperatorType } from "../../interfaces";
-import { OperatorSelect } from "./OperatorSelect";
+import { ExpressionGroupType } from "../../interfaces";
+import { ExpressionInputProps } from "./ExpressionInputProps";
 
 const itemHeight = 48;
 
@@ -97,12 +97,12 @@ export const RemoveIcon = styled(MinusOutlined)`
 //   color:${props => props.theme.token?.colorError};
 // `
 
-export const ExpressionInput = memo((
+export const ExpressionTreeInput = memo((
   props: {
-    ConditionInput: React.FC<any>
+    ExpressInput: React.FC<ExpressionInputProps>
   }
 ) => {
-  const { ConditionInput } = props
+  const { ExpressInput } = props
   const t = useTranslate()
 
   return (
@@ -120,7 +120,7 @@ export const ExpressionInput = memo((
       <ExpressionItems className="expression-items-container">
         <Item>
           <ExpressionContent>
-            <ConditionInput />
+            <ExpressInput />
           </ExpressionContent>
           <Actions className="actions">
             <Space className="actions-space">
