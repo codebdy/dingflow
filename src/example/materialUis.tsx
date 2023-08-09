@@ -1,9 +1,9 @@
 import { ContentPlaceholder, IMaterialUIs, IWorkFlowNode, NodeType } from "../workflow-editor";
-import { ApproverPanel, IApproverSettings } from "./setterss/ApproverPanel";
-import { AuditPanel, IAuditSettings } from "./setterss/AuditPanel";
-import { ConditionPanel, IConditionSettings } from "./setterss/ConditionPanel";
-import { INotifierSettings, NotifierPanel } from "./setterss/NotifierPanel";
-import { IStartSettings, StartPanel } from "./setterss/StartPanel";
+import { ApproverPanel, IApproverSettings } from "./setters/ApproverPanel";
+import { AuditPanel, IAuditSettings } from "./setters/AuditPanel";
+import { ConditionPanel, IConditionSettings } from "./setters/ConditionPanel";
+import { INotifierSettings, NotifierPanel } from "./setters/NotifierPanel";
+import { IStartSettings, StartPanel } from "./setters/StartPanel";
 
 export const materialUis: IMaterialUIs = {
   //审批人物料UI
