@@ -55,6 +55,7 @@ export const Input = styled.input`
   outline: solid 2px rgba(80,80,80, 0.3);
   border: 0;
   border-radius: 4px;
+  background-color: ${props => props.theme?.token?.colorBgBase};
   color: ${props => props.theme?.token?.colorText};
 `
 
