@@ -7,7 +7,7 @@ import { ChildNode } from "./ChildNode"
 import { NodeWrap, NodeWrapBox, NodeContent } from "./NormalNode"
 import { EndNode } from "./EndNode"
 import { useEditorEngine } from "../hooks"
-import { NodeTitleSchell } from "./NodeTitle"
+import { NodeTitleShell } from "./NodeTitle"
 import { useNodeMaterial } from "../hooks/useNodeMaterial"
 import { useMaterialUI } from "../hooks/useMaterialUI"
 import { ErrorTip } from "./ErrorTip"
@@ -25,9 +25,9 @@ export const StartNode = memo(() => {
   return (
     <NodeWrap className="node-wrap start">
       <NodeWrapBox className="node-wrap-box" onClick={handleClick}>
-        <NodeTitleSchell className="node-title start-node-title" style={{ backgroundColor: material?.color }}>
+        <NodeTitleShell className="node-title start-node-title" style={{ backgroundColor: material?.color }}>
           {t(material?.label || "")}
-        </NodeTitleSchell>
+        </NodeTitleShell>
         <NodeContent className="content">
           {materialUi?.viewContent && materialUi?.viewContent(startNode, { t })}
           <RightOutlined className="arrow" />

@@ -5,7 +5,7 @@ import { CloseButton } from "./CloseButton";
 import { INodeMaterial } from "../interfaces/material";
 import { useEditorEngine } from "../hooks";
 
-export const NodeTitleSchell = styled.div`
+export const NodeTitleShell = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@ export const NodeTitle = memo((props: {
     setInputValue(e.target.value)
   }, [])
 
-  return <NodeTitleSchell className="node-title" style={{ backgroundColor: material?.color, color: "#fff" }}>
+  return <NodeTitleShell className="node-title" style={{ backgroundColor: material?.color, color: "#fff" }}>
     <NodeIcon>
       {material?.icon}
     </NodeIcon>
@@ -123,5 +123,5 @@ export const NodeTitle = memo((props: {
         onChange={handleChange}
       />
     }
-  </NodeTitleSchell>
+  </NodeTitleShell>
 })
